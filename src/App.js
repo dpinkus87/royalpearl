@@ -14,11 +14,14 @@ function App() {
           <Header />    
       <main>
         {/* Hero cover image */}
-        <Container>
-          <Row>
-            <Col className="m-0 p-0">
-              <Image src={hero} fluid />
-            </Col>
+        <Container>    
+               <p className='hero-text'>TEST</p>
+
+          <Row>                     
+            <Col className="m-0 p-0 ">
+              <Image className='image' src={hero} fluid />
+            </Col>    
+
           </Row>
         </Container>
 

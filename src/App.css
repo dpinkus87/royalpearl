@@ -22,3 +22,13 @@
     align-items: center;
 }
 
+.hero-text {
+    background-color: white;
+    color: black;
+    z-index: 1;
+}
+
+.image {
+    z-index: 0;
+    width: 100vw;
+}
