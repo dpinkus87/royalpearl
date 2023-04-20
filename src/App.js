@@ -2,33 +2,16 @@ import "./App.css";
 import hero from "./Images/scott-webb-_7G_R_IWt1U-unsplash.jpeg";
 import archives from "./Images/anna-stampfli-7GxPOMH2Mh4-unsplash.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Nav, Navbar, Row, Col, Image } from "react-bootstrap";
-import Footer from "./components/Footer";
+import { Container, Row, Col, Image } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <header bg='black'>
-        <div>
-          <h1 className="header">ROYAL PEARL</h1>
-        </div>
-        <Navbar className="Nav" expand="lg">
-          <Container>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">
-                  Home
-                </Nav.Link>
-                <Nav.Link href="#link">
-                  Link
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </header>
 
+          <Header />    
       <main>
         {/* Hero cover image */}
         <Container>
@@ -61,7 +44,6 @@ function App() {
           </Row>
         </Container>
       </main>
-      <Footer />
     </div>
   );
 }

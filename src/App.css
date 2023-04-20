@@ -1,5 +1,5 @@
 .App {
-    /* background-color: black; */
+    background-color: black;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -11,20 +11,14 @@
     padding-top: 1rem;
 }
 
-.Nav {
-    color: blue;
-    font-size: 50px;
-    text-align: center;
-    align-items: center;
-
-}
-
-.bg-black {
-    background-color: black;
-    color: white;
-}
-
 .Container {
     max-width: 100%;
     padding: 0%
 }
+
+.navbar-custom{
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
