@@ -11,10 +11,6 @@
     padding-top: 1rem;
 }
 
-.Container {
-    max-width: 100%;
-    padding: 0%
-}
 
 .navbar-custom{
     font-size: 50px;
@@ -23,12 +19,26 @@
 }
 
 .hero-text {
-    background-color: white;
+    background-color: #afafaf;
     color: black;
-    z-index: 1;
+    z-index: 3;
+    font-size: 20px;
+    width: 50%; 
+    height: 200px;
+    padding-left: 1rem;
+    position:relative;
+    top: -25rem;
+    left: 50%;
+
 }
 
-.image {
-    z-index: 0;
+.heroImage {
+    z-index: -1;
     width: 100vw;
 }
+
+.newArrivalCard {
+    border-radius: 0%;
+    text-underline-offset: 15px;
+}
+
