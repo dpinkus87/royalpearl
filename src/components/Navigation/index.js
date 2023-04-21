@@ -17,7 +17,7 @@ return (
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <NavDropdown title="Product Categories" id="basic-nav-dropdown">
+            <NavDropdown title="Product Categories" menuVariant='dark' id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Earrings</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Necklace</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Strands</NavDropdown.Item>

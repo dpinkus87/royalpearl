@@ -75,7 +75,7 @@ function Home() {
 {/* Upcoming Shows */}
 <div>
 <Container>
-<h2>Upcoming Shows</h2>
+<h2 className="text-white bg-black text-center">Upcoming Shows</h2>
 </Container>
 </div>
 
