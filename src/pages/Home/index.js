@@ -33,21 +33,22 @@ function Home() {
 <div>
   <Container>
     <Row >
-      <Col>
-        <Card className="border border-dark rounded-0">
-          <Card.Img src={hero}></Card.Img>
+      <Col sm={6}> 
+        <Card className="border-0">
+          <Card.Img src={hero} className='rounded-0'></Card.Img>
           <Card.Body className="newArrivalCard text-white bg-black text-center 25">
             <u> New Arrivals</u></Card.Body>
         </Card>
       </Col>
 
-      <Col>
-        <Card className="border border-dark rounded-0">
-          <Card.Img src={hero}></Card.Img>
+      <Col sm={6}>
+        <Card className="border-0">
+          <Card.Img src={hero} className='rounded-0'></Card.Img>
           <Card.Body className="newArrivalCard text-white bg-black text-center 25">
             <u> New Arrivals</u></Card.Body>
         </Card>
       </Col>
+
 
     </Row>
   </Container>

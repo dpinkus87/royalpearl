@@ -34,7 +34,7 @@
 
 .heroImage {
     z-index: -1;
-    width: 100vw;
+    width: 100%;
 }
 
 .newArrivalCard {
@@ -51,5 +51,5 @@
 }
 
 .nav-item .dropdown-item:hover {
-  background: #afafaf;
+  background: #424141;
 }
