@@ -1,11 +1,11 @@
 .App {
     background-color: black;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Bona Nova', sans-serif;
 }
 
 .header {
-    font-size: 2.5rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.6rem;
+    font-family: 'Bona Nova', Times, serif;
     color: white;
     text-align: center;
     padding-top: 1rem;
@@ -13,7 +13,7 @@
 
 
 .navbar-custom{
-    font-size: 50px;
+    font-size: 1.1rem;
     justify-content: center;
     align-items: center;
 }
@@ -52,4 +52,8 @@
 
 .nav-item .dropdown-item:hover {
   background: #424141;
+}
+
+.navbar .nav-link {
+  color: white
 }

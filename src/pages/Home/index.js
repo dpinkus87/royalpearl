@@ -5,11 +5,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Image, Card } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const onClick = 'http://www.google.com'
+
 function Home() {
     return( 
 <div className="home">
+
 {/* Hero cover image */}
-<Container>
+<Container fluid>
   <Row>
     <Col className="m-0 p-0 ">
       <Image className='heroImage' src={hero} fluid />
@@ -21,10 +24,10 @@ function Home() {
 </Container>
 
 {/* Previous collections image / link */}
-<Container>
-  <Row className="m-0 p-0">
-    <Col>
-      <Image className="m-0 p-0" src={archives} fluid />
+<Container fluid>
+  <Row >
+    <Col className="m-0 p-0">
+      <Image className="heroimage" src={archives} fluid />
     </Col>
   </Row>
 </Container>
@@ -34,7 +37,7 @@ function Home() {
   <Container>
     <Row >
       <Col sm={6}> 
-        <Card className="border-0">
+        <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0">
           <Card.Img src={hero} className='rounded-0'></Card.Img>
           <Card.Body className="newArrivalCard text-white bg-black text-center 25">
             <u> New Arrivals</u></Card.Body>
@@ -42,7 +45,7 @@ function Home() {
       </Col>
 
       <Col sm={6}>
-        <Card className="border-0">
+        <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0">
           <Card.Img src={hero} className='rounded-0'></Card.Img>
           <Card.Body className="newArrivalCard text-white bg-black text-center 25">
             <u> New Arrivals</u></Card.Body>
@@ -59,7 +62,7 @@ function Home() {
 
 {/* About us section */}
 <div>
-  <Container>
+  <Container fluid>
     <Row>
       <Col xs={8}>
         <Image className="w-100" src={hero} />
@@ -75,7 +78,7 @@ function Home() {
 
 {/* Upcoming Shows */}
 <div>
-<Container>
+<Container fluid>
 <h2 className="text-white bg-black text-center">Upcoming Shows</h2>
 </Container>
 </div>
