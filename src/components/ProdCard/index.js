@@ -1,5 +1,4 @@
-import React, { UseState } from 'react'
-import { Row, Col, Image } from 'react-bootstrap/Card'
+import React, { Row, Col, Image } from 'react';
 import { addToMessage } from '../../utils/addToMessage'
 
 
@@ -33,43 +32,40 @@ const styles = {
 
 const productCard = () => {
 
-  const addItem = () => {
-    const [items, addItem] = UseItem('');
+  const { items, addItem } = addToMessage('');
 
-  }
 
-  return (
-    <section className="products">
-      <div style={styles.card}>
-        {items.map((item) => (
-          <div product={item.id} id={item.id} >
-            <Row>
-              <Col>
-                <Image style={styles.image} src="#TEST">
-                </Image>
-                <button id="addTo"
-                  onClick={
-                    addToMessage(addItem.id)
-                  }>+
-                </button>
-              </Col>
-              <Col>
-                <div>
-                  <h2>
-                    CARD TITLE HOLDER
-                  </h2>
-                  <div>
-                    Description - LOREM IPSUM
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        ))}
+return (
+  <section className="products">
+    {items.map((item) => (
+      <div product={item.id} id={item.id} >
+        <Row>
+          <Col>
+            <Image style={styles.image} src="#TEST">
+            </Image>
+            <button id="addTo"
+              onClick={
+                addToMessage(addItem.id)
+              }>+
+            </button>
+          </Col>
+          <Col>
+            <div>
+              <h2>
+                CARD TITLE HOLDER
+              </h2>
+              <div>
+                Description - LOREM IPSUM
+              </div>
+            </div>
+          </Col>
+        </Row>
       </div>
+    ))}
 
-    </section>
-  )
+
+  </section>
+);
 }
 
-export default productCard
+export default productCard;
