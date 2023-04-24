@@ -14,18 +14,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router> */}
         <Header />
-        <Routes>
+        {/* <Routes>
           <Route
             path='/'
             element={<Home />}
-          />
-          <Route
+          /> */}
+          {/* <Route
             path='/regal'
             element={<Regal />}
-          />
-          <Route
+          /> */}
+          <Regal />
+          {/* <Route
             path='/ProductListing'
             element={<ProductListing />}
           />
@@ -33,11 +34,11 @@ function App() {
             path='*'
             element={<NoMatch />}
           />
-        </Routes>
+        </Routes> */}
 
 
         <Footer />
-      </Router>
+      {/* </Router> */}
 
 
     </div>
