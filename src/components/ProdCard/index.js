@@ -52,7 +52,7 @@ return (
           <Col>
             <div>
               <h2>
-                CARD TITLE HOLDER
+                SKU information
               </h2>
               <div>
                 Description - LOREM IPSUM
