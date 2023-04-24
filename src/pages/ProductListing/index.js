@@ -1,35 +1,48 @@
-import React, { useState, useEffect } from 'react'
-import productCard from '../../components/ProdCard'
+// import React, { useState, useEffect } from 'react'
+// import productCard from '../../components/ProdCard'
 
-const ProductListing = () => {
+// const ProductListing = () => {
 
-  const [product, setProduct] = useState([])
+//   const [state, dispatch ] 
 
-  useEffect(() => {
-    getProduct()
-  }, []);
+//   const { currentCategory } = state;
+//   const [product, setProduct] = useState([])
 
-  const getProduct = () => {
-    fetch()
-      .then((res) = res.json())
-      .then((response) => setProduct)
-  }
+//   useEffect(() => {
+//     getProduct()
+//   }, []);
 
-  return (
-    <div className='container'>
-      <h2 className='header'>Products</h2>
-      <span className='text-primary'>TEST
-      </span>
-      <hr></hr>
-      <div className='ui grid'>
-        <div className='row'>
-          <div className='col-8'>
-            <productCard product={product} />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+//   const getProduct = () => {
+//     fetch()
+//       .then((res) = res.json())
+//       .then((response) => setProduct)
+//   }
 
-export default ProductListing;
+//   function filterProducts() {
+//     if (!currentCategory) {
+//       return state.products;
+//     }
+
+//     return state.products.filter(
+//       (product) => product.category._id === currentCategory
+//     )
+//   }
+
+//   return (
+//     <div className='container'>
+//       <h2 className='header'>Products</h2>
+//       <span className='text-primary'>TEST
+//       </span>
+//       <hr></hr>
+//       <div className='ui grid'>
+//         <div className='row'>
+//           <div className='col-8'>
+//             <productCard product={product} />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default ProductListing;

@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import ProductListing from "./pages/ProductListing";
 import Regal from "./pages/Regal";
-import noMatch from './pages/NoMatch'
+import NoMatch from './pages/NoMatch'
 
 import Header from "./components/Navigation/index";
 import Footer from "./components/Footer";
@@ -22,17 +22,17 @@ function App() {
             element={<Home />}
           />
           <Route
-          path='/regal'
-          element={<Regal />}
+            path='/regal'
+            element={<Regal />}
           />
           <Route
             path='/ProductListing'
             element={<ProductListing />}
           />
           <Route
-          path='*'
-          element={<NoMatch />}
-/>
+            path='*'
+            element={<NoMatch />}
+          />
         </Routes>
 
 
