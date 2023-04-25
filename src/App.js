@@ -16,8 +16,11 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} 
+            
+          />
           <Route path="/regal" element={<Regal />} />
+          <Route path="/catalog" element={<ProductListing />} />
         </Routes>
         <Footer />
       </div>
