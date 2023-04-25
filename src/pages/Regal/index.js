@@ -8,7 +8,7 @@ import earrings from "../../Images/earrings.jpeg"
 const Regal = () => {
   return (
     <div>
-    <h2 className='header'>Regal Jewelry</h2>
+    <h1 className='header'>Regal Jewelry</h1>
         <Container fluid>
                 <Row>
                     <Col className="m-0 p-0 ">

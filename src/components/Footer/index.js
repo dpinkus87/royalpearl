@@ -1,77 +1,64 @@
-import React from "react";
-import {
-  Box,
-  Container,
-  Row,
-  Column,
-  FooterLink,
-  Heading,
-} from "../../FooterStyles.js";
-  
+
+import React from 'react';
+import { Container, Col, Row } from 'react-bootstrap';
+
+const styles = {
+  Container: {
+    background: '#EDEDED',
+    height: '100px',
+    justifyContent: 'center',
+    display: 'flex',
+    maxWidth: '100%',
+    flexWrap: 'none'
+  },
+  row: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'green',
+  },
+  h1: {
+    fontSize: '12pt',
+    color: 'black',
+  },
+  icon: {
+
+  },
+  li: {
+    listStyle: 'none'
+  }
+}
+
 const Footer = () => {
+
   return (
-    <Box>
-      <h1 style={{ color: "green", 
-                   textAlign: "center", 
-                   marginTop: "-50px" }}>
-        GeeksforGeeks: A Computer Science Portal for Geeks
-      </h1>
-      <Container>
-        <Row>
-          <Column>
-            <Heading>About Us</Heading>
-            <FooterLink href="#">Aim</FooterLink>
-            <FooterLink href="#">Vision</FooterLink>
-            <FooterLink href="#">Testimonials</FooterLink>
-          </Column>
-          <Column>
-            <Heading>Services</Heading>
-            <FooterLink href="#">Writing</FooterLink>
-            <FooterLink href="#">Internships</FooterLink>
-            <FooterLink href="#">Coding</FooterLink>
-            <FooterLink href="#">Teaching</FooterLink>
-          </Column>
-          <Column>
-            <Heading>Contact Us</Heading>
-            <FooterLink href="#">Uttar Pradesh</FooterLink>
-            <FooterLink href="#">Ahemdabad</FooterLink>
-            <FooterLink href="#">Indore</FooterLink>
-            <FooterLink href="#">Mumbai</FooterLink>
-          </Column>
-          <Column>
-            <Heading>Social Media</Heading>
-            <FooterLink href="#">
-              <i className="fab fa-facebook-f">
-                <span style={{ marginLeft: "10px" }}>
-                  Facebook
-                </span>
-              </i>
-            </FooterLink>
-            <FooterLink href="#">
-              <i className="fab fa-instagram">
-                <span style={{ marginLeft: "10px" }}>
-                  Instagram
-                </span>
-              </i>
-            </FooterLink>
-            <FooterLink href="#">
-              <i className="fab fa-twitter">
-                <span style={{ marginLeft: "10px" }}>
-                  Twitter
-                </span>
-              </i>
-            </FooterLink>
-            <FooterLink href="#">
-              <i className="fab fa-youtube">
-                <span style={{ marginLeft: "10px" }}>
-                  Youtube
-                </span>
-              </i>
-            </FooterLink>
-          </Column>
-        </Row>
-      </Container>
-    </Box>
-  );
-};
+    <div>
+    <Container style={styles.Container} fluid >
+
+      <Row style={styles.row}>
+        <Col sm={8} md={4} lg={2} fluid>
+          <ul style={styles.li}>
+            <li >
+              test
+            </li>
+            <li>
+              test2
+            </li>
+          </ul></Col>
+        <Col sm={8} md={4} lg={2} fluid>Royal Pearl All rights reserved 2023</Col>
+        <Col sm={8} md={4} lg={2} fluid>
+          <ul style={styles.li}>
+            <li>
+              Follow Us
+            </li>
+            <li>
+              Instagram
+            </li>
+          </ul>
+        </Col>
+      </Row>
+    </Container>
+    </div>
+  )
+}
+
 export default Footer;
