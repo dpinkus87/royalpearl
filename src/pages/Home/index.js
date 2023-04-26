@@ -1,4 +1,5 @@
 import "../../App.css";
+import HomepageModal from "../../components/Modal";
 
 import hero from "../../Images/scott-webb-_7G_R_IWt1U-unsplash.jpeg";
 import bracelet from "../../Images/bracelet.jpeg"
@@ -15,8 +16,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const onClick = 'http://www.google.com'
 
 function Home() {
+
+
     return (
         <div className="home">
+
+            {/* Show Modal */}
+
+            <HomepageModal />
 
             {/* Hero cover image */}
             <Container fluid>
@@ -30,14 +37,14 @@ function Home() {
                 <Row className='hero-text'>TEST</Row>
             </Container>
 
-<br></br>
-<br></br>
+            <br></br>
+            <br></br>
 
             {/* Category Cards */}
             <div>
                 <Container>
                     <Row>
-                    <Col sm={8} md={4} lg={2}>
+                        <Col sm={8} md={4} lg={2}>
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
                                 <Card.Img src={earrings} className='rounded-0'></Card.Img>
                                 <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -80,8 +87,8 @@ function Home() {
                 </Container>
             </div>
 
-<br></br>
-<br></br>
+            <br></br>
+            <br></br>
 
             {/* Previous collections image / link */}
             <Container fluid>
@@ -117,8 +124,8 @@ function Home() {
                 </Container>
             </div>
 
-<br></br>
- <br></br>
+            <br></br>
+            <br></br>
 
             {/* About us section */}
             <div>
