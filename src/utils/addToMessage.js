@@ -38,7 +38,7 @@ const messageHandler = ({ children }) => {
     if(list.length === 0){
         products.forEach(product => product.messaged = false)
     }else{
-        for (let i = 0, i < products.length; i++){
+        for (let i = 0; i < products.length; i++){
             for (let j = 0; j < list.length; j++) {
                 if (products[i].id === list[j].id) {
                     products[i].messaged = true;
