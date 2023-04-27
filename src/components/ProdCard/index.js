@@ -1,6 +1,5 @@
 import React, { Row, Col, Image } from 'react';
-import { addToMessage } from '../../utils/addToMessage'
-
+import { UseProducts } from '../../utils/addToMessage';
 
 const styles = {
   card: {
@@ -26,46 +25,31 @@ const styles = {
     zIndex: '1',
     margin: '5px'
   }
-}
-
-
+};
 
 const productCard = () => {
+  const { items, addItem } = UseProducts('');
 
-  const { items, addItem } = addToMessage('');
-
-
-return (
-  <section className="products">
-    {items.map((item) => (
-      <div product={item.id} id={item.id} >
-        <Row>
-          <Col>
-            <Image style={styles.image} src="#TEST">
-            </Image>
-            <button id="addTo"
-              onClick={
-                addToMessage(addItem.id)
-              }>+
-            </button>
-          </Col>
-          <Col>
-            <div>
-              <h2>
-                SKU information
-              </h2>
+  return (
+    <section className="products">
+      {items.map((item) => (
+        <div product={item.id} id={item.id}>
+          <Row>
+            <Col>
+              <Image style={styles.image} src="#TEST"></Image>
+              <button id="addTo" onClick={() => addItem(item.id)}>+</button>
+            </Col>
+            <Col>
               <div>
-                Description - LOREM IPSUM
+                <h2>SKU information</h2>
+                <div>Description - LOREM IPSUM</div>
               </div>
-            </div>
-          </Col>
-        </Row>
-      </div>
-    ))}
-
-
-  </section>
-);
-}
+            </Col>
+          </Row>
+        </div>
+      ))}
+    </section>
+  );
+};
 
 export default productCard;

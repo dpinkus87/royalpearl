@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ProductList = ({ category }) => {
+export const ProductList = ({ category }) => {
   const [products] = useState([
     {
       name: "AA01",
@@ -54,6 +54,5 @@ const ProductList = ({ category }) => {
   );
 };
 
-export default ProductList;
 
 

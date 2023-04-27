@@ -2,8 +2,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 
 import Home from "./pages/Home";
-import ProductListing from "./pages/ProductListing";
 import Regal from "./pages/Regal";
+import ProductListing from "./pages/ProductListing/productsData";
 
 import Header from "./components/Navigation/index";
 import Footer from "./components/Footer/index";

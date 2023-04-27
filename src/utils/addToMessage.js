@@ -1,86 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { ProductList } from '../seed/index';
+import React, { useState, useEffect, useContext } from 'react';
+import {ProductList} from '../data/index';
 
 const ProductsContext = React.createContext();
 
 export function UseProducts() {
-  return UseProducts(ProductsContext);
+  return useContext(ProductsContext);
 }
 
-const messageHandler = ({ children }) => {
+const MessageHandler = ({ children }) => {
   const [products, setProducts] = useState(ProductList);
-  
-  const messageFromLocalStorage = JSON.parse(localStorage.getItem('productsInMessage') || "[]")
-  const [message, setMessage] = useState([]);
+
+  const messageFromLocalStorage = JSON.parse(localStorage.getItem('productsInMessage') || '[]');
+  const [message, setMessage] = useState(messageFromLocalStorage);
   const [messageEmpty, setMessageEmpty] = useState(true);
 
   const addMessage = (product, e) => {
     e.preventDefault();
-    const messageFromLocalStorage = JSON.parse(localStorage.getItem('productsInMessage') || "[]")
-    const existingProductIndex = messageFromLocalStorage.findIndex(item => item.id === product.id);
+    const existingProductIndex = message.findIndex((item) => item.id === product.id);
     handleMessage(product);
     if (existingProductIndex < 0) {
-      const updatedMessage = [...messageFromLocalStorage, { ...product, quantity: 1, messaged: true }];
+      const updatedMessage = [...message, { ...product, quantity: 1, messaged: true }];
       setMessage(updatedMessage);
       localStorage.setItem('productsInMessage', JSON.stringify(updatedMessage));
     } else {
-      if (message.length === 1) {
-        localStorage.setItem('productsInMessage', JSON.stringify([]));
-        const updatedMessage = JSON.parse(localStorage.getItem('productsInMessage'));
-        setMessage(updatedMessage);
-      } else {
-        messageFromLocalStorage.splice(existingProductIndex, 1);
-        localStorage.setItem('productsInMessage', JSON.stringify(messageFromLocalStorage));
-        const updatedMessage = JSON.parse(localStorage.getItem('productsInMessage'));
-        setMessage(updatedMessage);
-      }
+      const messageFromLocalStorage = [...message];
+      messageFromLocalStorage.splice(existingProductIndex, 1);
+      localStorage.setItem('productsInMessage', JSON.stringify(messageFromLocalStorage));
+      setMessage(messageFromLocalStorage);
     }
   };
 
-
   function checkMessage(list, products) {
-    if(list.length === 0){
-        products.forEach(product => product.messaged = false)
-    }else{
-        for (let i = 0; i < products.length; i++){
-            for (let j = 0; j < list.length; j++) {
-                if (products[i].id === list[j].id) {
-                    products[i].messaged = true;
-                    break;
-                }else{
-                    products[i].messaged = false 
-                }
-            }
+    if (list.length === 0) {
+      return products.map((product) => ({ ...product, messaged: false }));
+    } else {
+      return products.map((product) => {
+        if (list.some((item) => item.id === product.id)) {
+          return { ...product, messaged: true };
+        } else {
+          return { ...product, messaged: false };
         }
+      });
     }
   }
-  return([...products])
-
-}
 
   const handleMessage = (product) => {
-    setMessage(prevState => prevState.map(item => {
-      if (item.id === product.id) {
-        return { ...item, messaged: !item.messaged};
-      }
-      return item;
-    }))
-  }
-
-  useEffect(() =>  {
-    setProducts(checkMessage(message, products))
-    localStorage.setItem("productInMessage", JSON.stringify(message))
-  }, [message])
-
-  const productCheck = (message, products)=>{
-    const messagedProducts = checkMessage(message, products);
-    return messagedProducts;
-  }
+    setMessage((prevState) =>
+      prevState.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, messaged: !item.messaged };
+        }
+        return item;
+      })
+    );
+  };
 
   useEffect(() => {
-    setProducts(productCheck(message, products))
-  }, [])
+    setProducts(checkMessage(message, products));
+    localStorage.setItem('productsInMessage', JSON.stringify(message));
+  }, [message, products]);
 
+  useEffect(() => {
+    setProducts(checkMessage(message, products));
+  }, [message, products]);
+
+  useEffect(() => {
+    setMessageEmpty(message.length === 0);
+  }, [message]);
 
   return (
     <ProductsContext.Provider value={{ products, message, messageEmpty, setMessage, setProducts, addMessage }}>
@@ -89,4 +75,4 @@ const messageHandler = ({ children }) => {
   );
 };
 
-export default messageHandler;
+export default MessageHandler;

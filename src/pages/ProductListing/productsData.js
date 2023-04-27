@@ -1,7 +1,7 @@
-import productCard from "../../components/ProdCard/index";
-import { useEffect } from "react";
-import { ProductList } from '../../seed';
+import ProductCard from "../../components/ProdCard";
+
 import { Container } from "react-bootstrap";
+import { ProductList } from '../../data';
 
 
 const styles = {
@@ -10,15 +10,12 @@ const styles = {
     }
 }
 const ProductListing = () => {
-    useEffect(() => {
-        // get product
-    })
 
     return (
         <Container>
             <div style={styles.gridlayout}>
                 {ProductList.map((item) => {
-                    return (<productCard key={item.id} id={item.id} />)
+                    return (<ProductCard key={item.id} id={item.id} />)
                 })}
             </div>
         </Container>
@@ -26,8 +23,3 @@ const ProductListing = () => {
 }
 
 export default ProductListing
-
-
-
-
-
