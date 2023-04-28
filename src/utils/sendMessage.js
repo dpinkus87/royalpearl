@@ -1,13 +1,14 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
+require('dotenv').config()
 
 // Create a transporter for sending email
 // TODO: update user and pass with ENV
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "your_gmail_address",
-    pass: "your_gmail_password",
+    user: process.env.USER,
+    pass: process.env.PASS,
   },
 });
 
