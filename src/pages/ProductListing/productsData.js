@@ -1,7 +1,8 @@
+import React from "react";
 import ProductCard from "../../components/ProdCard";
 
 import { Container } from "react-bootstrap";
-import { ProductList } from '../../data';
+import useState from '../../data'
 
 
 const styles = {
@@ -14,8 +15,8 @@ const ProductListing = () => {
     return (
         <Container>
             <div style={styles.gridlayout}>
-                {ProductList.map((item) => {
-                    return (<ProductCard key={item.id} id={item.id} />)
+                {useState.map((products) => {
+                    return (<ProductCard key={products.id} id={products.id} />)
                 })}
             </div>
         </Container>
