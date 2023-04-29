@@ -1,5 +1,7 @@
 import React, { Row, Col, Image } from 'react';
-import { UseProducts } from '../../utils/addToMessage';
+
+import {productsInMessage} from '../../utils/addToMessage'
+
 
 const styles = {
   card: {
@@ -28,7 +30,7 @@ const styles = {
 };
 
 const productCard = () => {
-  const { items, addItem } = UseProducts('');
+  const { items, addItem } = productsInMessage('');
 
   return (
     <section className="products">

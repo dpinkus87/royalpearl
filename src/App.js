@@ -3,11 +3,13 @@ import "./App.css";
 
 import Home from "./pages/Home";
 import Regal from "./pages/Regal";
-import ProductListing from "./pages/ProductListing/productsData";
+import ProductListing from "./pages/ProductListing/productListing";
 
 import Header from "./components/Navigation/index";
+
 import Footer from "./components/Footer/index";
 
+import MessageOffcanvas from "./components/MessageOffcanvas/index"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           element={<ProductListing />}
           />
         </Routes>
+
+        <MessageOffcanvas className="message-offcanvas" />
         <Footer />
       </div>
     </BrowserRouter>

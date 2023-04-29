@@ -66,3 +66,23 @@
   bottom: 0;
   z-index: 999;
 }
+
+.offcanvas {
+  right: 0;
+  bottom: 0;
+}
+
+.offcanvas.offcanvas-start {
+  right: 0;
+  bottom: initial;
+  height: fit-content;
+  font-size: 2rem;
+  width: var(--bs-offcanvas-width);
+  border-right: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+  transform: translateX(100%);
+  
+}
+
+.offcanvas.offcanvas-start.show {
+  right:0
+}

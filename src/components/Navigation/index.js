@@ -9,14 +9,14 @@ return (
 <header>
  
         <div>
-          <h1 className="header">ROYAL PEARL</h1>
+          <h1 className="header" href="./">ROYAL PEARL</h1>
         </div>
         <Navbar className="justify-content-center" bg="black" variant='dark' expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="./">Home</Nav.Link>
             <NavDropdown title="Product Categories" menuVariant='dark' id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Earrings</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Necklace</NavDropdown.Item>
