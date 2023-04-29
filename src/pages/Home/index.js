@@ -15,6 +15,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const onClick = 'http://www.google.com'
 
+const styles = {
+    row: {
+        justifyContent: 'center'
+    }
+}
+
+
 function Home() {
 
 
@@ -42,8 +49,8 @@ function Home() {
 
             {/* Category Cards */}
             <div>
-                <Container>
-                    <Row>
+                <Container className="align-center">
+                    <Row style={styles.row}>
                         <Col sm={8} md={4} lg={2}>
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
                                 <Card.Img src={earrings} className='rounded-0'></Card.Img>
