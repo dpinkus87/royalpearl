@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
@@ -9,6 +9,7 @@ const MessageOffcanvas = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [myProducts, setMyProducts] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
