@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 
-export const ProductList = ({ category }) => {
-  const [products] = useState([
+export const productList = [
     {
       name: "AA01",
       category: "ring",
@@ -32,27 +30,7 @@ export const ProductList = ({ category }) => {
       category: "bracelets",
       image: "",
     },
-  ]);
-
-  const currentProducts = products.filter((product) => product.category === category);
-
-  // const [currentProduct, setCurrentProduct] = useState(false);
-
-  return (
-    <div>
-      <div className="flex-row">
-        {currentProducts.map((product, i) => (
-          <img
-            src={require(`../../src/Images/${category}/${i}.jpeg`).default}
-            alt={product.name}
-            className="img-thumbnail mx-1"
-            key={product.name}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+  ];
 
 
 

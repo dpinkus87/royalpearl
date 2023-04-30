@@ -1,6 +1,5 @@
 import React, { Row, Col, Image } from 'react';
-
-import {productsInMessage} from '../../utils/addToMessage'
+import {productsInMessage} from '../utils/addToMessage'
 
 
 const styles = {

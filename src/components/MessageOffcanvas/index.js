@@ -13,20 +13,23 @@ const MessageOffcanvas = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-
-
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem("customerProducts")) || [];
+    setMyProducts(JSON.stringify(products));
+  }, []);
   
   const styles = {
     button: {
-      position: "sticky",
-      bottom: "0",
-      right: "0",
-      fontSize: "3rem"
+      position: "fixed",
+      bottom: "20px",
+      right: "30px",
+      zIndex: "99",
+      fontSize: "1.8rem"
     },
     offcanvas: {
       position: "fixed",
-      bottom: "0",
-      right: "0"
+      bottom: "20px",
+      right: "30px"
     }
   };
 
