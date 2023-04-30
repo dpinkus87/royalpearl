@@ -1,8 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import productCard from "../../components/ProdCard";
 
+function ProductListing() {
+const
 
-const ProductListing = () => {
 
     return (
         <Container>

@@ -1,6 +1,5 @@
 import React, { Row, Col, Image } from 'react';
-import {productsInMessage} from '../utils/addToMessage'
-
+import addToMessage from '../../utils'
 
 const styles = {
   card: {
@@ -28,17 +27,20 @@ const styles = {
   }
 };
 
-const productCard = () => {
-  const { items, addItem } = productsInMessage('');
+function ProductCard(item) {
+const { 
+  name, 
+  category, 
+  image
+ } = item;
 
   return (
-    <section className="products">
-      {items.map((item) => (
-        <div product={item.id} id={item.id}>
+    <section>
+        <div style={styles.card}>
           <Row>
             <Col>
               <Image style={styles.image} src="#TEST"></Image>
-              <button id="addTo" onClick={() => addItem(item.id)}>+</button>
+              <button onClick={() => addToMessage(item.name)}>+</button>
             </Col>
             <Col>
               <div>
@@ -48,9 +50,8 @@ const productCard = () => {
             </Col>
           </Row>
         </div>
-      ))}
     </section>
   );
-};
+}
 
-export default productCard;
+export default ProductCard;
