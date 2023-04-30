@@ -1,20 +1,18 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import productCard from "../../components/ProdCard";
+import ProductCard from "../../components/ProdCard";
+import { productList } from "../../data";
 
 function ProductListing() {
-const
+  const productCards = productList.map((product) => (
+    <ProductCard key={product.id} product={product} />
+  ));
 
-
-    return (
-        <Container>
-        <div>
-           
-        </div>
-          
-           
-        </Container>
-    )
+  return (
+    <Container>
+      <div>{productCards}</div>
+    </Container>
+  );
 }
 
-export default ProductListing
+export default ProductListing;
