@@ -1,12 +1,17 @@
 import React from 'react'
-import { Card, Col, Row }  from 'react-bootstrap'
+import { Card, Col, Row, Button }  from 'react-bootstrap'
 
 
 const CatalogItem = ( {image, name, category}) => {
   return (
-    <Card className='bg-black text-white border-1 border-light rounded-0'>
+    <Card className='bg-black text-white border-1 border-light rounded-0 position-relative'>
     <Row>
 <Col lg={7} md={7} sm={7}>
+<Button style= {{width: '3rem', height: '3rem', position: 'absolute' , top:'.5rem', left: '.5rem' ,background: 'none', border: 'none' }} 
+className='rounded-circle'
+>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"/></svg>
+</Button>
     <Card.Img 
       variant='top' 
       src={image} 
