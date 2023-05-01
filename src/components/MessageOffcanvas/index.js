@@ -30,7 +30,12 @@ const MessageOffcanvas = () => {
     offcanvas: {
       position: "fixed",
       bottom: "20px",
-      right: "30px"
+      top:'20rem',
+      right: "30px",
+      backgroundColor: '#d9d9d9',
+      color: 'black',
+      border: 'none',
+      width: 'auto'
     }
   };
 

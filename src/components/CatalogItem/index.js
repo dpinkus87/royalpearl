@@ -6,7 +6,7 @@ const CatalogItem = ( {image, name, category}) => {
   return (
     <Card className='bg-black text-white border-1 border-light rounded-0 position-relative'>
     <Row>
-<Col lg={7} md={7} sm={7}>
+<Col lg={7} md={7} sm={7} xs={7}>
 <Button style= {{width: '3rem', height: '3rem', position: 'absolute' , top:'.5rem', left: '.5rem' ,background: 'none', border: 'none' }} 
 className='rounded-circle'
 >
