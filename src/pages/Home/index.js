@@ -34,15 +34,16 @@ function Home() {
             {/* Hero cover image */}
             <Container fluid className='m-0'>
                 <Row>
-                    <Col className="m-0 p-0 ">
+                    <Col className="m-0 p-0 " style={{position: "relative"}}>
                         <Image className='heroImage' src={hero} fluid style={{ objectFit: "cover"}}/>
                     </Col>
 
                 </Row>
 
-                <Row className='hero-text'>TEST</Row>
+                <Row className='hero-text' style={{position: 'absolute', top: '10rem', right: '3rem'}}>TEST</Row>
             </Container>
 
+<br></br>
             {/* Category Cards */}
             <div display="flex">
                 <Container display="flex" className="justify-content-space-around!">
