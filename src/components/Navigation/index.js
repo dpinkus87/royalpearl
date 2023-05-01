@@ -18,14 +18,14 @@ return (
           <Nav className="m-auto">
             <Nav.Link href="./">Home</Nav.Link>
             <NavDropdown title="Product Categories" menuVariant='dark' id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Earrings</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Necklace</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Strands</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog">Earrings</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog">Necklace</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog">Strands</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#link">New Arrivals</Nav.Link>
-            <Nav.Link href="#link">Best Sellers</Nav.Link>
-            <Nav.Link href="#link">Prior Pieces</Nav.Link>
-            <Nav.Link href="#link">Upcoming Shows</Nav.Link>
+            <Nav.Link href="/catalog">New Arrivals</Nav.Link>
+            <Nav.Link href="/catalog">Best Sellers</Nav.Link>
+            <Nav.Link href="/catalog">Prior Pieces</Nav.Link>
+            <Nav.Link href="/catalog">Upcoming Shows</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

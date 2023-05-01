@@ -29,14 +29,13 @@ function Home() {
         <div className="home">
 
             {/* Show Modal */}
-
             <HomepageModal />
 
             {/* Hero cover image */}
-            <Container fluid>
+            <Container fluid className='m-0'>
                 <Row>
                     <Col className="m-0 p-0 ">
-                        <Image className='heroImage' src={hero} fluid />
+                        <Image className='heroImage' src={hero} fluid style={{ objectFit: "cover"}}/>
                     </Col>
 
                 </Row>
@@ -44,48 +43,45 @@ function Home() {
                 <Row className='hero-text'>TEST</Row>
             </Container>
 
-            <br></br>
-            <br></br>
-
             {/* Category Cards */}
-            <div>
-                <Container className="align-center">
-                    <Row style={styles.row}>
-                        <Col sm={8} md={4} lg={2}>
+            <div display="flex">
+                <Container display="flex" className="justify-content-space-around!">
+                    <Row style={styles.row} sm={1} md={1} xs={1} lg={5} height='2rem'>
+                        <Col>
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
-                                <Card.Img src={earrings} className='rounded-0'></Card.Img>
+                                <Card.Img src={earrings} className='rounded-0' style={{ objectFit: "cover"}}></Card.Img>
                                 <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                                     <u> Earrings</u></Card.Body>
                             </Card>
                         </Col>
 
-                        <Col sm={8} md={4} lg={2}>
+                        <Col >
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
-                                <Card.Img src={bracelet} className='rounded-0'></Card.Img>
+                                <Card.Img src={bracelet} className='rounded-0' style={{ objectFit: "cover"}}></Card.Img>
                                 <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                                     <u> Bracelets</u></Card.Body>
                             </Card>
                         </Col>
 
-                        <Col sm={8} md={4} lg={2}>
+                        <Col >
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
-                                <Card.Img src={necklace} className='rounded-0'></Card.Img>
+                                <Card.Img src={necklace} className='rounded-0' style={{ objectFit: "cover"}}></Card.Img>
                                 <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                                     <u> Strands</u></Card.Body>
                             </Card>
                         </Col>
 
-                        <Col sm={8} md={4} lg={2}>
+                        <Col >
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
-                                <Card.Img src={pendant} className='rounded-0'></Card.Img>
+                                <Card.Img src={pendant} className='rounded-0' style={{ objectFit: "cover"}}></Card.Img>
                                 <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                                     <u> Pendants</u></Card.Body>
                             </Card>
                         </Col>
 
-                        <Col sm={8} md={4} lg={2}>
+                        <Col >
                             <Card onClick={onClick} style={{ cursor: "pointer" }} className="border-0 bg-black">
-                                <Card.Img src={ring} className='rounded-0'></Card.Img>
+                                <Card.Img src={ring} className='rounded-0' style={{ objectFit: "cover"}}></Card.Img>
                                 <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                                     <u> Rings</u></Card.Body>
                             </Card>

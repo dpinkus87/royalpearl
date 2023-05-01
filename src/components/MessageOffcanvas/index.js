@@ -40,9 +40,9 @@ const MessageOffcanvas = () => {
         Contact Us
       </Button>
 
-      <Offcanvas style={styles.offcanvas} show={show} onHide={handleClose} backdrop={false} scroll={true}>
+      <Offcanvas style={styles.offcanvas} show={show} onHide={handleClose} backdrop={false} scroll={true} placement="end">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Form>

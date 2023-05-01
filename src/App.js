@@ -3,8 +3,7 @@ import "./App.css";
 
 import Home from "./pages/Home";
 import Regal from "./pages/Regal";
-import ProductListing from "./pages/ProductListing/productListing";
-
+import Catalog from "./pages/Catalog";
 import Header from "./components/Navigation/index";
 
 import Footer from "./components/Footer/index";
@@ -28,11 +27,12 @@ function App() {
           />
           <Route 
           path="/catalog" 
-          element={<ProductListing />}
+          element={<Catalog />}
           />
         </Routes>
 
         <MessageOffcanvas className="message-offcanvas" />
+        
         <Footer />
       </div>
     </BrowserRouter>
