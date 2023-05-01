@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import { Navbar, Nav, Container,  } from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../../App.css";
@@ -8,8 +8,8 @@ const Header = () => {
 return (
 <header>
  
-        <div>
-          <h1 className="header" href="./">ROYAL PEARL</h1>
+        <div >
+          <h1 className="header" >ROYAL PEARL</h1>
         </div>
         <Navbar className="justify-content-center" bg="black" variant='dark' expand="lg">
       <Container>

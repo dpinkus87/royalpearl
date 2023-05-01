@@ -3,32 +3,32 @@ export const productList = [
     {
       name: "AA01",
       category: "ring",
-      image: "",
+      image: "https://fakeimg.pl/250x100/ff0000/",
     },
     {
       name: "AA02",
       category: "ring",
-      image: "",
+      image: "https://fakeimg.pl/250x100/ff0000/",
     },
     {
       name: "BB01",
       category: "necklaces",
-      image: "",
+      image: "https://fakeimg.pl/250x100/ff0000/",
     },
     {
       name: "BB02",
       category: "necklaces",
-      image: "",
+      image: "https://fakeimg.pl/250x100/ff0000/",
     },
     {
       name: "CC01",
       category: "bracelets",
-      image: "",
+      image: "https://fakeimg.pl/250x100/ff0000/",
     },
     {
       name: "CC02",
       category: "bracelets",
-      image: "",
+      image: "https://fakeimg.pl/250x100/ff0000/",
     },
   ];
 
