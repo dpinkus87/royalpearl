@@ -40,7 +40,7 @@ function Home() {
 
                 </Row>
 
-                <Row className='hero-text' style={{position: 'absolute', top: '10rem', right: '3rem'}}>TEST</Row>
+                <Row className='hero-text' style={{position: 'absolute', top: '10rem', right: '3rem', bottom: '15rem', height:'10rem' }} >TEST</Row>
             </Container>
 
 <br></br>

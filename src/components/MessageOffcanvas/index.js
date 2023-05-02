@@ -13,11 +13,46 @@ const MessageOffcanvas = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
-  useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("customerProducts")) || [];
-    setMyProducts(JSON.stringify(products));
-  }, []);
+
+  /* start Example of item being added to local storage array*/
+  
+
+
+
+  const handleEmailChange = (event) => {
+    const { value } = event.target;
+    setEmail(value);
+    setIsEmailValid(value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!isEmailValid) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, products: myProducts }),
+      });
+
+      if (response.ok) {
+        console.log("Email submitted:", email);
+        setEmail("");
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
   const styles = {
     button: {
@@ -30,7 +65,7 @@ const MessageOffcanvas = () => {
     offcanvas: {
       position: "fixed",
       bottom: "20px",
-      top:'20rem',
+      top:'25rem',
       right: "30px",
       backgroundColor: '#d9d9d9',
       color: 'black',
@@ -50,7 +85,7 @@ const MessageOffcanvas = () => {
           <Offcanvas.Title>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form>
+          <Form onSubmit={{handleSubmit}}>
             <label>Name:</label>
             <input
               type="text"
@@ -62,7 +97,7 @@ const MessageOffcanvas = () => {
             <input
               type="email"
               name="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
             />
             <br />
             <label>Phone Number:</label>
@@ -72,6 +107,10 @@ const MessageOffcanvas = () => {
               onChange={(e) => setPhone(e.target.value)}
             />
             <br />
+            <input type='text' value={myProducts}
+              disabled='true'
+            />
+            {!isEmailValid && <p>Please enter a valid email address</p>}
             <button type="submit">Submit</button>
           </Form>
         </Offcanvas.Body>
