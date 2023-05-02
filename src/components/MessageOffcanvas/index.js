@@ -18,9 +18,6 @@ const MessageOffcanvas = () => {
 
   /* start Example of item being added to local storage array*/
   
-
-
-
   const handleEmailChange = (event) => {
     const { value } = event.target;
     setEmail(value);
