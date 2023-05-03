@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
+import emailjs from "@emailjs/browser";
 
 
 const MessageOffcanvas = () => {
@@ -24,31 +25,16 @@ const MessageOffcanvas = () => {
     setIsEmailValid(value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // emailJS send email handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    if (!isEmailValid) {
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, products: myProducts }),
+    emailjs.sendForm('process.env.SERVICEID', 'process.env.TEMPLATEID', MessageOffcanvas.current, 'process.env.PUBLICKEY')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
       });
-
-      if (response.ok) {
-        console.log("Email submitted:", email);
-        setEmail("");
-      } else {
-        throw new Error("Failed to send email");
-      }
-    } catch (error) {
-      console.error(error);
-    }
   };
   
   const styles = {
