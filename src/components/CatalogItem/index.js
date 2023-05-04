@@ -1,16 +1,24 @@
-import React from 'react';
-import { Card, Col, Row, Button } from 'react-bootstrap';
-import useProduct from '../../utils/addToLocalStorage';
+import React, { useState } from "react";
+import { Row, Col, Card, Button } from 'react-bootstrap';
+
 
 const CatalogItem = ({ image, name, category }) => {
-  const { handleAddProduct } = useProduct();
+  const [product, setProducts] = useState({});
+
+  const handleClick = () => {
+    const storedItems = JSON.parse(localStorage.getItem('items')) || [];
+    storedItems.push(name);
+    localStorage.setItem('items', JSON.stringify(storedItems));
+    ;
+  }
 
   return (
     <Card className='bg-black text-white border-1 border-light rounded-0 position-relative'>
       <Row>
-        <Col lg={7} md={7} sm={7} xs={7}>
+<Col>
           <Button
-            onClick={() => handleAddProduct({ name })}
+          value={product} onChange={(e) => setProducts(e.target.value)}
+            onClick={handleClick}
             style={{
               width: '3rem',
               height: '3rem',
@@ -31,15 +39,16 @@ const CatalogItem = ({ image, name, category }) => {
             variant='top'
             src={image}
             height="200px"
+            alt="Product image"
             style={{ objectFit: 'cover' }}
           />
         </Col>
         <Col>
           <Card.Body className='d-flex flex-column'>
             <Card.Title
-              className='"d-flex justify-content-space-between align-items-baseline mb-4'
+              className='d-flex justify-content-between align-items-baseline mb-4'
             >
-              <span className='fs=2'>{name}</span>
+              <span className='fs-2'>{name}</span>
             </Card.Title>
             <Card.Text>
               {category}

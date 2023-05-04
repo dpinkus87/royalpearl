@@ -4,8 +4,9 @@ import "./App.css";
 import Home from "./pages/Home";
 import Regal from "./pages/Regal";
 import Catalog from "./pages/Catalog";
-import Header from "./components/Navigation/index";
+import Admin from "./pages/Admin"
 
+import Header from "./components/Navigation/index";
 import Footer from "./components/Footer/index";
 
 import MessageOffcanvas from "./components/MessageOffcanvas/index"
@@ -28,6 +29,10 @@ function App() {
           <Route 
           path="/catalog" 
           element={<Catalog />}
+          />
+          <Route
+          path="/admin"
+          element={<Admin />}
           />
         </Routes>
 

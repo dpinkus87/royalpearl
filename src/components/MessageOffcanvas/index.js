@@ -3,13 +3,15 @@ import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
 import emailjs from "@emailjs/browser";
+import useLocalStorage from "../../utils/getLocalStorage";
 
-
+// Offmessage Canvas
 const MessageOffcanvas = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // React useState
   const [myProducts, setMyProducts] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -59,7 +61,7 @@ const MessageOffcanvas = () => {
 
   return (
     <>
-      <Button variant="light" style={styles.button} onClick={handleShow}>
+      <Button variant="light" style={styles.button} onClick={useLocalStorage}>
         Contact Us
       </Button>
 

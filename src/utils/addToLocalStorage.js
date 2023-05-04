@@ -1,35 +1,45 @@
-import { useState, useEffect } from 'react';
-import { productList as initialProducts } from '../data';
+import React, {useEffect, useState, createContext, useContext} from "react"
 
-function useProduct(componentName) {
+const CatalogProductsContext = createContext();
+
+export function useProducts() {
+  return useContext(CatalogProductsContext);
+}
+
+export function ProductsProvider({ children }) {
   const [products, setProducts] = useState(() => {
-    const storedProducts = localStorage.getItem(`products-${componentName}`);
-    return storedProducts ? JSON.parse(storedProducts) : initialProducts;
+    const storedProducts = localStorage.getItem('products');
+    return storedProducts ? JSON.parse(storedProducts) : [];
   });
 
-  // Add a new product to the array
+  // Add or update a product in the array
   function handleAddProduct(product) {
-    setProducts((prevProducts) => {
-      return [...prevProducts, product];
-    });
+    const index = products.findIndex((p) => p.id === product.id);
+    if (index === -1) {
+      // product not found, add it to the array
+      setProducts([...products, product]);
+    } else {
+      // product found, update it in the array
+      const updatedProducts = [...products];
+      updatedProducts[index] = product;
+      setProducts(updatedProducts);
+    }
   }
 
   // Save the updated products array back to local storage
   useEffect(() => {
-    localStorage.setItem(`products-${componentName}`, JSON.stringify(products));
-  }, [products, componentName]);
+    localStorage.setItem("products", JSON.stringify(products));
+  }, [products]);
 
-  // Get a product by name
-  function getItemByName(name) {
-    return products.find((product) => product.name === name);
-  }
-
-  // Return the products array, the handleAddProduct function, and the getItemByName function
-  return {
+  const value = {
     products,
-    handleAddProduct,
-    getItemByName,
+    handleAddProduct
   };
+
+  return (
+    <CatalogProductsContext.Provider value={value}>
+      {children}
+    </CatalogProductsContext.Provider>
+  );
 }
 
-export default useProduct;
