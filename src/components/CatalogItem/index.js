@@ -9,6 +9,7 @@ const CatalogItem = ({ image, name, category }) => {
     const storedItems = JSON.parse(localStorage.getItem('items')) || [];
     storedItems.push(name);
     localStorage.setItem('items', JSON.stringify(storedItems));
+    window.dispatchEvent(new Event('storage'))
     ;
   }
 

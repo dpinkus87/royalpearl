@@ -2,25 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
-import emailjs from "@emailjs/browser";
-import useLocalStorage from "../../utils/getLocalStorage";
+import emailjs from "@emailjs/browser"
 
 // Offmessage Canvas
 const MessageOffcanvas = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   // React useState
-  const [myProducts, setMyProducts] = useState("");
+  const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
 
+  useEffect(() => {
+    const storedItems = () => {
+      setItems(JSON.parse(localStorage.getItem("items")));
+    };
+    window.addEventListener('storage', storedItems);
+    return () => window.removeEventListener('storage', storedItems);
+  }, []);
 
-  /* start Example of item being added to local storage array*/
-  
+
   const handleEmailChange = (event) => {
     const { value } = event.target;
     setEmail(value);
@@ -31,46 +36,64 @@ const MessageOffcanvas = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('process.env.SERVICEID', 'process.env.TEMPLATEID', MessageOffcanvas.current, 'process.env.PUBLICKEY')
-      .then((result) => {
+    emailjs
+      .sendForm(
+        "process.env.SERVICEID",
+        "process.env.TEMPLATEID",
+        MessageOffcanvas.current,
+        "process.env.PUBLICKEY"
+      )
+      .then(
+        (result) => {
           console.log(result.text);
-      }, (error) => {
+        },
+        (error) => {
           console.log(error.text);
-      });
+        }
+      );
+    localStorage.clear();
+    setItems([]);
   };
-  
+
   const styles = {
     button: {
       position: "fixed",
       bottom: "20px",
       right: "30px",
       zIndex: "99",
-      fontSize: "1.8rem"
+      fontSize: "1.8rem",
     },
     offcanvas: {
       position: "fixed",
       bottom: "20px",
-      top:'25rem',
+      top: "45rem",
       right: "30px",
-      backgroundColor: '#d9d9d9',
-      color: 'black',
-      border: 'none',
-      width: 'auto'
-    }
+      backgroundColor: "#d9d9d9",
+      color: "black",
+      border: "none",
+      width: "auto",
+    },
   };
 
   return (
     <>
-      <Button variant="light" style={styles.button} onClick={useLocalStorage}>
+      <Button variant="light" style={styles.button} onClick={handleShow}>
         Contact Us
       </Button>
 
-      <Offcanvas style={styles.offcanvas} show={show} onHide={handleClose} backdrop={false} scroll={true} placement="end">
+      <Offcanvas
+        style={styles.offcanvas}
+        show={show}
+        onHide={handleClose}
+        backdrop={false}
+        scroll={true}
+        placement="end"
+      >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form onSubmit={{handleSubmit}}>
+          <Form onSubmit={{ handleSubmit }}>
             <label>Name:</label>
             <input
               type="text"
@@ -79,11 +102,7 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Email:</label>
-            <input
-              type="email"
-              name="Email"
-              onChange={handleEmailChange}
-            />
+            <input type="email" name="Email" onChange={handleEmailChange} />
             <br />
             <label>Phone Number:</label>
             <input
@@ -92,8 +111,12 @@ const MessageOffcanvas = () => {
               onChange={(e) => setPhone(e.target.value)}
             />
             <br />
-            <input type='text' value={myProducts}
-              disabled='true'
+            <label>Products:</label>
+            <input
+              type="text"
+              name="products"
+              value={JSON.stringify(items)}
+              disabled="true"
             />
             {!isEmailValid && <p>Please enter a valid email address</p>}
             <button type="submit">Submit</button>
