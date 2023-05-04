@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
 import emailjs from "@emailjs/browser"
+import { useMessage } from "../../utils/messageContext";
 
 // Offmessage Canvas
 const MessageOffcanvas = () => {
@@ -16,6 +17,7 @@ const MessageOffcanvas = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [itemInMessage, setItemInMessage] = useState()
 
   useEffect(() => {
     const storedItems = () => {
@@ -25,8 +27,21 @@ const MessageOffcanvas = () => {
     return () => window.removeEventListener('storage', storedItems);
   }, []);
 
+  // Function to show notification in contact button
+// const { message } = useMessage()
+
+// useEffect(() => {
+//   hasItem()
+//   if (itemInMessage.length !== 0 ) {
+// setItemInMessage(false)
+//   }else{
+//     setItemInMessage(true)
+//   }
+// })
+
 
   const handleEmailChange = (event) => {
+    event.preventDefault();
     const { value } = event.target;
     setEmail(value);
     setIsEmailValid(value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
@@ -35,6 +50,7 @@ const MessageOffcanvas = () => {
   // emailJS send email handler
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     emailjs
       .sendForm(
@@ -50,10 +66,10 @@ const MessageOffcanvas = () => {
         (error) => {
           console.log(error.text);
         }
-      );
-    localStorage.clear();
-    setItems([]);
+      )
   };
+
+
 
   const styles = {
     button: {
@@ -66,19 +82,28 @@ const MessageOffcanvas = () => {
     offcanvas: {
       position: "fixed",
       bottom: "20px",
-      top: "45rem",
+      top: "40rem",
       right: "30px",
       backgroundColor: "#d9d9d9",
       color: "black",
       border: "none",
       width: "auto",
     },
+    formControl: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      height: "100%",
+      width: 'auto'
+    }
   };
 
   return (
     <>
       <Button variant="light" style={styles.button} onClick={handleShow}>
         Contact Us
+
+        <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" style={{color: "white", width: "2rem", height:"2rem", position: 'absolute', top: 0, right: 0, transform:'translate(25%, -25%'}}></div>
       </Button>
 
       <Offcanvas
@@ -93,7 +118,7 @@ const MessageOffcanvas = () => {
           <Offcanvas.Title>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form onSubmit={{ handleSubmit }}>
+          <Form style={styles.formControl} onSubmit={{ handleSubmit }}>
             <label>Name:</label>
             <input
               type="text"
@@ -112,12 +137,11 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Products:</label>
-            <input
-              type="text"
-              name="products"
-              value={JSON.stringify(items)}
-              disabled="true"
-            />
+            <ul>
+  {items.map((item, index) => (
+    <li key={index}>{item}</li>
+  ))}
+</ul>
             {!isEmailValid && <p>Please enter a valid email address</p>}
             <button type="submit">Submit</button>
           </Form>
@@ -126,4 +150,4 @@ const MessageOffcanvas = () => {
     </>
   );
 };
- export default MessageOffcanvas
+export default MessageOffcanvas
