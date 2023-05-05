@@ -20,7 +20,7 @@ function HomepageModal() {
             textSize: "50px",
             color: 'white',
             radius: '5%',
-            height: '50rem',
+            height: '40rem',
             width: '50rem'
         },
         col1: {
