@@ -35,45 +35,49 @@ function HomepageModal() {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        modal: {
-            alignItems: 'center',
-            padding: '0 !important'
-        }
+
+
     }
 
     return (
         <>
 
 
-            <Modal style={styles.modal} show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
-                centered>
-
+            <Modal size='lg' centered show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
                 <Modal.Body style={styles.body}>
-                    <Row>
+                    <Row >
                         <Col style={styles.col1}>
-                            <div>
-                                About Royal Pearl
-                            </div>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Royal Pearl
-                            </Button>
+                            <Row>
+                                <div>
+                                    About Royal Pearl
+                                </div>
+                            </Row>
+                            <Row>
+                            </Row>
                         </Col>
 
                         <Col style={styles.col2}>
                             <div>
                                 About Regal Regal
                             </div>
-                            <Link to='/Regal'>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Regal           </Button>
-                            </Link>
 
                         </Col>
                     </Row>
-
                 </Modal.Body>
+                {/* Add a new row for the button */}
+                <Modal.Footer className='bg-black border-0 justify-content-center'>
+                    <Col>
+                        <Button variant="secondary" onClick={handleClose} className='align-items-center justify-content-center'> Royal Pearl</Button>
 
-
+                    </Col>
+                    <Col>
+                        <Link to='/Regal'>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Regal
+                            </Button>
+                        </Link>
+                    </Col>
+                </Modal.Footer>
             </Modal>
         </>
     );
