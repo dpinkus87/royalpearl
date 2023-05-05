@@ -4,7 +4,8 @@ import "./App.css";
 import Home from "./pages/Home";
 import Regal from "./pages/Regal";
 import Catalog from "./pages/Catalog";
-import Admin from "./pages/Admin"
+
+import Admin from "./pages/Admin/index.js"
 
 import Header from "./components/Navigation/index";
 import Footer from "./components/Footer/index";
@@ -16,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+      
         <Routes>
           <Route 
           path="/" 

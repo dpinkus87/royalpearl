@@ -19,7 +19,9 @@ function HomepageModal() {
             background: 'black',
             textSize: "50px",
             color: 'white',
-            radius: '5%'
+            radius: '5%',
+            height: '50rem',
+            width: '50rem'
         },
         col1: {
             display: 'flex',
@@ -32,6 +34,10 @@ function HomepageModal() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        modal: {
+            alignItems: 'center',
+            padding: '0 !important'
         }
     }
 
@@ -39,7 +45,7 @@ function HomepageModal() {
         <>
 
 
-            <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
+            <Modal style={styles.modal} show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
                 centered>
 
                 <Modal.Body style={styles.body}>

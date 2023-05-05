@@ -3,14 +3,15 @@ import { Row, Col, Image, Container } from "react-bootstrap";
 import CatalogItem from "../../components/CatalogItem";
 import hero from '../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg'
 import '../../App.css'
-
+import Header from "../../components/Navigation";
 import { productList } from "../../data";
 
 function Catalog() {
   
   return (
     <>
-    <Container fluid className='m-0'>
+    <Header />
+    <Container fluid className='m-0 p-0'>
       <Row>
         <Image src={hero} fluid style={{objectFit: "cover", height:'500px'}}/>
       </Row>
