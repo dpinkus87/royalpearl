@@ -82,7 +82,7 @@ const MessageOffcanvas = () => {
     offcanvas: {
       position: "fixed",
       bottom: "20px",
-      top: "30rem",
+      top: "25rem",
       right: "30px",
       backgroundColor: "#d9d9d9",
       color: "black",
