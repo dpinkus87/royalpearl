@@ -14,10 +14,10 @@ const Regal = () => {
 </a>
 
     <br></br>
-        <Container fluid>
+        <Container fluid='true'>
                 <Row>
                     <Col className="m-0 p-0 ">
-                        <Image className='heroImage' src={hero} fluid style={{ objectFit: "cover", height: '500px'}}/>
+                        <Image className='heroImage' src={hero} fluid='true' style={{ objectFit: "cover", height: '500px'}}/>
                     </Col>
 
                 </Row>
@@ -29,10 +29,10 @@ const Regal = () => {
 <br></br>
 <br></br>
 
-<Container fluid>
+<Container fluid='true'>
                 <Row>
                     <Col className="m-0 p-0 ">
-                        <Image className='heroImage' src={bracelet} fluid style={{ objectFit: "cover", height: '500px'}}/>
+                        <Image className='heroImage' src={bracelet} fluid='true' style={{ objectFit: "cover", height: '500px'}}/>
                     </Col>
                     <Col xs={4}>
                             <h2 className="text-white text-center py-8">TEST</h2>
@@ -46,14 +46,14 @@ const Regal = () => {
   <br></br>
   <br></br>
 
-  <Container fluid>
+  <Container fluid='true'>
                 <Row>
                 <Col xs={4}>
                             <h2 className="text-white text-center py-8">TEST</h2>
 
                         </Col>
                     <Col className="m-0 p-0 ">
-                        <Image className='heroImage' src={earrings} fluid style={{ objectFit: "cover", height: '500px'}} />
+                        <Image className='heroImage' src={earrings} fluid='true' style={{ objectFit: "cover", height: '500px'}} />
                     </Col>
 
                 </Row>

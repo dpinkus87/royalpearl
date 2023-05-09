@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
-import emailjs from "@emailjs/browser"
-import { useMessage } from "../../utils/messageContext";
+import emailjs from "@emailjs/browser";
+
 
 // Offmessage Canvas
 const MessageOffcanvas = () => {
@@ -11,34 +11,38 @@ const MessageOffcanvas = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   // React useState
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const [itemInMessage, setItemInMessage] = useState()
+  const [itemInMessage, setItemInMessage] = useState();
+
+  const messageValue = useRef();
+
+
 
   useEffect(() => {
     const storedItems = () => {
       setItems(JSON.parse(localStorage.getItem("items")));
     };
-    window.addEventListener('storage', storedItems);
-    return () => window.removeEventListener('storage', storedItems);
+    window.addEventListener("storage", storedItems);
+    return () => window.removeEventListener("storage", storedItems);
   }, []);
 
   // Function to show notification in contact button
-// const { message } = useMessage()
+  // const { message } = useMessage()
 
-// useEffect(() => {
-//   hasItem()
-//   if (itemInMessage.length !== 0 ) {
-// setItemInMessage(false)
-//   }else{
-//     setItemInMessage(true)
-//   }
-// })
-
+  // useEffect(() => {
+  //   hasItem()
+  //   if (itemInMessage.length !== 0 ) {
+  // setItemInMessage(false)
+  //   }else{
+  //     setItemInMessage(true)
+  //   }
+  // })
 
   const handleEmailChange = (event) => {
     event.preventDefault();
@@ -47,29 +51,32 @@ const MessageOffcanvas = () => {
     setIsEmailValid(value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
   };
 
+
+
+  
   // emailJS send email handler
   const handleSubmit = (e) => {
+
+    
     e.preventDefault();
-
-
+  
     emailjs
       .sendForm(
-        "process.env.SERVICEID",
-        "process.env.TEMPLATEID",
-        MessageOffcanvas.current,
-        "process.env.PUBLICKEY"
+        'service_dby0q1f',
+        'template_54brgfh',
+        messageValue.current,
+        'JEjSNvfLzH0NMTIyH'
       )
       .then(
         (result) => {
           console.log(result.text);
+          setItems([]);
         },
         (error) => {
           console.log(error.text);
         }
-      )
+      );
   };
-
-
 
   const styles = {
     button: {
@@ -94,16 +101,26 @@ const MessageOffcanvas = () => {
       flexDirection: "column",
       alignItems: "center",
       height: "100%",
-      width: 'auto'
-    }
+      width: "auto",
+    },
   };
 
   return (
     <>
       <Button variant="light" style={styles.button} onClick={handleShow}>
         Contact Us
-
-        <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" style={{color: "white", width: "2rem", height:"2rem", position: 'absolute', top: 0, right: 0, transform:'translate(25%, -25%'}}></div>
+        <div
+          className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+          style={{
+            color: "white",
+            width: "2rem",
+            height: "2rem",
+            position: "absolute",
+            top: 0,
+            right: 0,
+            transform: "translate(25%, -25%",
+          }}
+        ></div>
       </Button>
 
       <Offcanvas
@@ -118,7 +135,7 @@ const MessageOffcanvas = () => {
           <Offcanvas.Title>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Form style={styles.formControl} onSubmit={{ handleSubmit }}>
+          <Form style={styles.formControl} onSubmit={handleSubmit} ref={messageValue}>
             <label>Name:</label>
             <input
               type="text"
@@ -138,10 +155,10 @@ const MessageOffcanvas = () => {
             <br />
             <label>Products:</label>
             <ul>
-  {items.map((item, index) => (
-    <li key={index}>{item}</li>
-  ))}
-</ul>
+              {items.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
             {!isEmailValid && <p>Please enter a valid email address</p>}
             <button type="submit">Submit</button>
           </Form>
@@ -150,4 +167,4 @@ const MessageOffcanvas = () => {
     </>
   );
 };
-export default MessageOffcanvas
+export default MessageOffcanvas;

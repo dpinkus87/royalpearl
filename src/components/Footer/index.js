@@ -8,10 +8,10 @@ const Footer = () => {
 
   return (
     <div display="flex">
-    <Container fluid display="flex" className='bg-white' style={{alignItems:'center', justifyContent: 'space-around'}}>
+    <Container fluid='true' display="flex" className='bg-white' style={{alignItems:'center', justifyContent: 'space-around'}}>
 
       <Row className="justify-content-space-around!">
-        <Col sm={8} md={4} lg={2} fluid>
+        <Col sm={8} md={4} lg={2} fluid='true'>
           <ul >
             <li >
               test
@@ -20,8 +20,8 @@ const Footer = () => {
               test2
             </li>
           </ul></Col>
-        <Col sm={8} md={4} lg={2} fluid>Royal Pearl All rights reserved 2023</Col>
-        <Col sm={8} md={4} lg={2} fluid>
+        <Col sm={8} md={4} lg={2} fluid='true'>Royal Pearl All rights reserved 2023</Col>
+        <Col sm={8} md={4} lg={2} fluid='true'>
           <ul>
             <li>
               Follow Us

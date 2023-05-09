@@ -6,14 +6,19 @@ import '../../App.css'
 import Header from "../../components/Navigation";
 import { productList } from "../../data";
 
+import MessageOffcanvas from "../../components/MessageOffcanvas/index"
+
+
 function Catalog() {
   
   return (
     <>
     <Header />
-    <Container fluid className='m-0 p-0'>
+    
+    <MessageOffcanvas />
+    <Container fluid='true' className='m-0 p-0'>
       <Row>
-        <Image src={hero} fluid style={{objectFit: "cover", height:'500px'}}/>
+        <Image src={hero}  style={{objectFit: "cover", height:'500px'}} fluid='true'/>
       </Row>
     </Container>
       <h2 className="align-items-center text-white p-2">Catalog</h2>

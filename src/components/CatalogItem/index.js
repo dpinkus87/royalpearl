@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Row, Col, Card, Button } from 'react-bootstrap';
 
 
-const CatalogItem = ({ image, name, category }) => {
+
+const CatalogItem = ({ image, name, category, items }) => {
   const [product, setProducts] = useState({});
 
   const handleClick = () => {
