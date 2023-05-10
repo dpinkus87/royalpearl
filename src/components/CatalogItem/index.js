@@ -3,7 +3,7 @@ import { Row, Col, Card, Button } from 'react-bootstrap';
 
 
 
-const CatalogItem = ({ image, name, category, items }) => {
+const CatalogItem = ({ image, name, category, }) => {
   const [product, setProducts] = useState({});
 
   const handleClick = () => {
@@ -18,8 +18,7 @@ const CatalogItem = ({ image, name, category, items }) => {
     <Card className='bg-black text-white border-light rounded-0 position-relative'>
       <Row>
 <Col>
-          <Button
-          value={product} onChange={(e) => setProducts(e.target.value)}
+<Button data-testid="button"  value={product} onChange={(e) => setProducts(e.target.value)}
             onClick={handleClick}
             style={{
               width: '3rem',
