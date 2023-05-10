@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CatalogItem, { image, name, category } from "../CatalogItem";
 import { fireEvent, render, screen } from "@testing-library/react";
 
