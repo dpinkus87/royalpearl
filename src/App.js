@@ -1,13 +1,13 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Home from "./pages/Home";
 import Regal from "./pages/Regal";
 import Catalog from "./pages/Catalog";
+import ForgotPassword from "./components/Admin/ForgotPassword";
+import SignIn from "./components/Admin/signin";
 import Admin from "./pages/Admin";
-
-
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route 
-          path="/" 
+          exact path="/" 
           element={<Home />}
           />
           <Route 
@@ -28,7 +28,15 @@ function App() {
           />
          <Route
          path="/admin"
-         element={<Admin />}
+         Component={SignIn}
+         />
+        <Route
+        path="/adminpanel"
+        element={<Admin />}
+        />
+         <Route
+         path="/forgot-password"
+         Component={ForgotPassword}
          />
         </Routes>        
       

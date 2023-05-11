@@ -1,62 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Container, Table, Button } from "react-bootstrap";
-import '../../App.css'
+import '../../App.css';
 import AddItem from "../../components/Admin/AddProduct";
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
+// import SignIn from "../../components/Admin/signin";
+import { AuthProvider } from "../../utils/authContext";
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../utils/authContext"
 
-// 22-01-06 S
 
 function Admin() {
+  const { currentUser, logout } = useAuth()
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
 
-    return (
-        <>
-       <br></br>
-       <br></br>
-            <Container className="adminpanel">
-            <Row fluid='true'>
-                Admin Panel
-            </Row>
-            <AddItem />
-            <br></br>
-            <Row>
-                Current Products
-            </Row>
-            <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Description</th>
-          <th>Image</th>
-          <th>Date Upadted</th>
-        </tr>
-      </thead>
-      <tbody>
-      {/* {product.map((product) =>(
-        <tr key={product.id}>
-            <td>{product.name}</td>
-            <td>{product.description}</td>
-            <td>{product.image}</td>
-            <button type='button'
-            onClick={() => removeItem(product.id)}
-            >
-                <span role='img' aria-label="delete">
-                 ✖️
-                 </span>
-            </button>
+  async function handleLogout() {
+    setError("")
 
-        </tr>
-      ))} */}
-       
-      </tbody>
-    </Table>
-
-        </Container> 
-        <br></br>
-        <br></br>
-        </>
+    try {
+      await logout()
+      navigate("/admin")
+    } catch {
+      setError("Failed to log out")
+    }
+  }
  
+  return (
+    <>
+    <AuthProvider>
+      <br />
+      <br />
+      <Container className="adminpanel">
+        <Row fluid="true">
+          Admin Panel
+        </Row>
+        <AddItem />
+        <br />
+        <Row>
+          Current Products
+        </Row>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Date Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* {product.map((product) =>(
+              <tr key={product.id}>
+                <td>{product.name}</td>
+                <td>{product.description}</td>
+                <td>{product.image}</td>
+                <button type='button'
+                  onClick={() => removeItem(product.id)}
+                >
+                  <span role='img' aria-label="delete">
+                    ✖️
+                  </span>
+                </button>
+              </tr>
+            ))} */}
+          </tbody>
+        </Table>
+        <div className="w-100 text-center mt-2">
+        <Button variant="link" onClick={handleLogout}>
+          Log Out
+        </Button>
+      </div>
+      </Container>
 
-    )
-
+   
+    </AuthProvider>
+   
+      <br />
+      <br />
+    </>
+  );
 }
+
 
 export default Admin;
