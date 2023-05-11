@@ -27,7 +27,7 @@ export default function SignIn() {
   }
 
   return (
-    <Container>
+    <Container className="justify-content-center align-items-center" style={{height: '100vh'}}>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>

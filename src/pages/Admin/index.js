@@ -32,9 +32,9 @@ function Admin() {
     <AuthProvider>
       <br />
       <br />
-      <Container className="adminpanel">
+      <Container className="justify-content-center align-items-center bg-light" style={{height: '100vh'}}>
         <Row fluid="true">
-          Admin Panel
+          <h2>Admin Panel</h2>
         </Row>
         <AddItem />
         <br />
