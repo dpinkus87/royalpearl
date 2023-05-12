@@ -11,7 +11,7 @@ function HomepageModal() {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        handleShow(); // call handleShow on component mount
+        handleShow(); 
     }, []);
 
     const styles = {
