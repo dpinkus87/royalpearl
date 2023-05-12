@@ -1,12 +1,12 @@
 import React, { useEffect} from 'react'
-import { useStoreContext } from '../../pages/Catalog/CatalogState';
-import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from '../../utils/actions'
-import { query } from 'firebase'
-import { Form } from 'react-bootstrap/Form'
+import { useCatalogContext } from '../../utils/CatalogState';
+import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from '../../utils/actions';
+// import { query } from 'firebase';
+import { Form } from 'react-bootstrap';
 
 const CategoryMenu = () => {
 
-    const [state, dispatch] = useStoreContext();
+    const [state, dispatch] = useCatalogContext();
 
     const { categories } = state;
   
