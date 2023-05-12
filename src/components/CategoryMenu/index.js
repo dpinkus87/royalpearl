@@ -1,3 +1,5 @@
+// TODO: update to map correct queries / categories. useState to show correct cards
+
 import React, { useEffect} from 'react'
 import { useCatalogContext } from '../../utils/CatalogState';
 import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from '../../utils/actions';

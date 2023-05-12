@@ -1,3 +1,6 @@
+// TODO: Clear values onSubmit
+// TODO: get emailJS to send values in email
+
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";

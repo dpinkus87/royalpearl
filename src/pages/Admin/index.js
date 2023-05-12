@@ -1,3 +1,6 @@
+// TODO: revise useState for user login access - should only show admin page when a user is logged in
+// TODO: add mapping for adding items
+
 import React, { useState } from "react";
 import { Row, Container, Table, Button } from "react-bootstrap";
 import '../../App.css';
@@ -10,7 +13,6 @@ import { AuthProvider } from "../../utils/authContext";
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../utils/authContext"
 import { Link } from 'react-router-dom'
-
 
 function Admin() {
   const { currentUser, logout } = useAuth()

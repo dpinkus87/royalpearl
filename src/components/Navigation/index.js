@@ -1,3 +1,5 @@
+// TODO: update links accordingly
+
 import React from "react";
 import { Navbar, Nav, Container,  } from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';

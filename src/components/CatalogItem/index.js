@@ -1,3 +1,5 @@
+// TODO: Map each element of the card to the db - name, image, description, category...
+
 import React, { useState } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 

@@ -4,6 +4,7 @@ import "../../App.css";
 import hero from "../../Images/scott-webb-_7G_R_IWt1U-unsplash.jpeg";
 import bracelet from "../../Images/bracelet.jpeg";
 import earrings from "../../Images/earrings.jpeg";
+import Footer from '../../components/Footer'
 
 const Regal = () => {
     return (
@@ -84,6 +85,8 @@ const Regal = () => {
                 <br></br>
                 <br></br>
             </Container>
+
+            <Footer />
         </div>
     );
 };

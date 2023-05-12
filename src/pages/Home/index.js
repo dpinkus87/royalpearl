@@ -1,3 +1,5 @@
+// TODO: useState to control modal - should only show once when a user first enters site, not when they return from the same session
+
 import "../../App.css";
 import HomepageModal from "../../components/Modal";
 import hero from "../../Images/scott-webb-_7G_R_IWt1U-unsplash.jpeg";
@@ -49,7 +51,8 @@ function Home() {
                 </Container>
 
                 <br></br>
-                {/* Category Cards */}
+
+                {/* TODO: Category Cards - update to correct query routes */}
                 <div display="flex">
                     <Container display="flex" className="justify-content-space-around!">
                         <Row style={styles.row} sm={1} md={1} xs={1} lg={5} height='2rem'>
@@ -167,7 +170,7 @@ function Home() {
 
                 <br></br>
                 <br></br>
-                {/* Upcoming Shows */}
+                {/* TODO: format Upcoming Shows section */}
                 <div>
                     <Container fluid='true'>
                         <h2 className="text-white bg-black text-center">Upcoming Shows</h2>
