@@ -10,6 +10,7 @@ function HomepageModal() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
     useEffect(() => {
         handleShow(); 
     }, []);
@@ -50,6 +51,12 @@ function HomepageModal() {
                                 </div>
                             </Row>
                             <Row>
+                            <Col>
+
+                            </Col>
+                            <div className='border-right-3 border-color-white' >
+
+                            </div>
                             </Row>
                         </Col>
 

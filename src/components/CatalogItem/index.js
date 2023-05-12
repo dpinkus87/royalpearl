@@ -3,6 +3,7 @@ import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 
 const CatalogItem = ({ image, name, category }) => {
   const [product, setProducts] = useState({});
+  const showButtons = 'VisibleOnHover'
 
   const handleClick = () => {
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
@@ -42,7 +43,7 @@ const CatalogItem = ({ image, name, category }) => {
             </svg>
           </Button>
 
-          <Carousel interval={null} variant='dark' >
+          <Carousel interval={null} variant='dark' indicators={false}>
             <Carousel.Item>
               <img
                 className="rounded-0 d-block w-100"

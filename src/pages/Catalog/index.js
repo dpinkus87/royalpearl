@@ -23,7 +23,7 @@ function Catalog() {
       </Row>
     </Container>
       <h2 className="align-items-center text-white p-2">Catalog</h2>
-      <Row lg={3} md={2} sm={1} xs={1} className="g-3 p-3">
+      <Row xxl={4} xl={3} lg={2} md={2} sm={1} xs={1} className="g-3 p-3">
       {productList.map(item => (
         <Col key={item.id}>
         <CatalogItem {...item} />
