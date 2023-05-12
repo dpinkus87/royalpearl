@@ -28,21 +28,18 @@ function HomepageModal() {
             justifyContent: 'center',
             alignItems: 'center',
             borderRight: '5px',
-            borderColor: 'white'
+            borderColor: 'white',
+            height: '100%'
         },
         col2: {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
         },
-
-
     }
 
     return (
         <>
-
-
             <Modal size='lg' centered show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
                 <Modal.Body style={styles.body}>
                     <Row >
@@ -65,14 +62,14 @@ function HomepageModal() {
                     </Row>
                 </Modal.Body>
                 {/* Add a new row for the button */}
-                <Modal.Footer className='bg-black border-0 justify-content-center'>
-                    <Col>
-                        <Button variant="secondary" onClick={handleClose} className='align-items-center justify-content-center'> Royal Pearl</Button>
+                <Modal.Footer style={{display: 'flex'}} className='bg-black border-0'>
+                    <Col style={{justifyContent: 'center', alignItems: 'center', display: 'flex', borderRight: '2', borderColor: 'white'}}>
+                        <Button variant="secondary" onClick={handleClose} centered> Royal Pearl</Button>
 
                     </Col>
-                    <Col>
+                    <Col style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
                         <Link to='/Regal'>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button centered variant="secondary" onClick={handleClose}>
                                 Regal
                             </Button>
                         </Link>

@@ -4,16 +4,10 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
 import emailjs from '@emailjs/browser';
 
-
-// Offmessage Canvas
 const MessageOffcanvas = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const form = useRef();
-
-  // React useState
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,8 +15,13 @@ const MessageOffcanvas = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [itemInMessage, setItemInMessage] = useState();
 
-  const messageValue = useRef();
+  const resetForm = () => {
+    setName('')
+    setEmail('')
+    setPhone('')
+  }
 
+  const form = useRef();
 
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const MessageOffcanvas = () => {
     return () => window.removeEventListener("storage", storedItems);
   }, []);
 
-  // Function to show notification in contact button
+  // TODO: Function to show notification in contact button
   // const { message } = useMessage()
 
   // useEffect(() => {
@@ -51,12 +50,12 @@ const MessageOffcanvas = () => {
     setEmail(value);
     setIsEmailValid(value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
   };
-  
+
   // emailJS send email handler
   const handleSubmit = (e) => {
 
     e.preventDefault();
-  
+
     emailjs
       .sendForm(
         'service_dby0q1f',
@@ -66,12 +65,14 @@ const MessageOffcanvas = () => {
       )
       .then(
         (result) => {
-           console.log(result.text);
-         
+          console.log(result.text);
+                  localStorage.removeItem('items');
+ resetForm()
         },
         (error) => {
           console.log(error.text);
-        }
+        },
+       
       );
   };
 
@@ -141,9 +142,9 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Email:</label>
-            <input 
-              type="email" 
-              name="Email" 
+            <input
+              type="email"
+              name="Email"
               onChange={handleEmailChange} />
             <br />
             <label>Phone Number:</label>
@@ -154,14 +155,14 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Products:</label>
-            <ul 
+            <ul
               name="Products">
               {items.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
             {!isEmailValid && <p>Please enter a valid email address</p>}
-            <button type="submit">Submit</button>
+            <button type="submit" >Submit</button>
           </Form>
         </Offcanvas.Body>
       </Offcanvas>
