@@ -6,53 +6,61 @@ import Form from 'react-bootstrap/Form';
 
 const AddItem = () => {
 
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-   <>
-   <Button variant="primary" onClick={handleShow}>
-     Add Item
-   </Button>
-
-   <Modal show={show} onHide={handleClose}>
-     <Modal.Header closeButton>
-       <Modal.Title>Add a new Item</Modal.Title>
-     </Modal.Header>
-     <Modal.Body>Fill each field to add a new item</Modal.Body>
-     <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Add Item
       </Button>
-    </Form>
 
-     <Modal.Footer>
-       <Button variant="secondary" onClick={handleClose}>
-         Close
-       </Button>
-       <Button variant="primary" onClick={handleClose}>
-         Save Changes
-       </Button>
-     </Modal.Footer>
-   </Modal>
- </>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add a new Item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Fill each field to add a new item</Modal.Body>
+        <Form>
+
+          <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+            <Form.Label>Item Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter Item Name" />
+          </Form.Group>
+
+      
+
+          <Form.Group controlId="formFile" className="mb-3 p-2">
+            <Form.Label>Image</Form.Label>
+            <Form.Control type="file" />
+          </Form.Group>
+
+          <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="text" placeholder="Enter Item Description" />
+          </Form.Group>
+
+          <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
+            <Form.Label>Category</Form.Label>
+            <Form.Select aria-label="Default select example">
+              <option>Select A Category</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </Form.Select>
+          </Form.Group>
+
+
+          <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', width: '100%' }} className='pb-2'>
+            <Button variant="primary" type="submit" className='align-items-center justify-content-center'>
+              Add Item
+            </Button>
+          </div>
+
+        </Form>
+      </Modal>
+    </>
   )
 }
 

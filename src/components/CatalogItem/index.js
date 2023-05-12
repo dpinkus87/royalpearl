@@ -16,7 +16,7 @@ const CatalogItem = ({ image, name, category }) => {
     <Card className="bg-black text-white border-light rounded-0 position-relative">
       <Row>
         <Col>
-          <Button
+        <Button
             data-testid="button"
             value={product}
             onChange={(e) => setProducts(e.target.value)}
@@ -29,6 +29,7 @@ const CatalogItem = ({ image, name, category }) => {
               left: ".5rem",
               background: "none",
               border: "none",
+              zIndex: '999'
             }}
             className="rounded-circle"
           >

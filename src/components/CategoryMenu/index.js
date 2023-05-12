@@ -2,38 +2,21 @@ import React, { useEffect} from 'react'
 import { useCatalogContext } from '../../utils/CatalogState';
 import { UPDATE_CURRENT_CATEGORY, UPDATE_CATEGORIES } from '../../utils/actions';
 // import { query } from 'firebase';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Container } from 'react-bootstrap';
 
 const CategoryMenu = () => {
 
-    const [state, dispatch] = useCatalogContext();
-
-    const { categories } = state;
-  
- 
-  
-    useEffect(() => {
-    })
-
-const handleClick = (id) => {
-    dispatchEvent({
-        type:UPDATE_CURRENT_CATEGORY,
-        currentCategory: id,
-    })
-}
-
   return (
-    <div>
-      {categories.map((item) =>
-      <Form.Check key={item._id}
-      onClick={() => {
-        handleClick(item._id);
-      }}
-      >
-        {item.name}
-      </Form.Check>
-      )}
-    </div>
+    <>
+    <Container className='text-white justify-content-center align-items-center'>
+    
+<Form.Check inline type='checkbox' label='TEST 1' fill="gray"/>
+<Form.Check inline type='checkbox' label='TEST 2' />
+<Form.Check inline type='checkbox' label='TEST 3' />
+   
+    </Container>
+   
+    </>
   )
 }
 

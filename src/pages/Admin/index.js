@@ -9,6 +9,7 @@ import 'firebase/analytics';
 import { AuthProvider } from "../../utils/authContext";
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../utils/authContext"
+import { Link } from 'react-router-dom'
 
 
 function Admin() {
@@ -36,6 +37,10 @@ function Admin() {
       <Container className="justify-content-center align-items-center bg-light" style={{height: '100vh'}}>
         <Row fluid="true">
           <h2>Admin Panel</h2>
+          <div>
+                      <Link to='/'>RoyalPearlUSA.com</Link>
+
+          </div>
         </Row>
         <AddItem />
         <br />
