@@ -1,9 +1,9 @@
-// TODO: Map each element of the card to the db - name, image, description, category...
+// TODO: Map each element of the card to the db - name, images, description, category...
 
 import React, { useState } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 
-const CatalogItem = ({ image, name, category }) => {
+const CatalogItem = ({ images, name, category }) => {
   const [product, setProducts] = useState({});
   const showButtons = 'VisibleOnHover'
 
@@ -51,7 +51,7 @@ const CatalogItem = ({ image, name, category }) => {
               <img
                 className="rounded-0 d-block w-100"
                 variant="top"
-                src={image[0]}
+                src={images[0]}
                 height="200px"
                 style={{ objectFit: "cover" }}
               />
@@ -60,7 +60,7 @@ const CatalogItem = ({ image, name, category }) => {
               <img
                 className="rounded-0 d-block w-100"
                 variant="top"
-                src={image[1]}
+                src={images[1]}
                 height="200px"
                 style={{ objectFit: "cover" }}
               />
@@ -69,7 +69,7 @@ const CatalogItem = ({ image, name, category }) => {
               <img
                 className="rounded-0 d-block w-100"
                 variant="top"
-                src={image[2]}
+                src={images[2]}
                 height="200px"
                 style={{ objectFit: "cover" }}
               />

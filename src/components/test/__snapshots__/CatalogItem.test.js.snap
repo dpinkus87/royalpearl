@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CatalogItem should change images 1`] = `
+<img
+  class="rounded-0 d-block w-100"
+  height="200px"
+  src="https://media.tenor.com/nBt6RZkFJh8AAAAi/never-gonna.gif"
+  style="object-fit: cover;"
+  variant="top"
+/>
+`;
+
+exports[`CatalogItem should change images 2`] = `
+<img
+  class="rounded-0 d-block w-100"
+  height="200px"
+  src="https://media.tenor.com/nBt6RZkFJh8AAAAi/never-gonna.gif"
+  style="object-fit: cover;"
+  variant="top"
+/>
+`;
+
+exports[`CatalogItem should change images 3`] = `
+<img
+  class="rounded-0 d-block w-100"
+  height="200px"
+  src="https://media.tenor.com/nBt6RZkFJh8AAAAi/never-gonna.gif"
+  style="object-fit: cover;"
+  variant="top"
+/>
+`;

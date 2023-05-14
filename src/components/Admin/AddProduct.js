@@ -34,7 +34,7 @@ const AddItem = () => {
       
 
           <Form.Group controlId="formFile" className="mb-3 p-2">
-            <Form.Label>Image</Form.Label>
+            <Form.Label>Images</Form.Label>
             <Form.Control type="file" />
           </Form.Group>
 

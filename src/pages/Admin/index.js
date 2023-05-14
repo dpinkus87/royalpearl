@@ -54,7 +54,7 @@ function Admin() {
             <tr>
               <th>Item</th>
               <th>Description</th>
-              <th>Image</th>
+              <th>Images</th>
               <th>Date Updated</th>
             </tr>
           </thead>

@@ -69,6 +69,7 @@ const MessageOffcanvas = () => {
       .then(
         (result) => {
           console.log(result.text);
+          alert('Your Message has been sent')
                   localStorage.removeItem('items');
  resetForm()
         },
@@ -159,9 +160,10 @@ const MessageOffcanvas = () => {
             <br />
             <label>Products:</label>
             <ul
+              type='text-area'
               name="Products">
               {items.map((item, index) => (
-                <li key={index}>{item}</li>
+                <li name="Products" key={index}>{item}</li>
               ))}
             </ul>
             {!isEmailValid && <p>Please enter a valid email address</p>}

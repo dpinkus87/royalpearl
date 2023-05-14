@@ -10,7 +10,7 @@ export const productList = [
     id: "001",
     name: "PN5TW",
     category: "necklace",
-    image: [
+    images: [
       PN5TW,
       PN9AY,
       DE12W
@@ -20,7 +20,7 @@ export const productList = [
     id: "002",
     name: "PN9AY",
     category: "necklace",
-    image: [PN9AY,
+    images: [PN9AY,
       DE12W,
       BR737]
   },
@@ -28,7 +28,7 @@ export const productList = [
     id: "003",
     name: "DE12W",
     category: "earring",
-    image: [
+    images: [
       PN5TW,
       PN9AY,
       DE12W
@@ -38,13 +38,13 @@ export const productList = [
     id: "004",
     name: "PP113AW",
     category: "necklace",
-    image: [PP113AW, A76507, PN5TW]
+    images: [PP113AW, A76507, PN5TW]
   },
   {
     id: "005",
     name: "76507",
     category: "bracelet",
-    image: [PN9AY,
+    images: [PN9AY,
       DE12W,
       BR737]
   },
@@ -52,7 +52,7 @@ export const productList = [
     id: "006",
     name: "BR737",
     category: "ring",
-    image: [
+    images: [
       PN5TW,
       PN9AY,
       DE12W

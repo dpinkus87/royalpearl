@@ -1,0 +1,26 @@
+### get products
+GET http://localhost:3000/products
+
+### Get product
+GET http://localhost:3000/products/PN5TW
+
+
+### Add a product
+POST http://localhost:3000/addproduct
+Content-Type: application/json
+
+
+### Add a catagory
+POST http://localhost:3000/addcatagory
+Content-Type: application/json
+
+
+### Update a product
+PATHC http://localhost:3000/updateproduct
+Content-Type: application/json
+
+
+### Remove a product
+DELETE http://localhost:3000/products
+Content-Type: application/json
+

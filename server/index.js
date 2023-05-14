@@ -1,3 +1,7 @@
+// TODO: Update routes 
+// TODO: collections 
+// TODO: relationships
+
 const express = require('express')
 const { FieldValue } = require('firebase-admin/firestore')
 const app = express()
