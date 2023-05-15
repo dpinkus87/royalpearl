@@ -70,13 +70,13 @@ const MessageOffcanvas = () => {
         (result) => {
           console.log(result.text);
           alert('Your Message has been sent')
-                  localStorage.removeItem('items');
- resetForm()
+          localStorage.removeItem('items');
+          
         },
         (error) => {
           console.log(error.text);
         },
-       
+resetForm()
       );
   };
 
@@ -159,18 +159,22 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Products:</label>
-            <ul
-              type='text-area'
-              name="Products">
+            <input
+              type="hidden"
+              name="Products"
+              value={items.join(',')}
+            />
+
+            <ul>
               {items.map((item, index) => (
-                <li name="Products" key={index}>{item}</li>
+                <li key={index}>{item}</li>
               ))}
             </ul>
             {!isEmailValid && <p>Please enter a valid email address</p>}
             <button type="submit" >Submit</button>
           </Form>
         </Offcanvas.Body>
-      </Offcanvas>
+      </Offcanvas >
     </>
   );
 };
