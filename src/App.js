@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Regal from "./pages/Regal";
 import Catalog from "./pages/Catalog";
 import ForgotPassword from "./components/Admin/ForgotPassword";
-import SignIn from "./components/Admin/signin";
+import SignIn from "./components/Admin/SignIn";
 import Admin from "./pages/Admin";
 
 function App() {

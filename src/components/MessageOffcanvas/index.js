@@ -22,6 +22,7 @@ const MessageOffcanvas = () => {
     setName('')
     setEmail('')
     setPhone('')
+    localStorage.removeItem('items')
   }
 
   const form = useRef();
@@ -69,14 +70,13 @@ const MessageOffcanvas = () => {
       .then(
         (result) => {
           console.log(result.text);
-          alert('Your Message has been sent')
-          localStorage.removeItem('items');
-          
+          alert('Your Message has been sent');
+          resetForm()
         },
         (error) => {
           console.log(error.text);
         },
-resetForm()
+
       );
   };
 
@@ -97,6 +97,7 @@ resetForm()
       color: "black",
       border: "none",
       width: "auto",
+      minHeight: '500px'
     },
     formControl: {
       display: "flex",
