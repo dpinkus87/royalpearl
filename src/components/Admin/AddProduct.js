@@ -5,8 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import {db} from '../../config/firebase'
-import { collection, addDoc, orderBy, query, onSnapshot, Timestamp } from 'firebase/firestore'
+import { collection, addDoc, storage } from 'firebase/firestore'
 import firebase from 'firebase/compat/app';
+import 'firebase/storage'
+import {getTimestamp} from '../../utils/getTimestamp'
 
 
 const AddItem = (props) => {
@@ -36,7 +38,7 @@ const AddItem = (props) => {
         name: name,
         description: description,
         image: image,
-        timestamp: new Date().getTime()
+        timestamp: getTimestamp()
 
       })
       handleClose();
@@ -46,6 +48,23 @@ const AddItem = (props) => {
     }
   }
 
+  const uploadImage = () => {
+    const ref = firebase.storage().ref();
+    const file = document.querySelector('#image').files[0];
+    const name = +new Date() + "-" + file.name;
+    const metadata = {
+      contentType: file.type
+    };
+    const task = ref.child(name).put(file, metadata);
+    task
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then(url => {
+        console.log(url);
+        alert('image uploaded successfully');
+        document.querySelector('#image').src = url;
+      })
+      .catch(console.error);
+  };
   
 
 
@@ -71,16 +90,16 @@ const AddItem = (props) => {
           </Form.Group>
 
       
-
+{/* TODO: Add image path to storage: src="gs://royal-pearl-e3254.appspot.com/" */}
           <Form.Group controlId="formFile" className="mb-3 p-2">
             <Form.Label>Images</Form.Label>
-            <Form.Control  type="file" />
+            <Form.Control  type="file" onChange={(e) => uploadImage(e.target.value)}/>
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
             <Form.Label>Description</Form.Label>
             <Form.Control required type="text" placeholder="Enter Item Description" 
-              onChange={(e) => setDescription(e.target.value)} 
+              onChange={(e) => setImage(e.target.value)} 
             />
           </Form.Group>
 
