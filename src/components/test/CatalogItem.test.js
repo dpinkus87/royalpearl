@@ -52,26 +52,26 @@ describe("CatalogItem", () => {
 
   it("should change images", async () => {
     const rickRollGif = 'https://media.tenor.com/nBt6RZkFJh8AAAAi/never-gonna.gif';
-    const rickRollGif2 = 'https://gfycat.com/gifs/tag/rickroll'
-    const rickRollGif3 = 'https://gfycat.com/uncomfortablebeneficialcoyote'
+    const rickRollGif2 = 'https://gfycat.com/gifs/tag/rickroll';
+    const rickRollGif3 = 'https://gfycat.com/uncomfortablebeneficialcoyote';
     const images = [rickRollGif, rickRollGif2, rickRollGif3];
     const name = 'McKay\'s McBaller Jesus Piece';
     const category = 'Bling Bling';
 
-    render(<CatalogItem images={[images]} name={name} category={category} />);
+    render(<CatalogItem images={images} name={name} category={category} />);
 
     const firstImage = screen.getAllByRole("img")[0];
-    expect(firstImage).toMatchSnapshot();
+    expect(firstImage.src).toBe(rickRollGif);
     
     const carouselButton = screen.getByTestId("button");
     fireEvent.click(carouselButton);
     
     const secondImage = screen.getAllByRole("img")[1];
-    expect(secondImage).toMatchSnapshot();
+    expect(secondImage.src).toBe(rickRollGif2);
     
     fireEvent.click(carouselButton);
     
     const thirdImage = screen.getAllByRole("img")[2];
-    expect(thirdImage).toMatchSnapshot();
+    expect(thirdImage.src).toBe(rickRollGif3);
   })
   });
