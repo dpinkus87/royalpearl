@@ -8,31 +8,31 @@ const Footer = () => {
 
   return (
     <div display="flex">
-    <Container fluid='true' display="flex" className='bg-white' style={{alignItems:'center', justifyContent: 'space-around'}}>
+      <Container fluid='true' className='bg-white p-3 m-auto justify-content-center' style={{ alignItems: 'center' }} >
 
-      <Row className="justify-content-space-around!">
-        <Col sm={8} md={4} lg={2} fluid='true'>
-          <ul >
-            <li >
-              test
-            </li>
-            <li>
-              test2
-            </li>
-          </ul></Col>
-        <Col sm={8} md={4} lg={2} fluid='true'>Royal Pearl All rights reserved 2023</Col>
-        <Col sm={8} md={4} lg={2} fluid='true'>
-          <ul>
-            <li>
-              Follow Us
-            </li>
-            <li>
-              Instagram
-            </li>
-          </ul>
-        </Col>
-      </Row>
-    </Container>
+        <Row sm={1} md={3} lg={3}  style={{ alignItems: 'center'}} >
+          <Col >
+            <ul >
+              <li >
+                test
+              </li>
+              <li>
+                test2
+              </li>
+            </ul></Col>
+          <Col>Royal Pearl All rights reserved 2023</Col>
+          <Col>
+            <ul>
+              <li>
+                Follow Us
+              </li>
+              <li>
+                Instagram
+              </li>
+            </ul>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import CatalogItem from "../CatalogItem";
 import { fireEvent, render, screen } from "@testing-library/react";
+import '@testing-library/jest-dom'
 
 
 let localStorageMock;
@@ -50,7 +51,7 @@ describe("CatalogItem", () => {
     expect(localStorageMock.setItem).toHaveBeenCalledWith("items", JSON.stringify([name]));
   });
 
-  it("should change images", async () => {
+  it("add active class to clicked image item", async () => {
     const rickRollGif = 'https://media.tenor.com/nBt6RZkFJh8AAAAi/never-gonna.gif';
     const rickRollGif2 = 'https://gfycat.com/gifs/tag/rickroll';
     const rickRollGif3 = 'https://gfycat.com/uncomfortablebeneficialcoyote';
@@ -58,20 +59,19 @@ describe("CatalogItem", () => {
     const name = 'McKay\'s McBaller Jesus Piece';
     const category = 'Bling Bling';
 
+  
     render(<CatalogItem images={images} name={name} category={category} />);
+    const nextButton = screen.getByRole("button", { class: 'carousel-control-next' });
 
     const firstImage = screen.getAllByRole("img")[0];
-    expect(firstImage.src).toBe(rickRollGif);
-    
-    const carouselButton = screen.getByTestId("button");
-    fireEvent.click(carouselButton);
-    
     const secondImage = screen.getAllByRole("img")[1];
-    expect(secondImage.src).toBe(rickRollGif2);
     
-    fireEvent.click(carouselButton);
+    expect(firstImage.firstChild).toHaveClass('active')
     
-    const thirdImage = screen.getAllByRole("img")[2];
-    expect(thirdImage.src).toBe(rickRollGif3);
+    fireEvent.click(nextButton);
+    
+    expect(firstImage.firstChild).not.toHaveClass('active')
+    expect(secondImage.firstChild).toHaveClass('active')
+
   })
   });

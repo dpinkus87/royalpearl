@@ -14,6 +14,9 @@ const CatalogItem = ({ images, name, category }) => {
     window.dispatchEvent(new Event("storage"));
   };
 
+// TODO: Get route for each item
+
+
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative">
       <Row>
@@ -53,6 +56,7 @@ const CatalogItem = ({ images, name, category }) => {
                 variant="top"
                 src={images[0]}
                 height="200px"
+                alt="img1"
                 style={{ objectFit: "cover" }}
               />
             </Carousel.Item>
@@ -62,6 +66,7 @@ const CatalogItem = ({ images, name, category }) => {
                 variant="top"
                 src={images[1]}
                 height="200px"
+                alt="img2"
                 style={{ objectFit: "cover" }}
               />
             </Carousel.Item>
@@ -71,6 +76,7 @@ const CatalogItem = ({ images, name, category }) => {
                 variant="top"
                 src={images[2]}
                 height="200px"
+                alt="img3"
                 style={{ objectFit: "cover" }}
               />
             </Carousel.Item>

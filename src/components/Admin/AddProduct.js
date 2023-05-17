@@ -1,33 +1,35 @@
 // TODO: Add mapping to product and db instance
-
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import {db} from '../../config/firebase'
-import { collection, addDoc, storage } from 'firebase/firestore'
-import firebase from 'firebase/compat/app';
-import 'firebase/storage'
-import {getTimestamp} from '../../utils/getTimestamp'
+import { db } from '../../config/firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { getTimestamp } from '../../utils/getTimestamp'
+import { storage } from "../../config/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+
 
 
 const AddItem = (props) => {
 
-
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('')
-  const [image, setImage] =useState([])
-  const [insertedName, setInsertedName] = useState('');
-  const [insertedDescription, setInsertedDescription] = useState('');
+  const [image, setImage] = useState([]);
+  const [imgUrl, setImgUrl] = useState(null);
+
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleParentReset = (name, description) => {
     props.resetItems();
-  
+
   }
 
   // POST route - new item
@@ -37,7 +39,7 @@ const AddItem = (props) => {
       await addDoc(collection(db, 'product'), {
         name: name,
         description: description,
-        image: image,
+        image: imgUrl,
         timestamp: getTimestamp()
 
       })
@@ -48,24 +50,47 @@ const AddItem = (props) => {
     }
   }
 
-  const uploadImage = () => {
-    const ref = firebase.storage().ref();
-    const file = document.querySelector('#image').files[0];
-    const name = +new Date() + "-" + file.name;
-    const metadata = {
-      contentType: file.type
-    };
-    const task = ref.child(name).put(file, metadata);
-    task
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        console.log(url);
-        alert('image uploaded successfully');
-        document.querySelector('#image').src = url;
-      })
-      .catch(console.error);
+
+  const [file, setFile] = useState("");
+
+  // progress
+  const [percent, setPercent] = useState(0);
+
+  // Handle file upload event and update state
+  function handleChange(event) {
+    setFile(event.target.files[0]);
+  }
+
+  const handleUpload = () => {
+    if (!file) {
+      alert("Please upload an image first!");
+    }
+
+    const storageRef = ref(storage, `/files/${file.name}`);
+
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+
+        // update progress
+        setPercent(percent);
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url);
+        });
+      }
+    );
   };
-  
 
 
 
@@ -84,22 +109,26 @@ const AddItem = (props) => {
 
           <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
             <Form.Label>Item Name</Form.Label>
-            <Form.Control required type="text" placeholder="Enter Item Name" 
+            <Form.Control required type="text" placeholder="Enter Item Name"
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
-      
-{/* TODO: Add image path to storage: src="gs://royal-pearl-e3254.appspot.com/" */}
-          <Form.Group controlId="formFile" className="mb-3 p-2">
+
+          {/* TODO: Add image to storage */}
+          <Form.Group onSubmit={handleUpload} controlId="formFile" className="mb-3 p-2">
             <Form.Label>Images</Form.Label>
-            <Form.Control  type="file" onChange={(e) => uploadImage(e.target.value)}/>
+            <Form.Control type="file" onChange={handleChange} />
+            {uploadProgress > 0 && <p>Upload Progress: {uploadProgress}%</p>}
+
           </Form.Group>
+
+
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
             <Form.Label>Description</Form.Label>
-            <Form.Control required type="text" placeholder="Enter Item Description" 
-              onChange={(e) => setImage(e.target.value)} 
+            <Form.Control required type="text" placeholder="Enter Item Description"
+              onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
 
@@ -111,7 +140,7 @@ const AddItem = (props) => {
                 id={category.id},
                 key={category.id}
               )))}>onChange = </option> */}
-             
+
             </Form.Select>
           </Form.Group>
 
@@ -127,5 +156,6 @@ const AddItem = (props) => {
     </>
   )
 }
+
 
 export default AddItem;

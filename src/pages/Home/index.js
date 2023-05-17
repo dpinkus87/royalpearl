@@ -38,7 +38,7 @@ function Home() {
               
                       <HomepageModal />
            
-                {/* Hero cover image */}
+                {/* TODO Hero cover image */}
                 <Container fluid='true' className='m-0'>
                     <Row>
                         <Col className="m-0 p-0 " style={{ position: "relative" }}>
@@ -112,7 +112,7 @@ function Home() {
                 <br></br>
                 <br></br>
 
-                {/* Previous collections image / link */}
+                {/* TODO Previous collections image / link */}
                 <Container fluid='true' className="m-0">
                     <Row>
                         <Image src={archives} fluid='true' style={{ objectFit: "cover", height: '50vh' }} />
@@ -121,7 +121,7 @@ function Home() {
                 <br></br>
                 <br></br>
 
-                {/* New arrivals & Best of the best cards / links */}
+                {/* TODO New arrivals & Best of the best cards / links */}
                 <div display='flex'>
                     <Container display='flex' fluid='true'>
                         <Row sm={1} md={1} xs={1} lg={2} >
@@ -153,16 +153,16 @@ function Home() {
                 <br></br>
                 <br></br>
 
-                {/* About us section */}
+                {/* TODO About us section */}
                 <div>
                     <Container fluid='true'>
-                        <Row>
-                            <Col xs={8}>
+                        <Row lg={2} xs={1}>
+                            <Col >
                                 <Image className="w-100" src={hero} />
                             </Col>
 
-                            <Col xs={4}>
-                                <h2 className="text-white text-center py-8">TEST</h2>
+                            <Col className='justify-content-center' style={{alignItems: "center", display: 'flex'}}>
+                                <h4 className="text-white text-center py-8" >Royal Pearl, a prominent jewelry wholesaler, stands out for its expertise in offering an exquisite selection of pearl jewelry. With a dedication to quality and a focus on pearls, we provide a trusted platform to access stunning pieces that capture the essence of elegance and timeless beauty.</h4>
                             </Col>
                         </Row>
                     </Container>
@@ -172,14 +172,14 @@ function Home() {
                 <br></br>
                 {/* TODO: format Upcoming Shows section */}
                 <div>
-                    <Container fluid='true'>
-                        <h2 className="text-white bg-black text-center">Upcoming Shows</h2>
-                        <ul className="text-white">
+                    <Container fluid='true' >
+                        <h1 className="text-white bg-black text-center">Upcoming Shows</h1>
+                        <ul className="text-white text-center" style={{listStyle: 'none'}}>
                             <li>
-                                Las Vegas
+                                Las Vegas - May 30th
                             </li>
                             <li>
-                                New York
+                                New York - TEST
                             </li>
                         </ul>
                     </Container>

@@ -6,6 +6,7 @@
         "gridlayout",
         "labelledby",
         "Offmessage",
+        "Progresspercent",
         "SERVICEID",
         "TEMPLATEID"
     ]

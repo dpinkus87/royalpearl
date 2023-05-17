@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import { Row, Col, Image, Container } from "react-bootstrap";
 import CatalogItem from "../../components/CatalogItem";
 import hero from '../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg'
@@ -9,9 +9,23 @@ import Footer from '../../components/Footer'
 import CategoryMenu from '../../components/CategoryMenu'
 
 import MessageOffcanvas from "../../components/MessageOffcanvas/index"
+import { onSnapshot } from "firebase/firestore";
 
 
 function Catalog() {
+  
+const [products, setProducts] = useState([]
+  )
+  useEffect(() => {
+    const productRef = query(collection(db, 'product'), orderBy('name', "desc"))
+    onSnapshot(productRef, (snapshot) => {
+      setProducts(snapshot.docs.map(doc => ({
+        id: doc.id
+      })))
+      
+    })
+  }, [])
+
   
   return (
     <>
