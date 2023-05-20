@@ -1,10 +1,10 @@
 // TODO: Map each element of the card to the db - name, images, description, category...
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 
 const CatalogItem = ({ images, name, category }) => {
-  const [product, setProducts] = useState({});
+  const [product, setProducts] = useState([]);
   const showButtons = 'VisibleOnHover'
 
   const handleClick = () => {
@@ -14,7 +14,9 @@ const CatalogItem = ({ images, name, category }) => {
     window.dispatchEvent(new Event("storage"));
   };
 
-// TODO: Get route for each item
+
+
+
 
 
   return (
@@ -49,8 +51,8 @@ const CatalogItem = ({ images, name, category }) => {
             </svg>
           </Button>
 
-          <Carousel interval={null} variant='dark' indicators={false}>
-            <Carousel.Item>
+          <Carousel interval={null} variant='dark' indicators={true}>
+            <Carousel.Item data-testid='nextbutton'>
               <img
                 className="rounded-0 d-block w-100"
                 variant="top"
