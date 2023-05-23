@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
-import {db} from '../../config/firebase'
-
+import { db } from "../../config/firebase";
 
 const CatalogItem = ({ image, name, description, category }) => {
   const [product, setProducts] = useState([]);
-  const [imageFromDB, setImageFromDB] = useState("");
+  const [imageFromDB, setImageFromDB] = useState([]);
   const showButtons = "VisibleOnHover";
 
   const handleClick = () => {
@@ -14,22 +13,18 @@ const CatalogItem = ({ image, name, description, category }) => {
     localStorage.setItem("items", JSON.stringify(storedItems));
     window.dispatchEvent(new Event("storage"));
   };
-  
+
   useEffect(() => {
-    setImageFromDB(image);
+    if (Array.isArray(image)) {
+      setImageFromDB(image);
+    }
   }, [image]);
-  
-console.log(image)
+
 
   return (
-    <Card className="bg-black text-white border-light rounded-0 position-relative">
-      <Row>
+    <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
+      <Row >
         <Col
-          style={{
-            width: "2rem",
-            height: "2rem",
-            color: "white",
-          }}
         >
           <Button
             data-testid="button"
@@ -40,8 +35,8 @@ console.log(image)
               width: "3rem",
               height: "3rem",
               position: "absolute",
-              top: ".5rem",
-              left: ".5rem",
+              top: "0rem",
+              left: "0rem",
               background: "none",
               border: "none",
               zIndex: "999",
@@ -59,31 +54,22 @@ console.log(image)
             </svg>
           </Button>
 
-{image}
-
-          {/* {image &&
-          image.length > 0 &&
-          product.some((img) => typeof img === "object") ? (
-            <Carousel interval={null} variant="dark" indicators={true}>
-              {product.map((img, index) => {
-                return (
-                  <Carousel.Item key={index} data-testid="nextbutton">
-                    <img
-                      className="rounded-0 d-block w-100"
-                      variant="top"
-                      src={img}
-                      height="200px"
-                      alt={`img${index + 1}`}
-                      style={{ objectFit: "cover" }}
-                    />
-                  </Carousel.Item>
-                );
-              })}
+          {imageFromDB.length > 0 ? (
+            <Carousel interval={null} variant="dark" indicators={false}>
+              {imageFromDB.map((image, index) => (
+                <Carousel.Item key={index} data-testid="nextbutton">
+                  <img
+                    className="rounded-0 d-block w-100"
+                    src={image}
+                    alt={`img${index + 1}`}
+                    style={{ objectFit: "cover", height: "9rem" }}
+                  />
+                </Carousel.Item>
+              ))}
             </Carousel>
           ) : (
             <p>No image available</p>
-          )} */}
-
+          )}
         </Col>
 
         <Col>

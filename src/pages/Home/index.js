@@ -35,9 +35,9 @@ function Home() {
             <div className="home">
 
                 {/* Show Modal */}
-              
-                      <HomepageModal />
-           
+
+                <HomepageModal />
+
                 {/* TODO Hero cover image */}
                 <Container fluid='true' className='m-0'>
                     <Row>
@@ -58,7 +58,7 @@ function Home() {
                         <Row style={styles.row} sm={1} md={1} xs={1} lg={5} height='2rem'>
                             <Col>
                                 <a href='../Catalog' style={{ textDecoration: 'none' }}>
-                                    <Card style={{ cursor: "pointer" }}className="border-0 bg-black" >
+                                    <Card style={{ cursor: "pointer" }} className="border-0 bg-black" >
                                         <Card.Img src={earrings} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                                             <u> Earrings</u></Card.Body>
@@ -161,7 +161,7 @@ function Home() {
                                 <Image className="w-100" src={hero} />
                             </Col>
 
-                            <Col className='justify-content-center' style={{alignItems: "center", display: 'flex'}}>
+                            <Col className='justify-content-center' style={{ alignItems: "center", display: 'flex' }}>
                                 <h4 className="text-white text-center py-8" >Royal Pearl, a prominent jewelry wholesaler, stands out for its expertise in offering an exquisite selection of pearl jewelry. With a dedication to quality and a focus on pearls, we provide a trusted platform to access stunning pieces that capture the essence of elegance and timeless beauty.</h4>
                             </Col>
                         </Row>
@@ -174,7 +174,7 @@ function Home() {
                 <div>
                     <Container fluid='true' >
                         <h1 className="text-white bg-black text-center">Upcoming Shows</h1>
-                        <ul className="text-white text-center" style={{listStyle: 'none'}}>
+                        <ul className="text-white text-center" style={{ listStyle: 'none' }}>
                             <li>
                                 Las Vegas - May 30th
                             </li>
@@ -188,7 +188,7 @@ function Home() {
                 </div>
 
             </div>
-<Footer />
+            <Footer />
         </>
     )
 }
