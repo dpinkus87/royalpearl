@@ -1,11 +1,12 @@
-// TODO: Map each element of the card to the db - name, images, description, category...
-
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
+import {db} from '../../config/firebase'
 
-const CatalogItem = ({ image, name, category, description }) => {
+
+const CatalogItem = ({ image, name, description, category }) => {
   const [product, setProducts] = useState([]);
-  const showButtons = 'VisibleOnHover'
+  const [imageFromDB, setImageFromDB] = useState("");
+  const showButtons = "VisibleOnHover";
 
   const handleClick = () => {
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
@@ -13,17 +14,24 @@ const CatalogItem = ({ image, name, category, description }) => {
     localStorage.setItem("items", JSON.stringify(storedItems));
     window.dispatchEvent(new Event("storage"));
   };
-
-
-
-
-
+  
+  useEffect(() => {
+    setImageFromDB(image);
+  }, [image]);
+  
+console.log(image)
 
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative">
       <Row>
-        <Col>
-        <Button
+        <Col
+          style={{
+            width: "2rem",
+            height: "2rem",
+            color: "white",
+          }}
+        >
+          <Button
             data-testid="button"
             value={product}
             onChange={(e) => setProducts(e.target.value)}
@@ -36,7 +44,7 @@ const CatalogItem = ({ image, name, category, description }) => {
               left: ".5rem",
               background: "none",
               border: "none",
-              zIndex: '999'
+              zIndex: "999",
             }}
             className="rounded-circle"
           >
@@ -51,30 +59,41 @@ const CatalogItem = ({ image, name, category, description }) => {
             </svg>
           </Button>
 
-          {image?.length > 0 && (
-            <Carousel interval={null} variant='dark' indicators={true}>
-              {image.map((image, index) => (
-                <Carousel.Item key={index} data-testid='nextbutton'>
-                  <img
-                    className="rounded-0 d-block w-100"
-                    variant="top"
-                    src={image}
-                    height="200px"
-                    alt={`img${index + 1}`}
-                    style={{ objectFit: "cover" }}
-                  />
-                </Carousel.Item>
-              ))}
+{image}
+
+          {/* {image &&
+          image.length > 0 &&
+          product.some((img) => typeof img === "object") ? (
+            <Carousel interval={null} variant="dark" indicators={true}>
+              {product.map((img, index) => {
+                return (
+                  <Carousel.Item key={index} data-testid="nextbutton">
+                    <img
+                      className="rounded-0 d-block w-100"
+                      variant="top"
+                      src={img}
+                      height="200px"
+                      alt={`img${index + 1}`}
+                      style={{ objectFit: "cover" }}
+                    />
+                  </Carousel.Item>
+                );
+              })}
             </Carousel>
-            )}
+          ) : (
+            <p>No image available</p>
+          )} */}
+
         </Col>
+
         <Col>
           <Card.Body className="d-flex flex-column">
             <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-              <span className="fs-2">{name?.id}</span>
+              <span className="fs-2">{name}</span>
             </Card.Title>
-            {/* <Card.Text>{category}</Card.Text> */}
-            <Card.Text>{description?.id}</Card.Text>
+
+            <Card.Text>{description}</Card.Text>
+            <Card.Text>{category}</Card.Text>
           </Card.Body>
         </Col>
       </Row>

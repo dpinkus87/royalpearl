@@ -15,7 +15,7 @@ const AddItem = (props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState([]);
-  const [imgUrl, setImgUrl] = useState(null);
+  const [imgUrl, setImgUrl] = useState("");
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -130,8 +130,8 @@ const AddItem = (props) => {
               <option value="earring">Earring</option>
               <option value="necklace">Necklace</option>
               <option value="ring">Ring</option>
-              onChange={(e) => setCategory(e.target.value)}
             </Form.Select>
+              onChange={(e) => setCategory(e.target.value)}
           </Form.Group>
 
           <div

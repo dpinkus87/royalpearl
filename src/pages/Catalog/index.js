@@ -56,11 +56,11 @@ const [products, setProducts] = useState([]
                  <CatalogItem
                 key={product.id}
                 name={product.data.name}
+                description={product.data.description}
+                category={product.data.category}
+                image={product.data.image}
                 />
                 ))}
-             
-
-               
       </Row>
       <br></br>
       <Footer />
