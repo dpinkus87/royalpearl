@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 
-const CatalogItem = ({ images, name, category }) => {
+const CatalogItem = ({ image, name, category, description }) => {
   const [product, setProducts] = useState([]);
   const showButtons = 'VisibleOnHover'
 
@@ -51,45 +51,30 @@ const CatalogItem = ({ images, name, category }) => {
             </svg>
           </Button>
 
-          <Carousel interval={null} variant='dark' indicators={true}>
-            <Carousel.Item data-testid='nextbutton'>
-              <img
-                className="rounded-0 d-block w-100"
-                variant="top"
-                src={images[0]}
-                height="200px"
-                alt="img1"
-                style={{ objectFit: "cover" }}
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="rounded-0 d-block w-100"
-                variant="top"
-                src={images[1]}
-                height="200px"
-                alt="img2"
-                style={{ objectFit: "cover" }}
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="rounded-0 d-block w-100"
-                variant="top"
-                src={images[2]}
-                height="200px"
-                alt="img3"
-                style={{ objectFit: "cover" }}
-              />
-            </Carousel.Item>
-          </Carousel>
+          {image?.length > 0 && (
+            <Carousel interval={null} variant='dark' indicators={true}>
+              {image.map((image, index) => (
+                <Carousel.Item key={index} data-testid='nextbutton'>
+                  <img
+                    className="rounded-0 d-block w-100"
+                    variant="top"
+                    src={image}
+                    height="200px"
+                    alt={`img${index + 1}`}
+                    style={{ objectFit: "cover" }}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+            )}
         </Col>
         <Col>
           <Card.Body className="d-flex flex-column">
             <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-              <span className="fs-2">{name}</span>
+              <span className="fs-2">{name?.id}</span>
             </Card.Title>
-            <Card.Text>{category}</Card.Text>
+            {/* <Card.Text>{category}</Card.Text> */}
+            <Card.Text>{description?.id}</Card.Text>
           </Card.Body>
         </Col>
       </Row>

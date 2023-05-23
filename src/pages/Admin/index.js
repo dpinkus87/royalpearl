@@ -58,7 +58,7 @@ function Admin() {
 
   // READ
   const displayItems = () => {
-    const queryRef = query(collection(db, 'product'), orderBy('timestamp', 'desc'));
+    const queryRef = query(collection(db, 'products'), orderBy('timestamp', 'desc'));
     onSnapshot(queryRef, (snapshot) => {
       setProducts(snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -109,6 +109,7 @@ function Admin() {
               <th>Item</th>
               <th>Description</th>
               <th>Images</th>
+              <th>Category</th>
               <th>Date Updated</th>
             </tr>
           </thead>
@@ -118,6 +119,7 @@ function Admin() {
                 <td>{product.data.name}</td>
                 <td>{product.data.description}</td>
                 <td>{product.data.image}</td>
+                <td>{product.data.category}</td>
                 <td>{product.data.timestamp ? (formatDate(product.data.timestamp)):('n/a')}</td>
                 {/* <button type='button'
                   // onClick={() => removeItem(product.id)}

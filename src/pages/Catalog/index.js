@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import { Row, Col, Image, Container } from "react-bootstrap";
+import React, { useState, useEffect, useRef } from "react";
+import { Row, Image, Container } from "react-bootstrap";
 import CatalogItem from "../../components/CatalogItem";
 import hero from '../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg'
 import '../../App.css'
@@ -10,28 +10,30 @@ import CategoryMenu from '../../components/CategoryMenu'
 
 import MessageOffcanvas from "../../components/MessageOffcanvas/index"
 import {db} from '../../config/firebase'
-import { getDocs, collection, query, onSnapshot } from "firebase/firestore";
+import {  collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
 
 
 
 function Catalog() {
   
-const [product, setProducts] = useState([]
+const [products, setProducts] = useState([]
   );
 
-  useEffect(() => {
-    const productRef = query(collection(db, 'product'))
-    onSnapshot(productRef, (snapshot) => {
-      setProducts(snapshot.docs.map(doc => ({
+  const displayItems = () => {
+    const queryRef = query(collection(db, 'products'), orderBy('timestamp', 'desc'));
+    onSnapshot(queryRef, (snapshot) => {
+      setProducts(snapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data()
-      })))
-      console.log(product);
-    })
-  },[])
-  
-  
+      })));
+    });
+  };
+  console.warn(JSON.stringify(products));
+
+  useEffect(() => {
+    displayItems();
+  }, []);
   
   return (
     <>
@@ -48,12 +50,17 @@ const [product, setProducts] = useState([]
       <CategoryMenu />
       
       <Row xxl={4} xl={3} lg={2} md={2} sm={1} xs={1} className="g-3 p-3">
-      product.map(product => (
-        <Col>
-        <CatalogItem {...product} />
-        </Col>
-      ))
-      
+
+      {products.map((product) =>(
+            
+                 <CatalogItem
+                key={product.id}
+                name={product.data.name}
+                />
+                ))}
+             
+
+               
       </Row>
       <br></br>
       <Footer />
