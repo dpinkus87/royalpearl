@@ -11,7 +11,7 @@ return (
 <header>
  
         <div >
-          <h1 className="header" >ROYAL PEARL</h1>
+          <h1 className="header">ROYAL PEARL</h1>
         </div>
         <Navbar className="justify-content-center" bg="black" variant='dark' expand="lg">
       <Container>
@@ -20,9 +20,12 @@ return (
           <Nav className="m-auto">
             <Nav.Link href="./">Home</Nav.Link>
             <NavDropdown title="Product Categories" menuVariant='dark' id="basic-nav-dropdown">
+              <NavDropdown.Item href="/catalog?category=bracelet">Bracelets</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=cufflink">Cufflinks</NavDropdown.Item>
               <NavDropdown.Item href="/catalog?category=earring">Earrings</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog?category=necklace">Necklace</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog?category=strand">Strands</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=pendant">Pendants</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=ring">Rings</NavDropdown.Item>
+
             </NavDropdown>
             <Nav.Link href="/catalog?category=new_arrival">New Arrivals</Nav.Link>
             <Nav.Link href="/catalog?category=best_seller">Best Sellers</Nav.Link>

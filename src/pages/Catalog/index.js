@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Image, Container, Col } from "react-bootstrap";
 import CatalogItem from "../../components/CatalogItem";
 import hero from "../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg";
@@ -11,13 +11,20 @@ import MessageOffcanvas from "../../components/MessageOffcanvas/index";
 import { db } from "../../config/firebase";
 import { collection, query, onSnapshot, orderBy, where } from "firebase/firestore";
 
-
 import CategoryMenu from "../../components/Filters/categoryMenu"
 import ColorMenu from "../../components/Filters/colorMenu";
 import GemMenu from "../../components/Filters/gemMenu";
 import MaterialMenu from "../../components/Filters/materialMenu";
 
-function Catalog(selectedCategory) {
+
+function Catalog() {
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // console.log("selected category", selectedCategory);
   const [products, setProducts] = useState([]);
 
   const displayItems = () => {
@@ -26,7 +33,7 @@ function Catalog(selectedCategory) {
       orderBy("name", "asc")
     );
 
-    const q = query(colRef, where("category", "==", 'Earring'))
+    const q = query(colRef, where("category", "==", selectedCategory))
 
     onSnapshot(q, (snapshot) => {
       setProducts(
@@ -41,7 +48,7 @@ function Catalog(selectedCategory) {
 
   useEffect(() => {
     displayItems();
-  }, []);
+  }, [{selectedCategory}]);
 
   console.warn(products)
 
@@ -64,7 +71,8 @@ function Catalog(selectedCategory) {
       <Container >
         <Row xxl={5} md={4} sm={1} xs={1} >
           <Col >
-            <CategoryMenu />
+            <CategoryMenu selectedCategory={selectedCategory}
+                          handleCategoryChange={handleCategoryChange}/>
           </Col>
           <Col>
             <ColorMenu />
@@ -85,7 +93,6 @@ function Catalog(selectedCategory) {
               description={product.data.description}
               category={product.data.category}
               image={product.data.image}
-            // selectedCategory={selectedCategory}
 
             />
           ))}

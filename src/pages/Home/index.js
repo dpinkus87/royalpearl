@@ -57,7 +57,7 @@ function Home() {
                         <Row style={styles.row} sm={1} md={1} xs={1} lg={5} height='2rem'>
 
                             <Col >
-                            <Link to="/Catalog?category=bracelet" style={{ textDecoration: 'none' }}>
+                            <Link to="/Catalog?category=Bracelet" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={bracelet} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -67,7 +67,7 @@ function Home() {
                             </Col>
 
                             <Col>
-                            <Link to="/Catalog?category=earring" style={{ textDecoration: 'none' }}>
+                            <Link to="/Catalog?category=Earring" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black" >
                                         <Card.Img src={earrings} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -77,7 +77,7 @@ function Home() {
                             </Col>
 
                             <Col >
-                            <Link to="/Catalog?category=pendants" style={{ textDecoration: 'none' }}>
+                            <Link to="/Catalog?category=Necklace" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={pendant} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -87,7 +87,7 @@ function Home() {
                             </Col>
 
                             <Col >
-                            <Link to="/Catalog?category=ring" style={{ textDecoration: 'none' }}>
+                            <Link to="/Catalog?category=Ring" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={ring} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -128,25 +128,25 @@ function Home() {
                         <Row sm={1} md={1} xs={1} lg={2} >
                             <Col >
                                 <a href='../Catalog' style={{ textDecoration: 'none' }}>
-                                    <Card style={{ cursor: "pointer" }} className="border-0 border-bottom-0">
+                                    <div style={{ cursor: "pointer" }} className="border-0 border-bottom-0">
                                         <Row>
                                             <Image src={hero} className='rounded-0' style={{ objectFit: "cover", height: '500px' }} />
                                         </Row>
                                         <Row className="newArrivalCard text-white bg-black text-center 25">
                                             <u> New Arrivals</u></Row>
-                                    </Card>
+                                    </div>
                                 </a>
                             </Col>
 
                             <Col >
                                 <a href='../Catalog' style={{ textDecoration: 'none' }}>
-                                    <Card style={{ cursor: "pointer" }} className="border-0">
+                                    <div style={{ cursor: "pointer" }} className="border-0">
                                     <Row>
                                         <Image src={hero} className='rounded-0' style={{ objectFit: "cover", height: '500px' }} />
                                     </Row>
                                         <Row className="newArrivalCard text-white bg-black text-center 25">
                                             <u> Most Popular</u></Row>
-                                    </Card>
+                                    </div>
                                 </a>
                             </Col>
 
@@ -179,7 +179,8 @@ function Home() {
                 <div>
                     <Container fluid='true' >
                         <h1 className="text-white bg-black text-center">Upcoming Shows</h1>
-                        <ul className="text-white text-center" style={{ listStyle: 'none' }}>
+                        <br></br>
+                        <ul className="text-white text-center" style={{ listStyle: 'none', fontSize:"18pt" }}>
                             <li>
                                 Las Vegas - May 30th
                             </li>

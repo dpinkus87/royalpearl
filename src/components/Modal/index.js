@@ -1,11 +1,11 @@
 // TODO: Add content
 // TODO: Add center border
 
-import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function HomepageModal() {
     const [show, setShow] = useState(false);
@@ -13,87 +13,91 @@ function HomepageModal() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     useEffect(() => {
         handleShow();
     }, []);
 
     const styles = {
         body: {
-            background: 'black',
+            background: "black",
             textSize: "50px",
-            color: 'white',
-            radius: '5%',
-            height: '30rem',
-            width: '50rem'
-        },
-        col1: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRight: '5px',
-            borderColor: 'white',
-            height: '100%'
-        },
-        col2: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-        },
-    }
+            color: "white",
+            radius: "5%",
+            width: "50rem",
+            borderColor: 'black'
+        }
+    };
 
     return (
         <>
-            <Modal size='lg' centered show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
+            <Modal
+                size="lg" centered show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
                 <Modal.Body style={styles.body}>
-                    <Row >
-                        <Col style={styles.col1}>
-
-                            <Row>
-                                <div>
-                                    About Royal Pearl
+                    <Row xxl={2} xl={2} lg={2} md={1} sm={1} xs={1} style={{ display: "flex" }} >
+                        <Col>
+                            <Row style={{ display: "flex", minHeight: "10vh", alignItems: "center", justifyContent: "center" }} className="bg-black border-right-1 border-color-white" >
+                                <div className="d-flex justify-content-center w-100">
+                                    <h3>Royal Pearl</h3>
                                 </div>
                                 <br></br>
-                                <Col>
-                                    <div>    Royal Pearl has blended a visionary design approach with the innovative application of state-of-the-art technology to create a unique high quality collection of jewelry. </div>
-                                </Col>
-                                <div className='border-right-3 border-color-white' >
-
-                                </div>
+                                <br></br>
                             </Row>
+                            <Row style={{ display: "flex", minHeight: "30vh" }}>
+                                <p>
+                                    Royal Pearl has blended a visionary design approach with the
+                                    innovative application of state-of-the-art technology to
+                                    create a unique high quality collection of jewelry.
+                                </p>
+                            </Row>
+
+                            <Row style={{ alignItems: "center", justifyContent: "center" }}>
+                                <div className="d-flex justify-content-center w-100">
+                                    <Link to="/">
+                                        <Button variant="secondary" onClick={handleClose} centered>
+                                            Royal Pearl
+                                        </Button>
+                                    </Link>
+                                </div>
+
+                            </Row>
+
                         </Col>
 
-                        <Col style={styles.col1}>
+                        <Col>
+                            <Row
+                                style={{ display: "flex", minHeight: "10vh", alignItems: "center", justifyContent: "center", }}
+                                className="bg-black">
+                                <div className="d-flex justify-content-center w-100">
+                                    <h3>Regal</h3>
+                                </div>
+
+                                <br></br>
+                                <br></br>
+                            </Row>
+                            <Row style={{ display: "flex", minHeight: "30vh" }}>
+                                <div className="d-flex justify-content-center w-100">
+
+                                    <p>
+                                        Regal Jewelry Manufacturing provides virtually limitless
+                                        production capabilities in all aspects of the jewelry
+                                        industry.
+                                    </p>
+                                </div>
+                            </Row>
 
                             <Row>
-                                <div>
-                                    About Regal Manufacturing
+                                <div className="d-flex justify-content-center w-100">
+                                    <Link to="/Regal">
+                                        <Button centered variant="secondary" onClick={handleClose}>
+                                            Regal
+                                        </Button>
+                                    </Link>
                                 </div>
-                                <br></br>
-                                <Col>
-                                    <div>    Royal Pearl has blended a visionary design approach with the innovative application of state-of-the-art technology to create a unique high quality collection of jewelry. </div>
-                                </Col>
-                                <div className='border-right-3 border-color-white' >
 
-                                </div>
                             </Row>
                         </Col>
                     </Row>
                 </Modal.Body>
-                {/* Add a new row for the button */}
-                <Modal.Footer style={{ display: 'flex' }} className='bg-black border-0'>
-                    <Col style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', borderRight: '2', borderColor: 'white' }}>
-                        <Button variant="secondary" onClick={handleClose} centered> Royal Pearl</Button>
-
-                    </Col>
-                    <Col style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-                        <Link to='/Regal'>
-                            <Button centered variant="secondary" onClick={handleClose}>
-                                Regal
-                            </Button>
-                        </Link>
-                    </Col>
-                </Modal.Footer>
             </Modal>
         </>
     );

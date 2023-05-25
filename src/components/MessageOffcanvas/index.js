@@ -97,7 +97,7 @@ const MessageOffcanvas = () => {
       border: "none",
       maxHeight: "calc(100vh - 25rem)",
       overflowY: "auto", 
-      maxWidth: "10vw",
+      maxWidth: "20vw",
       fontFamily: "Bona Nova"
     },
     formControl: {
