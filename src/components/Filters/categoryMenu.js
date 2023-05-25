@@ -4,9 +4,14 @@ import { ListGroup, Dropdown, Button } from "react-bootstrap";
 const CategoryMenu = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [filter, setFilter] = useState("All");
+  const [ selectedCategory, setSelectedCategory] = useState('');
+  const [ selectedGem, setSelectedGem ] = useState('');
+  const [ selectedColor, setSelectedColor ] = useState('');
+  const [ selectedMaterial, setSelectedMaterial ] = useState('')
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+    
   };
 
   const handleFilterChange = (newFilter) => {

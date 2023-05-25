@@ -5,28 +5,29 @@ import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "../../App.css";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 const MessageOffcanvas = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [info, setInfo] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [itemInMessage, setItemInMessage] = useState();
 
   const resetForm = () => {
-    setName('')
-    setEmail('')
-    setPhone('')
-    localStorage.removeItem('items')
-  }
+    setName("");
+    setEmail("");
+    setPhone("");
+    setInfo("");
+    localStorage.removeItem("items");
+  };
 
   const form = useRef();
-
 
   useEffect(() => {
     const storedItems = () => {
@@ -36,7 +37,7 @@ const MessageOffcanvas = () => {
     return () => window.removeEventListener("storage", storedItems);
   }, []);
 
-  // TODO: Function to show notification in contact button
+  // TODO: Add function to show notification in contact button
   // const { message } = useMessage()
 
   // useEffect(() => {
@@ -57,26 +58,24 @@ const MessageOffcanvas = () => {
 
   // emailJS send email handler
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
     emailjs
       .sendForm(
-        'service_dby0q1f',
-        'template_54brgfh',
+        "service_dby0q1f",
+        "template_54brgfh",
         form.current,
-        'JEjSNvfLzH0NMTIyH'
+        "JEjSNvfLzH0NMTIyH"
       )
       .then(
         (result) => {
           console.log(result.text);
-          alert('Your Message has been sent');
-          resetForm()
+          alert("Your Message has been sent");
+          resetForm();
         },
         (error) => {
           console.log(error.text);
-        },
-
+        }
       );
   };
 
@@ -90,27 +89,34 @@ const MessageOffcanvas = () => {
     },
     offcanvas: {
       position: "fixed",
-      bottom: "20px",
+      bottom: "10px",
       top: "25rem",
-      right: "30px",
+      right: "15px",
       backgroundColor: "#d9d9d9",
       color: "black",
       border: "none",
-      width: "auto",
-      minHeight: '500px'
+      maxHeight: "calc(100vh - 25rem)",
+      overflowY: "auto", 
+      maxWidth: "20vw",
+      fontFamily: "Bona Nova"
     },
     formControl: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "start",
       height: "100%",
-      width: "auto",
+      width: "100%",
     },
   };
 
   return (
     <>
-      <Button variant="light" style={styles.button} onClick={handleShow} data-testid="message-offcanvas">
+      <Button
+        variant="light"
+        style={styles.button}
+        onClick={handleShow}
+        data-testid="message-offcanvas"
+      >
         Contact Us
         <div
           className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
@@ -137,7 +143,7 @@ const MessageOffcanvas = () => {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body >
+        <Offcanvas.Body>
           <Form style={styles.formControl} onSubmit={handleSubmit} ref={form}>
             <label>Name:</label>
             <input
@@ -147,10 +153,7 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Email:</label>
-            <input
-              type="email"
-              name="Email"
-              onChange={handleEmailChange} />
+            <input type="email" name="Email" onChange={handleEmailChange} />
             <br />
             <label>Phone Number:</label>
             <input
@@ -160,22 +163,25 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Products:</label>
+            <input type="hidden" name="Products" value={items.join(",")} />
+            <label>Additional Information:</label>
             <input
-              type="hidden"
-              name="Products"
-              value={items.join(',')}
+              type="text"
+              as="textarea"
+              rows={3}
+              name="Info"
+              onChange={(e) => setInfo(e.target.value)}
             />
-
             <ul>
               {items.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
             {!isEmailValid && <p>Please enter a valid email address</p>}
-            <button type="submit" >Submit</button>
+            <button type="submit">Submit</button>
           </Form>
         </Offcanvas.Body>
-      </Offcanvas >
+      </Offcanvas>
     </>
   );
 };

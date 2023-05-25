@@ -24,7 +24,7 @@ const CatalogItem = ({ image, name, description, category }) => {
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
       <Row >
-        <Col
+        <Col 
         >
           <Button
             data-testid="button"

@@ -131,7 +131,7 @@ const AddItem = (props) => {
               <option value="necklace">Necklace</option>
               <option value="ring">Ring</option>
             </Form.Select>
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={setCategory}
           </Form.Group>
 
           <div

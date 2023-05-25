@@ -15,7 +15,7 @@ function HomepageModal() {
 
 
     useEffect(() => {
-        handleShow(); 
+        handleShow();
     }, []);
 
     const styles = {
@@ -48,36 +48,45 @@ function HomepageModal() {
                 <Modal.Body style={styles.body}>
                     <Row >
                         <Col style={styles.col1}>
+
                             <Row>
                                 <div>
                                     About Royal Pearl
                                 </div>
-                            </Row>
-                            <Row>
-                            <Col>
+                                <br></br>
+                                <Col>
+                                    <div>    Royal Pearl has blended a visionary design approach with the innovative application of state-of-the-art technology to create a unique high quality collection of jewelry. </div>
+                                </Col>
+                                <div className='border-right-3 border-color-white' >
 
-                            </Col>
-                            <div className='border-right-3 border-color-white' >
-
-                            </div>
+                                </div>
                             </Row>
                         </Col>
 
-                        <Col style={styles.col2}>
-                            <div>
-                                About Regal Regal
-                            </div>
+                        <Col style={styles.col1}>
 
+                            <Row>
+                                <div>
+                                    About Regal Manufacturing
+                                </div>
+                                <br></br>
+                                <Col>
+                                    <div>    Royal Pearl has blended a visionary design approach with the innovative application of state-of-the-art technology to create a unique high quality collection of jewelry. </div>
+                                </Col>
+                                <div className='border-right-3 border-color-white' >
+
+                                </div>
+                            </Row>
                         </Col>
                     </Row>
                 </Modal.Body>
                 {/* Add a new row for the button */}
-                <Modal.Footer style={{display: 'flex'}} className='bg-black border-0'>
-                    <Col style={{justifyContent: 'center', alignItems: 'center', display: 'flex', borderRight: '2', borderColor: 'white'}}>
+                <Modal.Footer style={{ display: 'flex' }} className='bg-black border-0'>
+                    <Col style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', borderRight: '2', borderColor: 'white' }}>
                         <Button variant="secondary" onClick={handleClose} centered> Royal Pearl</Button>
 
                     </Col>
-                    <Col style={{justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+                    <Col style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
                         <Link to='/Regal'>
                             <Button centered variant="secondary" onClick={handleClose}>
                                 Regal

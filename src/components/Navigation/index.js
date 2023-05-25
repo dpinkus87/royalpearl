@@ -20,19 +20,19 @@ return (
           <Nav className="m-auto">
             <Nav.Link href="./">Home</Nav.Link>
             <NavDropdown title="Product Categories" menuVariant='dark' id="basic-nav-dropdown">
-              <NavDropdown.Item href="/catalog">Earrings</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog">Necklace</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog">Strands</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=earring">Earrings</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=necklace">Necklace</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=strand">Strands</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/catalog">New Arrivals</Nav.Link>
-            <Nav.Link href="/catalog">Best Sellers</Nav.Link>
-            <Nav.Link href="/catalog">Prior Pieces</Nav.Link>
-            <Nav.Link href="/catalog">Upcoming Shows</Nav.Link>
+            <Nav.Link href="/catalog?category=new_arrival">New Arrivals</Nav.Link>
+            <Nav.Link href="/catalog?category=best_seller">Best Sellers</Nav.Link>
+            <Nav.Link href="/catalog?category=prior">Prior Pieces</Nav.Link>
+            <Nav.Link href="./">Upcoming Shows</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-     
+  
       </header>
 )
 };
