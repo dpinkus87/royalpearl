@@ -26,9 +26,9 @@ function Catalog(selectedCategory) {
       orderBy("name", "asc")
     );
 
-    const q = query(colRef, where("category", "==", 'Ring'))
+    const q = query(colRef, where("category", "==", 'Earring'))
 
-    onSnapshot(colRef, (snapshot) => {
+    onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
           id: doc.id,
