@@ -15,6 +15,9 @@ import necklace from "../../Images/NECKLACE.jpeg"
 import pendant from "../../Images/pendant.jpeg"
 import ring from "../../Images/ring.jpeg"
 import archives from "../../Images/anna-stampfli-7GxPOMH2Mh4-unsplash.jpeg";
+import necklaceModel from "../../Images/necklaceModel.png"
+import earringModel from "../../Images/EarringModel.png"
+import aboutImage from "../../Images/tiffany-anthony-09bKHOZ29us-unsplash.jpeg"
 import Footer from '../../components/Footer'
 
 const styles = {
@@ -40,24 +43,30 @@ function Home() {
                 <Container fluid='true' className='m-0'>
                     <Row>
                         <Col className="m-0 p-0 " style={{ position: "relative" }}>
-                            <Image className='heroImage' src={hero} fluid='true' style={{ objectFit: "cover", height: '500px' }} />
+                            <Image className='heroImage' src={hero} fluid='true' style={{ objectFit: "cover", maxHeight: '500px', minHeight: '200px' }} />
                         </Col>
 
                     </Row>
 
-                    <Row className='hero-text' style={{ position: 'absolute', top: '10rem', right: '3rem', bottom: '15rem', height: '10rem' }} >Royal Pearl imports pearls from around the world while creating unique and classic designs all manufactured in Chicago Illinois</Row>
+                    <Row className='hero-text m-4 p-4' style={{ position: 'absolute', top: '10rem', right: '3rem', bottom: '15rem', height: '10rem', maxWidth: '45%', justifyContent: "center", alignItems: 'center'}} >Royal Pearl imports pearls from around the world and creates unique and classic designs, all manufactured in Chicago Illinois</Row>
                 </Container>
 
                 <br></br>
 
                 {/* TODO: Category Cards - update to correct query routes */}
+            
+            <div className="align-items-center justify-content-center text-white" style={{ alignItems: "center", display: 'flex'}}>
+                <h1 className="align-items-center justify-content-center text-white p-2">Catalog</h1>
+
+            </div>
+                
+<br></br>
 
                 <div display="flex">
                     <Container display="flex" className="justify-content-space-around!">
                         <Row style={styles.row} sm={1} md={1} xs={1} lg={5} height='2rem'>
-
                             <Col >
-                            <Link to="/Catalog?category=Bracelet" style={{ textDecoration: 'none' }}>
+                                <Link to="/Catalog?category=Bracelet" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={bracelet} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -67,7 +76,7 @@ function Home() {
                             </Col>
 
                             <Col>
-                            <Link to="/Catalog?category=Earring" style={{ textDecoration: 'none' }}>
+                                <Link to="/Catalog?category=Earring" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black" >
                                         <Card.Img src={earrings} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -77,7 +86,7 @@ function Home() {
                             </Col>
 
                             <Col >
-                            <Link to="/Catalog?category=Necklace" style={{ textDecoration: 'none' }}>
+                                <Link to="/Catalog?category=Necklace" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={pendant} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -87,7 +96,7 @@ function Home() {
                             </Col>
 
                             <Col >
-                            <Link to="/Catalog?category=Ring" style={{ textDecoration: 'none' }}>
+                                <Link to="/Catalog?category=Ring" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={ring} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -97,7 +106,7 @@ function Home() {
                             </Col>
 
                             <Col >
-                            <Link to="/Catalog?category=Strands" style={{ textDecoration: 'none' }}>
+                                <Link to="/Catalog?category=Strands" style={{ textDecoration: 'none' }}>
                                     <Card style={{ cursor: "pointer" }} className="border-0 bg-black">
                                         <Card.Img src={necklace} className='rounded-0' style={{ objectFit: "cover" }}></Card.Img>
                                         <Card.Body className="newArrivalCard text-white bg-black text-center 25">
@@ -130,7 +139,7 @@ function Home() {
                                 <a href='../Catalog' style={{ textDecoration: 'none' }}>
                                     <div style={{ cursor: "pointer" }} className="border-0 border-bottom-0">
                                         <Row>
-                                            <Image src={hero} className='rounded-0' style={{ objectFit: "cover", height: '500px' }} />
+                                            <Image src={earringModel} className='rounded-0' style={{ objectFit: "cover", height: '500px' }} />
                                         </Row>
                                         <Row className="newArrivalCard text-white bg-black text-center 25">
                                             <u> New Arrivals</u></Row>
@@ -141,9 +150,9 @@ function Home() {
                             <Col >
                                 <a href='../Catalog' style={{ textDecoration: 'none' }}>
                                     <div style={{ cursor: "pointer" }} className="border-0">
-                                    <Row>
-                                        <Image src={hero} className='rounded-0' style={{ objectFit: "cover", height: '500px' }} />
-                                    </Row>
+                                        <Row>
+                                            <Image src={necklaceModel} className='rounded-0' style={{ objectFit: "cover", height: '500px' }} />
+                                        </Row>
                                         <Row className="newArrivalCard text-white bg-black text-center 25">
                                             <u> Most Popular</u></Row>
                                     </div>
@@ -162,12 +171,21 @@ function Home() {
                 <div>
                     <Container fluid='true'>
                         <Row lg={2} xs={1}>
-                            <Col >
-                                <Image className="w-100" src={hero} />
+                            <Col lg={8}>
+                                <Image className="w-100" src={aboutImage} />
                             </Col>
 
-                            <Col className='justify-content-center' style={{ alignItems: "center", display: 'flex' }}>
-                                <h4 className="text-white text-center py-8" >Royal Pearl, a prominent jewelry wholesaler, stands out for its expertise in offering an exquisite selection of pearl jewelry. With a dedication to quality and a focus on pearls, we provide a trusted platform to access stunning pieces that capture the essence of elegance and timeless beauty.</h4>
+                            <Col lg={4} className="py-8" style={{ alignItems: "center", display: 'flex', color: "white", textAlign: "center" }}>
+                            <Row >
+                                   <h1> About Us</h1>
+                                   <br></br>
+                                   <br></br>
+                            <br></br>
+                        
+           <h4 >Royal Pearl, a prominent jewelry wholesaler, stands out for its expertise in offering an exquisite selection of pearl jewelry. With a dedication to quality and a focus on pearls, we provide a trusted platform to access stunning pieces that capture the essence of elegance and timeless beauty.</h4>
+                         </Row>
+                          
+                     
                             </Col>
                         </Row>
                     </Container>
@@ -180,7 +198,7 @@ function Home() {
                     <Container fluid='true' >
                         <h1 className="text-white bg-black text-center">Upcoming Shows</h1>
                         <br></br>
-                        <ul className="text-white text-center" style={{ listStyle: 'none', fontSize:"18pt" }}>
+                        <ul className="text-white text-center" style={{ listStyle: 'none', fontSize: "18pt" }}>
                             <li>
                                 Las Vegas - May 30th
                             </li>

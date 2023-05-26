@@ -1,5 +1,4 @@
 // TODO: Clear values onSubmit
-// TODO: get emailJS to send values in email
 
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
@@ -92,13 +91,14 @@ const MessageOffcanvas = () => {
       bottom: "10px",
       top: "25rem",
       right: "15px",
-      backgroundColor: "#d9d9d9",
-      color: "black",
-      border: "none",
+      backgroundColor: "black",
+      color: "white",
+      border: "2",
+      borderColor: "white",
       maxHeight: "calc(100vh - 25rem)",
-      overflowY: "auto", 
+      overflowY: "auto",
       maxWidth: "20vw",
-      fontFamily: "Bona Nova"
+      fontFamily: "Bona Nova",
     },
     formControl: {
       display: "flex",
@@ -106,6 +106,9 @@ const MessageOffcanvas = () => {
       alignItems: "start",
       height: "100%",
       width: "100%",
+    },
+    test: {
+
     },
   };
 
@@ -140,8 +143,8 @@ const MessageOffcanvas = () => {
         scroll={true}
         placement="end"
       >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Contact Us</Offcanvas.Title>
+        <Offcanvas.Header closeButton className="btn-close-white" style={{ color: "white!" }}>
+          <Offcanvas.Title style={{ color: "#FFFFFF !important" }} variant='white'>Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Form style={styles.formControl} onSubmit={handleSubmit} ref={form}>
@@ -149,16 +152,18 @@ const MessageOffcanvas = () => {
             <input
               type="text"
               name="Name"
+              style={{ width: "100%" }}
               onChange={(e) => setName(e.target.value)}
             />
             <br />
             <label>Email:</label>
-            <input type="email" name="Email" onChange={handleEmailChange} />
+            <input type="email" name="Email" style={{ width: "100%" }} onChange={handleEmailChange} />
             <br />
             <label>Phone Number:</label>
             <input
               type="tel"
               name="Phone Number"
+              style={{ width: "100%" }}
               onChange={(e) => setPhone(e.target.value)}
             />
             <br />
@@ -170,6 +175,7 @@ const MessageOffcanvas = () => {
               as="textarea"
               rows={3}
               name="Info"
+              style={{ width: "100%" }}
               onChange={(e) => setInfo(e.target.value)}
             />
             <ul>

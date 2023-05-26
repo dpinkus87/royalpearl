@@ -3,11 +3,11 @@ import { Container, Row } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+    <div style={{ display: "flex", justifyContent: "center", width: "100%"}}>
       <Container
         fluid="true"
         className="bg-white p-3 m-auto"
-        style={{ alignItems: "center", textAlign: "center", width:"100%"
+        style={{ alignItems: "center", textAlign: "center", width:"100%", position: 'absolute'  
 }}
       >
         <Row style={{ alignItems: "center", justifyContent: "center" }}>

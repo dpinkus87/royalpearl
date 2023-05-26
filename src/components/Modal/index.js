@@ -31,7 +31,7 @@ function HomepageModal() {
     return (
         <>
             <Modal
-                size="lg" centered show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
+                size="lg" centered="true" show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
                 <Modal.Body style={styles.body}>
                     <Row xxl={2} xl={2} lg={2} md={1} sm={1} xs={1} style={{ display: "flex" }} >
                         <Col>
@@ -42,7 +42,7 @@ function HomepageModal() {
                                 <br></br>
                                 <br></br>
                             </Row>
-                            <Row style={{ display: "flex", minHeight: "30vh" }}>
+                            <Row style={{ display: "flex", minHeight: "30vh", textAlign: 'center' }}>
                                 <p>
                                     Royal Pearl has blended a visionary design approach with the
                                     innovative application of state-of-the-art technology to
@@ -53,7 +53,7 @@ function HomepageModal() {
                             <Row style={{ alignItems: "center", justifyContent: "center" }}>
                                 <div className="d-flex justify-content-center w-100">
                                     <Link to="/">
-                                        <Button variant="secondary" onClick={handleClose} centered>
+                                        <Button variant="secondary" onClick={handleClose} centered="true">
                                             Royal Pearl
                                         </Button>
                                     </Link>
@@ -74,7 +74,7 @@ function HomepageModal() {
                                 <br></br>
                                 <br></br>
                             </Row>
-                            <Row style={{ display: "flex", minHeight: "30vh" }}>
+                            <Row style={{ display: "flex", minHeight: "30vh", textAlign: 'center' }}>
                                 <div className="d-flex justify-content-center w-100">
 
                                     <p>
@@ -88,7 +88,7 @@ function HomepageModal() {
                             <Row>
                                 <div className="d-flex justify-content-center w-100">
                                     <Link to="/Regal">
-                                        <Button centered variant="secondary" onClick={handleClose}>
+                                        <Button centered="true" variant="secondary" onClick={handleClose}>
                                             Regal
                                         </Button>
                                     </Link>

@@ -44,13 +44,13 @@ function Catalog() {
       );
     });
   };
-  console.warn(JSON.stringify(products));
+  // console.warn(JSON.stringify(products));
 
   useEffect(() => {
     displayItems();
   }, [{selectedCategory}]);
 
-  console.warn(products)
+  // console.warn(products)
 
   return (
     <>

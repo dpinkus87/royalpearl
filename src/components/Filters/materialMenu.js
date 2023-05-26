@@ -1,62 +1,48 @@
 import React, { useState } from "react";
-import { ListGroup, Dropdown, Button } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
-const MaterialMenu = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [filter, setFilter] = useState("All");
+const styles = {
+  dropdown: {
+    backgroundColor: "black",
+    color: "white",
+    borderBottom: '1',
+    borderTop: "0",
+    borderRight: "0",
+    borderLeft: "0",
+    borderRadius: "0"
+  }
+}
 
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-  };
-
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
-  };
-
-  const filteredItems = [
-    { id: 1, name: "Item 1", category: "Category A" },
-    { id: 2, name: "Item 2", category: "Category B" },
-    { id: 3, name: "Item 3", category: "Category A" },
-    { id: 4, name: "Item 4", category: "Category C" },
-    { id: 5, name: "Item 5", category: "Category B" },
-  ];
-
-  const filteredList = filter === "All"
-    ? filteredItems
-    : filteredItems.filter(item => item.category === filter);
-
+const ColorMenu = ({ selectedMaterial, handleMaterialChange }) => {
   return (
     <>
-      <Dropdown className="mb-3 d-inline-block">
-        <Dropdown.Toggle variant="light" id="filterDropdown" >
-          Color: {filter}
+      <Dropdown className="mb-3">
+        <Dropdown.Toggle style={styles.dropdown} variant="light" id="filterDropdown">
+          Material: {selectedMaterial}
         </Dropdown.Toggle>
-        <Dropdown.Menu style={{ minWidth:'100%'}}>
-          <Dropdown.Item  onClick={() => handleFilterChange("All")}>All</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleFilterChange("black")}>Black</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleFilterChange("gold")}>Gold</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleFilterChange("purple")}>Purple</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleFilterChange("red")}>Red</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleFilterChange("rose gold")}>Rose Gold</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleFilterChange("white")}>White</Dropdown.Item>
+        <Dropdown.Menu style={styles.dropdown}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("All")}>
+            All
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Bracelet")}>
+            Bracelet
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Cufflink")}>
+            Cufflink
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange  ("Earring")}>
+            Earring
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Necklace")}>
+            Necklace
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Ring")}>
+            Ring
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-
-      {/* <ListGroup>
-        {filteredList.map((product) => (
-          <ListGroup.Item
-            key={product.id}
-            action
-            active={selectedItem === product.id}
-            onClick={() => handleItemClick(product.id)}
-          >
-            {product.name}
-          </ListGroup.Item>
-        ))}
-      </ListGroup> */}
-
     </>
   );
 };
 
-export default MaterialMenu;
+export default ColorMenu;
