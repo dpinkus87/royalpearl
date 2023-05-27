@@ -30,20 +30,23 @@ const ColorMenu = ({ selectedColor, handleColorChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Bracelet")}>
-            Bracelet
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Black")}>
+            Black
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Cufflink")}>
-            Cufflink
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Gold")}>
+            Gold
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange  ("Earring")}>
-            Earring
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Purple")}>
+            Purple
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Necklace")}>
-            Necklace
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Red")}>
+            Red
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Ring")}>
-            Ring
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Rose Gold")}>
+            Rose Gold
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("White")}>
+            White
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

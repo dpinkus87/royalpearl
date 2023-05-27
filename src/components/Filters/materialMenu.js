@@ -24,20 +24,26 @@ const ColorMenu = ({ selectedMaterial, handleMaterialChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Bracelet")}>
-            Bracelet
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Platinum")}>
+            Platinum
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Cufflink")}>
-            Cufflink
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Rose Gold")}>
+            Rose Gold
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange  ("Earring")}>
-            Earring
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange  ("Rubber")}>
+            Rubber
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Necklace")}>
-            Necklace
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Silver")}>
+            Silver
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Ring")}>
-            Ring
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("White Gold")}>
+            White Gold
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("White Yellow Gold")}>
+            White Yellow Gold
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleMaterialChange("Yellow Gold")}>
+            Yellow Gold
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

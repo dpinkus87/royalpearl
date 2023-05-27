@@ -24,20 +24,32 @@ const GemMenu = ({ selectedGem, handleGemChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Bracelet")}>
-            Bracelet
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Akoya Pearl")}>
+            Akoya Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Cufflink")}>
-            Cufflink
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Baroque Pearl")}>
+            Baroque Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange  ("Earring")}>
-            Earring
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange  ("Cultured Pearl")}>
+            Cultured Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Necklace")}>
-            Necklace
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Diamond")}>
+            Diamond
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Ring")}>
-            Ring
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Emerald")}>
+            Emerald
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Pearl")}>
+            Pearl
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Sapphire")}>
+            Sapphire
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("South Sea Pearl")}>
+            South Sea Pearl
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Tahitian Pearl")}>
+            Tahitian Pearl
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

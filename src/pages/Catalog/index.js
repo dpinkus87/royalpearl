@@ -21,10 +21,26 @@ function Catalog() {
   const navigate = useNavigate();
 
   const queryParams = new URLSearchParams(location.search);
+
   const selectedCategory = queryParams.get("category") || "";
+  const selectedGem = queryParams.get("gem") || "";
+  const selectedColor = queryParams.get("color") || "";
+  const selectedMaterial = queryParams.get("material") || "";
 
   const handleCategoryChange = (category) => {
     navigate(`/catalog?category=${category}`);
+  };
+
+  const handleGemChange = (gem) => {
+    navigate(`/catalog?gem=${gem}`);
+  };
+
+  const handleColorChange = (color) => {
+    navigate(`/catalog?color=${color}`);
+  };
+
+  const handleMaterialChange = (material) => {
+    navigate(`/catalog?material=${material}`);
   };
 
   const [products, setProducts] = useState([]);
@@ -32,11 +48,11 @@ function Catalog() {
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
-  
+
     if (selectedCategory && selectedCategory !== "All") {
       q = query(colRef, where("category", "==", selectedCategory));
     }
-  
+
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -72,13 +88,19 @@ function Catalog() {
             />
           </Col>
           <Col>
-            <ColorMenu />
+            <ColorMenu selectedColor={selectedColor}
+              handleColorChange={handleColorChange} />
+
           </Col>
           <Col>
-            <GemMenu />
+            <GemMenu selectedGem={selectedGem}
+              handleGemChange={handleGemChange} />
+
           </Col>
           <Col>
-            <MaterialMenu />
+            <MaterialMenu selectedMaterial={selectedMaterial}
+              handleMaterialChange={handleMaterialChange} />
+
           </Col>
         </Row>
 
