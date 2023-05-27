@@ -48,11 +48,23 @@ function Catalog() {
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
-
+  
     if (selectedCategory && selectedCategory !== "All") {
       q = query(colRef, where("category", "==", selectedCategory));
     }
-
+  
+    if (selectedGem && selectedGem !== "All") {
+      q = query(colRef, where("gem", "==", selectedGem));
+    }
+  
+    if (selectedColor && selectedColor !== "All") {
+      q = query(colRef, where("color", "==", selectedColor));
+    }
+  
+    if (selectedMaterial && selectedMaterial !== "All") {
+      q = query(colRef, where("material", "==", selectedMaterial));
+    }
+  
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
