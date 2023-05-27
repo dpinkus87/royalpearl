@@ -19,23 +19,23 @@ function App() {
           element={<Home />}
           />
           <Route 
-          path="/regal" 
+          path="/Regal" 
           element={<Regal />} 
           />
           <Route 
-          path="/catalog" 
+          path="/Catalog" 
           element={<Catalog />}
           />
          <Route
-         path="/admin"
+         path="/Admin"
          Component={SignIn}
          />
         <Route
-        path="/adminpanel"
+        path="/Adminpanel"
         element={<Admin />}
         />
          <Route
-         path="/forgot-password"
+         path="/Forgot-password"
          Component={ForgotPassword}
          />
         </Routes>        

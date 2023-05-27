@@ -20,11 +20,11 @@ return (
           <Nav className="m-auto">
             <Nav.Link href="./">Home</Nav.Link>
             <NavDropdown title="Product Categories" menuVariant='dark' id="basic-nav-dropdown">
-              <NavDropdown.Item href="/catalog?category=bracelet">Bracelets</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog?category=cufflink">Cufflinks</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog?category=earring">Earrings</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog?category=pendant">Pendants</NavDropdown.Item>
-              <NavDropdown.Item href="/catalog?category=ring">Rings</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=Bracelet">Bracelets</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=Cufflink">Cufflinks</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=Earring">Earrings</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=Necklace">Necklaces</NavDropdown.Item>
+              <NavDropdown.Item href="/catalog?category=Ring">Rings</NavDropdown.Item>
 
             </NavDropdown>
             <Nav.Link href="/catalog?category=new_arrival">New Arrivals</Nav.Link>

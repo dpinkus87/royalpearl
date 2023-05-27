@@ -4,7 +4,6 @@ import CatalogItem from "../../components/CatalogItem";
 import hero from "../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg";
 import "../../App.css";
 import Header from "../../components/Navigation";
-// import { productList } from "../../data";
 import Footer from "../../components/Footer";
 
 import MessageOffcanvas from "../../components/MessageOffcanvas/index";
@@ -15,26 +14,29 @@ import CategoryMenu from "../../components/Filters/categoryMenu"
 import ColorMenu from "../../components/Filters/colorMenu";
 import GemMenu from "../../components/Filters/gemMenu";
 import MaterialMenu from "../../components/Filters/materialMenu";
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Catalog() {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const queryParams = new URLSearchParams(location.search);
+  const selectedCategory = queryParams.get("category") || "";
 
   const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
+    navigate(`/catalog?category=${category}`);
   };
 
-  // console.log("selected category", selectedCategory);
   const [products, setProducts] = useState([]);
 
   const displayItems = () => {
-    const colRef = query(
-      collection(db, "products"),
-      orderBy("name", "asc")
-    );
-
-    const q = query(colRef, where("category", "==", selectedCategory))
-
+    const colRef = collection(db, "products");
+    let q = query(colRef, orderBy("name", "asc"));
+  
+    if (selectedCategory && selectedCategory !== "All") {
+      q = query(colRef, where("category", "==", selectedCategory));
+    }
+  
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -44,35 +46,30 @@ function Catalog() {
       );
     });
   };
-  // console.warn(JSON.stringify(products));
 
   useEffect(() => {
     displayItems();
-  }, [{selectedCategory}]);
-
-  // console.warn(products)
+  }, [selectedCategory]);
 
   return (
     <>
       <Header />
       <MessageOffcanvas />
 
-      <Container fluid="true" className="m-0 p-0">
+      <Container fluid className="m-0 p-0">
         <Row>
-          <Image
-            src={hero}
-            style={{ objectFit: "cover", height: "500px" }}
-            fluid
-          />
+          <Image src={hero} style={{ objectFit: "cover", height: "500px" }} fluid />
         </Row>
       </Container>
       <h2 className="align-items-center text-white p-2">Catalog</h2>
 
-      <Container >
-        <Row xxl={5} md={4} sm={1} xs={1} >
-          <Col >
-            <CategoryMenu selectedCategory={selectedCategory}
-                          handleCategoryChange={handleCategoryChange}/>
+      <Container>
+        <Row xxl={5} md={4} sm={1} xs={1}>
+          <Col>
+            <CategoryMenu
+              selectedCategory={selectedCategory}
+              handleCategoryChange={handleCategoryChange}
+            />
           </Col>
           <Col>
             <ColorMenu />
@@ -93,18 +90,12 @@ function Catalog() {
               description={product.data.description}
               category={product.data.category}
               image={product.data.image}
-
             />
           ))}
-
         </Row>
-
-
-
       </Container>
 
-
-      <br></br>
+      <br />
 
       <Footer />
     </>
