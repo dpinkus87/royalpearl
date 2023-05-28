@@ -11,7 +11,7 @@ function PriorCollectionCarousel() {
       <Carousel.Item>
         <img
         objectFit= "cover"
-        
+        width={900} height={500} 
           className="d-block w-100"
           src={place1}
           alt="First slide"
@@ -24,7 +24,7 @@ function PriorCollectionCarousel() {
       <Carousel.Item>
         <img
    
-
+   width={900} height={500}
           className="d-block w-100"
           src={place2}
           alt="Second slide"
@@ -37,7 +37,7 @@ function PriorCollectionCarousel() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          
+          width={900} height={500} 
           className="d-block w-100"
           src={place3}
           alt="Third slide"

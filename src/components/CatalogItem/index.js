@@ -20,6 +20,14 @@ const CatalogItem = ({ image, name, description, category }) => {
     }
   }, [image]);
 
+// TODO: LOAD IMAGES 
+// const pattern = '^https://firebasestorage.googleapis.com/v0/b/royal-pearl-e3254.appspot.com/o/.*\\?alt=media$';
+
+// const filteredFilepaths = filepaths.filter((filepath) =>
+//   new RegExp(pattern).test(filepath)
+// );
+
+// console.log(filteredFilepaths);
 
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
