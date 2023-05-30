@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import { db } from "../../config/firebase";
+import noImage from "../../Images/noimage-1.png";
+import { collection, doc, getDoc } from "firebase/firestore";
 
 const CatalogItem = ({ image, name, description, category }) => {
   const [product, setProducts] = useState([]);
@@ -20,6 +22,33 @@ const CatalogItem = ({ image, name, description, category }) => {
       setImageFromDB(image.split(","));
     }
   }, [image]);
+
+  useEffect(() => {
+    if (imageFromDB.length === 0) {
+      const getProduct = async () => {
+        try {
+          const productRef = doc(collection(db, "products"), name);
+          const docSnapshot = await getDoc(productRef);
+          if (docSnapshot.exists()) {
+            const data = docSnapshot.data();
+            if (data && data.image) {
+              setImageFromDB(data.image.split(","));
+            }
+          }
+        } catch (error) {
+          console.log("Error getting document:", error);
+        }
+      };
+  
+      getProduct();
+    }
+  }, [imageFromDB, name]);
+
+  const handleImageError = (index) => {
+    const newImageFromDB = [...imageFromDB];
+    newImageFromDB[index] = noImage;
+    setImageFromDB(newImageFromDB);
+  };
 
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
@@ -71,10 +100,23 @@ const CatalogItem = ({ image, name, description, category }) => {
                       alt={`Image ${i + 1}`}
                       style={{ objectFit: "cover", height: "10rem" }}
                       className="rounded-0 d-block w-100 mb-0 pb-0"
+                      onError={() => handleImageError(i)}
                     />
                   )}
                 </Carousel.Item>
               ))}
+              {imageFromDB.length === 0 && (
+                <Carousel.Item>
+                  <div className="d-flex align-items-center justify-content-center" style={{ height: "10rem" }}>
+                    <img
+                      src={noImage}
+                      alt="Placeholder Image"
+                      style={{ objectFit: "cover", height: "10rem" }}
+                      className="rounded-0 d-block w-100 mb-0 pb-0"
+                    />
+                  </div>
+                </Carousel.Item>
+              )}
             </Carousel>
           )}
 

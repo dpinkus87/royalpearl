@@ -36,17 +36,6 @@ const MessageOffcanvas = () => {
     return () => window.removeEventListener("storage", storedItems);
   }, []);
 
-  // TODO: Add function to show notification in contact button
-  // const { message } = useMessage()
-
-  // useEffect(() => {
-  //   hasItem()
-  //   if (itemInMessage.length !== 0 ) {
-  // setItemInMessage(false)
-  //   }else{
-  //     setItemInMessage(true)
-  //   }
-  // })
 
   const handleEmailChange = (event) => {
     event.preventDefault();
@@ -71,6 +60,7 @@ const MessageOffcanvas = () => {
           console.log(result.text);
           alert("Your Message has been sent");
           resetForm();
+          setShow(false);
         },
         (error) => {
           console.log(error.text);
@@ -95,7 +85,7 @@ const MessageOffcanvas = () => {
       color: "white",
       border: "2",
       borderColor: "white",
-      maxHeight: "calc(100vh - 25rem)",
+      maxHeight: "calc(100vh - 5rem)",
       overflowY: "auto",
       maxWidth: "calc(100vw - 10rem)",
       fontFamily: "Bona Nova",

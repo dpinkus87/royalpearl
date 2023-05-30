@@ -45,6 +45,7 @@ function Catalog() {
 
   const [products, setProducts] = useState([]);
 
+
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));

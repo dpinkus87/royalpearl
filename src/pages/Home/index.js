@@ -314,7 +314,6 @@ function Home() {
 
         <br></br>
         <br></br>
-        {/* TODO: format Upcoming Shows section */}
         <div>
           <Container fluid="true">
             <h1 className="text-white bg-black text-center">Upcoming Shows</h1>
@@ -323,8 +322,7 @@ function Home() {
               className="text-white text-center"
               style={{ listStyle: "none", fontSize: "18pt" }}
             >
-              <li>Las Vegas - May 30th</li>
-              <li>New York - TEST</li>
+              <li>Las Vegas - June 2nd, 2023</li>
             </ul>
           </Container>
           <br></br>
