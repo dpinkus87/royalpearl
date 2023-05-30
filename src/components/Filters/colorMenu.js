@@ -10,12 +10,6 @@ const styles = {
     borderRight: "0",
     borderLeft: "0",
     borderRadius: "0"
-  },
-  dropdownMenu: {
-    border: "1",
-    borderColor: "white",
-    borderRadius: "0",
-    borderTop: "1"
   }
 }
 
@@ -26,26 +20,26 @@ const ColorMenu = ({ selectedColor, handleColorChange }) => {
         <Dropdown.Toggle style={styles.dropdown} variant="light" id="filterDropdown">
           Color: {selectedColor}
         </Dropdown.Toggle>
-        <Dropdown.Menu style={styles.dropdownMenu}>
+        <Dropdown.Menu style={styles.dropdown}>
           <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Black")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("black")}>
             Black
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Gold")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("gold")}>
             Gold
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Purple")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("purple")}>
             Purple
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Red")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("red")}>
             Red
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("Rose Gold")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("rose gold")}>
             Rose Gold
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("White")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleColorChange("white")}>
             White
           </Dropdown.Item>
         </Dropdown.Menu>

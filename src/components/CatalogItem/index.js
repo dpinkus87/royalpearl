@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
+import ReactPlayer from "react-player";
 import { db } from "../../config/firebase";
 
 const CatalogItem = ({ image, name, description, category }) => {
@@ -15,25 +16,15 @@ const CatalogItem = ({ image, name, description, category }) => {
   };
 
   useEffect(() => {
-    if (Array.isArray(image)) {
-      setImageFromDB(image);
+    if (typeof image === "string") {
+      setImageFromDB(image.split(","));
     }
   }, [image]);
 
-// TODO: LOAD IMAGES 
-// const pattern = '^https://firebasestorage.googleapis.com/v0/b/royal-pearl-e3254.appspot.com/o/.*\\?alt=media$';
-
-// const filteredFilepaths = filepaths.filter((filepath) =>
-//   new RegExp(pattern).test(filepath)
-// );
-
-// console.log(filteredFilepaths);
-
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
-      <Row >
-        <Col 
-        >
+      <Row>
+        <Col>
           <Button
             data-testid="button"
             value={product}
@@ -62,27 +53,36 @@ const CatalogItem = ({ image, name, description, category }) => {
             </svg>
           </Button>
 
-          {imageFromDB.length > 0 ? (
-            <Carousel interval={null} variant="dark" indicators={false}>
-              {imageFromDB.map((image, index) => (
-                <Carousel.Item key={index} data-testid="nextbutton">
-                  <img
-                    className="rounded-0 d-block w-100"
-                    src={image}
-                    alt={`img${index + 1}`}
-                    style={{ objectFit: "cover", height: "9rem" }}
-                  />
+          {imageFromDB.length > 0 && (
+            <Carousel interval={null} variant="dark" indicators={false} style={{ objectFit: "cover", height: '10rem'}}>
+              {imageFromDB.map((url, i) => (
+                <Carousel.Item key={i} >
+                  {url.includes(".MP4") ? (                
+                    <ReactPlayer
+                      url={url}
+                      playing={true}
+                      controls={true}
+                      style={{ height:"10rem"}}
+                      className="rounded-0 d-block w-100 h-auto mb-0 pb-0"
+                    />                 
+                  ) : (
+                    <img
+                      src={url}
+                      alt={`Image ${i + 1}`}
+                      style={{ objectFit: "cover", height: "10rem" }}
+                      className="rounded-0 d-block w-100 mb-0 pb-0"
+                    />
+                  )}
                 </Carousel.Item>
               ))}
             </Carousel>
-          ) : (
-            <p>No image available</p>
           )}
+
         </Col>
 
         <Col>
           <Card.Body className="d-flex flex-column">
-            <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
+            <Card.Title className="d-flex justify-content-between align-items-baseline mb-2">
               <span className="fs-2">{name}</span>
             </Card.Title>
 

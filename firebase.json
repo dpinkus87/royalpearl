@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "source": "../royal-pearl",
-    "public": "build",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -82,3 +82,17 @@
   background-color: white;
 }
 
+.whitTxt{
+  color:#fff !important;
+  filter: none !important;
+}
+
+
+.btn-close-white {
+color: #999;
+filter: none !important;
+}
+.btn-close{
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+

@@ -36,6 +36,9 @@ const CategoryMenu = ({ selectedCategory, handleCategoryChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Necklace")}>
             Necklace
           </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Pendant")}>
+            Pendant
+          </Dropdown.Item>
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Ring")}>
             Ring
           </Dropdown.Item>

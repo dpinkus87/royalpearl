@@ -97,7 +97,7 @@ const MessageOffcanvas = () => {
       borderColor: "white",
       maxHeight: "calc(100vh - 25rem)",
       overflowY: "auto",
-      maxWidth: "20vw",
+      maxWidth: "calc(100vw - 10rem)",
       fontFamily: "Bona Nova",
     },
     formControl: {
@@ -144,7 +144,7 @@ const MessageOffcanvas = () => {
         placement="end"
       >
         <Offcanvas.Header closeButton className="btn-close-white" style={{ color: "white!" }}>
-          <Offcanvas.Title style={{ color: "#FFFFFF !important" }} variant='white'>Contact Us</Offcanvas.Title>
+          <Offcanvas.Title style={{ color: "#FFFFFF !important" }} variant='white' className="whitTxt">Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Form style={styles.formControl} onSubmit={handleSubmit} ref={form}>

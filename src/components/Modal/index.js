@@ -24,14 +24,15 @@ function HomepageModal() {
             color: "white",
             radius: "5%",
             width: "50rem",
-            borderColor: 'black'
+            borderColor: 'black',
+            display: "flex"
         }
     };
 
     return (
         <>
             <Modal
-                size="lg" centered="true" show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
+                size="lg" display= "flex" centered="true" show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" >
                 <Modal.Body style={styles.body}>
                     <Row xxl={2} xl={2} lg={2} md={1} sm={1} xs={1} style={{ display: "flex" }} >
                         <Col>

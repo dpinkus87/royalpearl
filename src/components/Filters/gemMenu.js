@@ -24,31 +24,31 @@ const GemMenu = ({ selectedGem, handleGemChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Akoya Pearl")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("akoya pearl")}>
             Akoya Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Baroque Pearl")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("baroque pearl")}>
             Baroque Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange  ("Cultured Pearl")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange  ("cultured pearl")}>
             Cultured Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Diamond")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("diamond")}>
             Diamond
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Emerald")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("emerald")}>
             Emerald
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Pearl")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("pearl")}>
             Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Sapphire")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("sapphire")}>
             Sapphire
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("South Sea Pearl")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("south sea pearl")}>
             South Sea Pearl
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("Tahitian Pearl")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleGemChange("tahitian pearl")}>
             Tahitian Pearl
           </Dropdown.Item>
         </Dropdown.Menu>

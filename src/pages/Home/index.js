@@ -37,7 +37,6 @@ function Home() {
 
         <HomepageModal />
 
-
         <Container fluid="true" className="m-0">
           <Row>
             <Col className="m-0 p-0 " style={{ position: "relative" }}>
@@ -74,13 +73,12 @@ function Home() {
 
         <br></br>
 
-
         <div
           className="align-items-center justify-content-center text-white"
           style={{ alignItems: "center", display: "flex" }}
         >
           <h1 className="align-items-center justify-content-center text-white p-2">
-            Catalog
+            Shop By Category
           </h1>
         </div>
 
@@ -91,7 +89,8 @@ function Home() {
             <Row style={styles.row} sm={1} md={1} xs={1} lg={5} height="2rem">
               <Col>
                 <Link
-                  Link to="/catalog?category=bracelet"
+                  Link
+                  to="/catalog?category=Bracelet"
                   style={{ textDecoration: "none" }}
                 >
                   {" "}
@@ -134,7 +133,7 @@ function Home() {
 
               <Col>
                 <Link
-                  to="/catalog?category=Necklace"
+                  to="/catalog?category=Pendant"
                   style={{ textDecoration: "none" }}
                 >
                   <Card
@@ -202,17 +201,25 @@ function Home() {
         <br></br>
 
         {/* TODO Previous collections image / link */}
+        <div
+          className="align-items-center justify-content-center text-white"
+          style={{ alignItems: "center", display: "flex" }}
+        >
+          <h1 className="align-items-center justify-content-center text-white p-2">
+            Prior Pieces
+          </h1>
+        </div>
 
-        <br></br>
         <br></br>
         <Container fluid="true" className="m-0">
           <PriorCollectionCarousel />
         </Container>
         <br></br>
         <br></br>
+        <br></br>
 
         {/* TODO New arrivals & Best of the best cards / links */}
-        
+
         <div display="flex">
           <Container display="flex" fluid="true">
             <Row sm={1} md={1} xs={1} lg={2}>
@@ -229,6 +236,7 @@ function Home() {
                         style={{ objectFit: "cover", height: "500px" }}
                       />
                     </Row>
+                    <br></br>
                     <Row className="newArrivalCard text-white bg-black text-center 25">
                       <u> New Arrivals</u>
                     </Row>
@@ -246,6 +254,7 @@ function Home() {
                         style={{ objectFit: "cover", height: "500px" }}
                       />
                     </Row>
+                    <br></br>
                     <Row className="newArrivalCard text-white bg-black text-center 25">
                       <u> Most Popular</u>
                     </Row>
@@ -258,13 +267,18 @@ function Home() {
 
         <br></br>
         <br></br>
+        <br></br>
 
-        {/* TODO About us section */}
+        {/* About us section */}
         <div>
           <Container fluid="true">
             <Row lg={2} xs={1}>
               <Col lg={8}>
-                <Image className="w-100" src={aboutImage} />
+                <Image
+                  className="w-100"
+                  style={{ maxHeight: "35rem", objectFit: "cover" }}
+                  src={aboutImage}
+                />
               </Col>
 
               <Col
@@ -283,14 +297,15 @@ function Home() {
                   <br></br>
                   <br></br>
                   <br></br>
+                  <br></br>
 
-                  <h4>
+                  <p>
                     Royal Pearl, a prominent jewelry wholesaler, stands out for
                     its expertise in offering an exquisite selection of pearl
                     jewelry. With a dedication to quality and a focus on pearls,
                     we provide a trusted platform to access stunning pieces that
                     capture the essence of elegance and timeless beauty.
-                  </h4>
+                  </p>
                 </Row>
               </Col>
             </Row>
