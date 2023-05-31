@@ -26,8 +26,8 @@ return (
               <NavDropdown.Item href="/catalog?category=Ring">Rings</NavDropdown.Item>
 
             </NavDropdown>
-            <Nav.Link href="/catalog?category=new_arrival">New Arrivals</Nav.Link>
-            <Nav.Link href="/catalog?category=best_seller">Best Sellers</Nav.Link>
+            <Nav.Link href="../Catalog">New Arrivals</Nav.Link>
+            <Nav.Link href="../Catalog">Best Sellers</Nav.Link>
             <Nav.Link href="/catalog?category=prior">Prior Pieces</Nav.Link>
             <Nav.Link href="./">Upcoming Shows</Nav.Link>
           </Nav>

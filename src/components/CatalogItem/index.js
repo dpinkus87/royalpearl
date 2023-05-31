@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import { db } from "../../config/firebase";
 import noImage from "../../Images/noimage-1.png";
 import { collection, doc, getDoc } from "firebase/firestore";
@@ -11,6 +11,8 @@ const CatalogItem = ({ image, name, description, category }) => {
   const [product, setProducts] = useState([]);
   const [imageFromDB, setImageFromDB] = useState([]);
   const showButtons = "VisibleOnHover";
+  const videoRefs = useRef([]);
+  const [inViewport, setInViewport] = useState(false);
 
   const handleClick = () => {
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
@@ -52,6 +54,37 @@ const CatalogItem = ({ image, name, description, category }) => {
     setImageFromDB(newImageFromDB);
   };
 
+  const handleVideoReady = (index) => {
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].getInternalPlayer().pause();
+    }
+  };
+
+  const filteredImageFromDB = imageFromDB.filter(url => url.includes(".MP4"));
+
+  const handleIntersection = (entries) => {
+    const isVisible = entries[0].isIntersecting;
+    setInViewport(isVisible);
+  };
+
+  useEffect(() => {
+    const options = {
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+    if (videoRefs.current.length > 0) {
+      observer.observe(videoRefs.current[0]);
+    }
+
+    return () => {
+      if (videoRefs.current.length > 0) {
+        observer.unobserve(videoRefs.current[0]);
+      }
+    };
+  }, []);
+
   return (
     <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
       <Row>
@@ -84,44 +117,35 @@ const CatalogItem = ({ image, name, description, category }) => {
             </svg>
           </Button>
 
-          {imageFromDB.length > 0 && (
+          {filteredImageFromDB.length > 0 && (
             <Carousel interval={null} variant="dark" indicators={false} style={{ objectFit: "cover", height: '10rem'}}>
-              {imageFromDB.map((url, i) => (
+              {filteredImageFromDB.map((url, i) => (
                 <Carousel.Item key={i} >
-                  {url.includes(".MP4") ? (   
-                    <LazyLoadComponent>             
+                  <LazyLoadComponent>
                     <ReactPlayer
+                      ref={ref => videoRefs.current[i] = ref}
                       url={url}
-                      playing={true}
+                      playing={inViewport}
                       controls={true}
                       style={{ height:"10rem"}}
                       className="rounded-0 d-block w-100 h-auto mb-0 pb-0"
-                    />             
-                    </LazyLoadComponent>    
-                  ) : (
-                    <img
-                      src={url}
-                      alt={`Image ${i + 1}`}
-                      style={{ objectFit: "cover", height: "10rem" }}
-                      className="rounded-0 d-block w-100 mb-0 pb-0"
-                      onError={() => handleImageError(i)}
+                      onReady={() => handleVideoReady(i)}
                     />
-                  )}
+                  </LazyLoadComponent>
                 </Carousel.Item>
               ))}
-              {imageFromDB.length === 0 && (
-                <Carousel.Item>
-                  <div className="d-flex align-items-center justify-content-center" style={{ height: "10rem" }}>
-                    <img
-                      src={noImage}
-                      alt="Placeholder Image"
-                      style={{ objectFit: "cover", height: "10rem" }}
-                      className="rounded-0 d-block w-100 mb-0 pb-0"
-                    />
-                  </div>
-                </Carousel.Item>
-              )}
             </Carousel>
+          )}
+
+          {filteredImageFromDB.length === 0 && (
+            <div className="d-flex align-items-center justify-content-center" style={{ height: "10rem" }}>
+              <lazy
+                src={noImage}
+                alt="Placeholder Image"
+                style={{ objectFit: "cover", height: "10rem" }}
+                className="rounded-0 d-block w-100 mb-0 pb-0"
+              />
+            </div>
           )}
 
         </Col>
