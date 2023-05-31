@@ -90,7 +90,7 @@ function Home() {
               <Col>
                 <Link
                   Link
-                  to="/catalog?category=Bracelet"
+                  to="/catalog?category=bracelet"
                   style={{ textDecoration: "none" }}
                 >
                   {" "}

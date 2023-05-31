@@ -24,10 +24,10 @@ const CategoryMenu = ({ selectedCategory, handleCategoryChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Bracelet")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("bracelet")}>
             Bracelet
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Cufflink")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Cuff Link")}>
             Cufflink
           </Dropdown.Item>
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Earring")}>
@@ -36,7 +36,7 @@ const CategoryMenu = ({ selectedCategory, handleCategoryChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Necklace")}>
             Necklace
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Pendant")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("pendant")}>
             Pendant
           </Dropdown.Item>
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Ring")}>
