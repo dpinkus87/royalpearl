@@ -28,7 +28,7 @@ return (
             </NavDropdown>
             <Nav.Link href="../Catalog">New Arrivals</Nav.Link>
             <Nav.Link href="../Catalog">Best Sellers</Nav.Link>
-            <Nav.Link href="/catalog?category=prior">Prior Pieces</Nav.Link>
+            <Nav.Link href="../Catalog">Prior Pieces</Nav.Link>
             <Nav.Link href="./">Upcoming Shows</Nav.Link>
           </Nav>
         </Navbar.Collapse>
