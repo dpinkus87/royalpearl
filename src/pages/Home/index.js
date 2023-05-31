@@ -133,7 +133,7 @@ function Home() {
 
               <Col>
                 <Link
-                  to="/catalog?category=Pendant"
+                  to="/catalog?category=pendant"
                   style={{ textDecoration: "none" }}
                 >
                   <Card
