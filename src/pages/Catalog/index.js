@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Row, Image, Container, Col } from "react-bootstrap";
-import CatalogItem from "../../components/CatalogItem";
 import hero from "../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg";
 import "../../App.css";
 import Header from "../../components/Navigation";
@@ -19,6 +18,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 function Catalog() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const CatalogItem = lazy(() => import("../../components/CatalogItem"));
 
   const queryParams = new URLSearchParams(location.search);
 
@@ -45,23 +46,22 @@ function Catalog() {
 
   const [products, setProducts] = useState([]);
 
-
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
-  
+
     if (selectedCategory && selectedCategory !== "All") {
       q = query(colRef, where("category", "==", selectedCategory));
     }
-  
+
     if (selectedGem && selectedGem !== "All") {
       q = query(colRef, where("gem", "==", selectedGem));
     }
-  
+
     if (selectedColor && selectedColor !== "All") {
       q = query(colRef, where("color", "==", selectedColor));
     }
-  
+
     if (selectedMaterial && selectedMaterial !== "All") {
       q = query(colRef, where("material", "==", selectedMaterial));
     }
@@ -93,7 +93,7 @@ function Catalog() {
       <h2 className="align-items-center text-white p-2">Catalog</h2>
 
       <Container>
-        <Row xxl={5} md={4} sm={1} xs={1}>
+        <Row xxl={3} md={2} sm={1} xs={1}>
           <Col>
             <CategoryMenu
               selectedCategory={selectedCategory}
@@ -101,32 +101,28 @@ function Catalog() {
             />
           </Col>
           <Col>
-            <ColorMenu selectedColor={selectedColor}
-              handleColorChange={handleColorChange} />
-
+            <ColorMenu selectedColor={selectedColor} handleColorChange={handleColorChange} />
           </Col>
           <Col>
-            <GemMenu selectedGem={selectedGem}
-              handleGemChange={handleGemChange} />
-
+            <GemMenu selectedGem={selectedGem} handleGemChange={handleGemChange} />
           </Col>
           <Col>
-            <MaterialMenu selectedMaterial={selectedMaterial}
-              handleMaterialChange={handleMaterialChange} />
-
+            <MaterialMenu selectedMaterial={selectedMaterial} handleMaterialChange={handleMaterialChange} />
           </Col>
         </Row>
 
         <Row xxl={4} xl={3} lg={2} md={2} sm={1} xs={1} className="gx-0 p-1 m-4">
-          {products.map((product) => (
-            <CatalogItem
-              key={product.id}
-              name={product.data.name}
-              description={product.data.description}
-              category={product.data.category}
-              image={product.data.image}
-            />
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {products.map((product) => (
+              <CatalogItem
+                key={product.id}
+                name={product.data.name}
+                description={product.data.description}
+                category={product.data.category}
+                image={product.data.image}
+              />
+            ))}
+          </Suspense>
         </Row>
       </Container>
 

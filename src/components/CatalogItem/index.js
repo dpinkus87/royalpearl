@@ -4,6 +4,8 @@ import ReactPlayer from "react-player";
 import { db } from "../../config/firebase";
 import noImage from "../../Images/noimage-1.png";
 import { collection, doc, getDoc } from "firebase/firestore";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
+
 
 const CatalogItem = ({ image, name, description, category }) => {
   const [product, setProducts] = useState([]);
@@ -86,14 +88,16 @@ const CatalogItem = ({ image, name, description, category }) => {
             <Carousel interval={null} variant="dark" indicators={false} style={{ objectFit: "cover", height: '10rem'}}>
               {imageFromDB.map((url, i) => (
                 <Carousel.Item key={i} >
-                  {url.includes(".MP4") ? (                
+                  {url.includes(".MP4") ? (   
+                    <LazyLoadComponent>             
                     <ReactPlayer
                       url={url}
                       playing={true}
                       controls={true}
                       style={{ height:"10rem"}}
                       className="rounded-0 d-block w-100 h-auto mb-0 pb-0"
-                    />                 
+                    />             
+                    </LazyLoadComponent>    
                   ) : (
                     <img
                       src={url}
