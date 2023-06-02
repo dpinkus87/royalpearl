@@ -5,10 +5,12 @@
         "catalogitembutton",
         "gridlayout",
         "labelledby",
+        "noimage",
         "offcanvastitle",
         "Offmessage",
         "Progresspercent",
         "SERVICEID",
-        "TEMPLATEID"
+        "TEMPLATEID",
+        "testid"
     ]
 }

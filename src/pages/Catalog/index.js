@@ -7,9 +7,15 @@ import Footer from "../../components/Footer";
 
 import MessageOffcanvas from "../../components/MessageOffcanvas/index";
 import { db } from "../../config/firebase";
-import { collection, query, onSnapshot, orderBy, where } from "firebase/firestore";
+import {
+  collection,
+  query,
+  onSnapshot,
+  orderBy,
+  where,
+} from "firebase/firestore";
 
-import CategoryMenu from "../../components/Filters/categoryMenu"
+import CategoryMenu from "../../components/Filters/categoryMenu";
 import ColorMenu from "../../components/Filters/colorMenu";
 import GemMenu from "../../components/Filters/gemMenu";
 import MaterialMenu from "../../components/Filters/materialMenu";
@@ -65,7 +71,7 @@ function Catalog() {
     if (selectedMaterial && selectedMaterial !== "All") {
       q = query(colRef, where("material", "==", selectedMaterial));
     }
-  
+
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -87,13 +93,17 @@ function Catalog() {
 
       <Container fluid className="m-0 p-0">
         <Row>
-          <Image src={hero} style={{ objectFit: "cover", height: "500px" }} fluid />
+          <Image
+            src={hero}
+            style={{ objectFit: "cover", height: "500px" }}
+            fluid
+          />
         </Row>
       </Container>
       <h2 className="align-items-center text-white p-2">Catalog</h2>
 
       <Container>
-        <Row xxl={3} md={2} sm={1} xs={1}>
+        <Row xxl={4} xl={4} l={4} md={1} sm={1} xs={1}>
           <Col>
             <CategoryMenu
               selectedCategory={selectedCategory}
@@ -101,17 +111,34 @@ function Catalog() {
             />
           </Col>
           <Col>
-            <ColorMenu selectedColor={selectedColor} handleColorChange={handleColorChange} />
+            <ColorMenu
+              selectedColor={selectedColor}
+              handleColorChange={handleColorChange}
+            />
           </Col>
           <Col>
-            <GemMenu selectedGem={selectedGem} handleGemChange={handleGemChange} />
+            <GemMenu
+              selectedGem={selectedGem}
+              handleGemChange={handleGemChange}
+            />
           </Col>
           <Col>
-            <MaterialMenu selectedMaterial={selectedMaterial} handleMaterialChange={handleMaterialChange} />
+            <MaterialMenu
+              selectedMaterial={selectedMaterial}
+              handleMaterialChange={handleMaterialChange}
+            />
           </Col>
         </Row>
 
-        <Row xxl={4} xl={3} lg={2} md={2} sm={1} xs={1} className="gx-0 p-1 m-4">
+        <Row
+          xxl={4}
+          xl={3}
+          lg={2}
+          md={1}
+          sm={1}
+          xs={1}
+          className="gx-0 p-1 m-4"
+        >
           <Suspense fallback={<div>Loading...</div>}>
             {products.map((product) => (
               <CatalogItem

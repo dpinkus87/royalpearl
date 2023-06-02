@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Button, Carousel } from "react-bootstrap";
 import ReactPlayer from "react-player";
@@ -10,7 +11,6 @@ import { LazyLoadComponent } from "react-lazy-load-image-component";
 const CatalogItem = ({ image, name, description, category }) => {
   const [product, setProducts] = useState([]);
   const [imageFromDB, setImageFromDB] = useState([]);
-  const showButtons = "VisibleOnHover";
 
   const handleClick = () => {
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
