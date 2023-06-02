@@ -1,5 +1,3 @@
-// TODO: Add content
-// TODO: Add center border
 
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
@@ -26,6 +24,7 @@ function HomepageModal() {
             width: "50rem",
            maxWidth: '100%',
             borderColor: 'black',
+            fontFamily: 'Bona Nova',
             display: "flex"
         }
     };
