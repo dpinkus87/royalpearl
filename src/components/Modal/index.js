@@ -24,6 +24,7 @@ function HomepageModal() {
             color: "white",
             radius: "5%",
             width: "50rem",
+           maxWidth: '100%',
             borderColor: 'black',
             display: "flex"
         }
