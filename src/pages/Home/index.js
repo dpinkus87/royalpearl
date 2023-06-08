@@ -4,7 +4,7 @@ import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Image, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 import HomepageModal from "../../components/Modal";
 import Header from "../../components/Navigation";
 
@@ -27,10 +27,13 @@ const styles = {
   },
 };
 
+
+
 function Home() {
+
   return (
     <>
-      <Header />
+      <Header/>
 
       <div className="home">
         {/* Show Modal */}
