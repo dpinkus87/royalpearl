@@ -45,7 +45,7 @@ const Header = ({ handleNameChange }) => {
           className="me-2 rounded-0"
           aria-label="Search"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => setSearchText(e.target.value.toUpperCase())}
         />
         <Button variant="outline-success" className="rounded-0" type="submit">
           Search
