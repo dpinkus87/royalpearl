@@ -44,10 +44,12 @@ const Regal = () => {
           className="hero-text mt-5"
           style={{
             position: "absolute",
+            justifyContent: "center",
+            alignItems: "center",
             top: "10rem",
             right: "3rem",
             bottom: "15rem",
-            height: "10rem",
+            height: "auto",
           }}
         >
           Welcome to Regal Jewelry, where we specialize in crafting exquisite

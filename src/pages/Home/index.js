@@ -204,7 +204,7 @@ function Home({ searchText }) {
                       <Card.Img
                         src={ring}
                         className="rounded-0"
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: "cover", maxHeight:"240px", maxWidth: '240px' }}
                       ></Card.Img>
                       <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                         <u> Rings</u>
@@ -258,9 +258,9 @@ function Home({ searchText }) {
           <br></br>
           <br></br>
 
-          {/* TODO New arrivals & Best of the best cards / links */}
+          {/*  New arrivals & Best of the best cards / links */}
 
-          <div display="flex">
+          <div display="flex" style={{marginLeft: "5rem", marginRight: "5rem"}}>
             <Container display="flex" fluid="true">
               <Row sm={1} md={1} xs={1} lg={2}>
                 <Col>
