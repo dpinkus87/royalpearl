@@ -96,3 +96,6 @@ filter: none !important;
   filter: invert(1) grayscale(100%) brightness(200%);
 }
 
+.video {
+  height: 20rem;
+}

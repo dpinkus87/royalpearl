@@ -53,8 +53,14 @@ const CatalogItem = ({ image, name, description, category }) => {
   };
 
   return (
-    <Card className="bg-black text-white border-light rounded-0 position-relative m-2">
-      <Row>
+    <Card   className="rounded-0 position-relative m-1"
+    style={{
+      maxHeight: '11rem',
+      background: 'black',
+      color: 'white',
+      border: '2px solid white' // Adjust the border thickness as desired
+    }} >
+      <Row >
         <Col>
           <Button
             data-testid="button"
@@ -81,6 +87,8 @@ const CatalogItem = ({ image, name, description, category }) => {
               fill="black"
             >
               <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+
+              
             </svg>
           </Button>
 
@@ -126,14 +134,14 @@ const CatalogItem = ({ image, name, description, category }) => {
 
         </Col>
 
-        <Col>
+        <Col className="pt-0">
           <Card.Body className="d-flex flex-column">
-            <Card.Title className="d-flex justify-content-between align-items-baseline mb-2">
-              <span className="fs-2">{name}</span>
+            <Card.Title className="d-flex justify-content-between align-items-baseline mb-0 pb-1">
+              <span className="fs-3 fw-bold">{name}</span>
             </Card.Title>
 
-            <Card.Text>{description}</Card.Text>
-            <Card.Text>{category}</Card.Text>
+            <Card.Text style={{ fontSize: '8pt'}}>{description}</Card.Text>
+            {/* <Card.Text style={{ fontSize: '10pt'}}>{category}</Card.Text> */}
           </Card.Body>
         </Col>
       </Row>
