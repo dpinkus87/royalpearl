@@ -75,7 +75,7 @@ function HomepageModal() {
                                 }}
                             >
                                 <p>
-                                    Royal Pearl has blended a visionary design approach with the to create a unique high quality collection of jewelry.
+                                    Royal Pearl has blended a visionary design approach with the expertise to create a unique high quality collection of jewelry.
                                 </p>
                             </Row>
 
