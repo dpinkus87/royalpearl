@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Row, Container, Table, Button, Alert } from "react-bootstrap";
 import "../../App.css";
 import AddItem from "../../components/Admin/AddProduct";
+import "firebase/firestore";
+import "firebase/auth";
+import "firebase/analytics";
 import { AuthProvider } from "../../utils/authContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
@@ -12,7 +15,8 @@ import {
   query,
   onSnapshot,
   deleteDoc,
-  doc
+  doc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
@@ -25,6 +29,9 @@ function Admin() {
   const [insertedDescription, setInsertedDescription] = useState("");
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [show, setShow] = useState(true);
+  const [expandedRows, setExpandedRows] = useState([]);
+  const [updatedName, setUpdatedName] = useState("");
+  const [updatedDescription, setUpdatedDescription] = useState("");
 
   firebase.auth().onAuthStateChanged(function (user) {
     setIsLoggedIn(!!user);
@@ -52,10 +59,7 @@ function Admin() {
       setError("Failed to log out");
     }
   }
-  
-  
-  // READ
-  
+
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
@@ -65,33 +69,43 @@ function Admin() {
           id: doc.id,
           data: doc.data(),
         }))
-        );
+      );
+    });
+  };
+
+  useEffect(() => {
+    displayItems();
+  }, []);
+
+  const removeItem = async (itemId) => {
+    try {
+      await deleteDoc(doc(db, "products", itemId));
+    } catch (error) {
+      console.error("Error removing item: ", error);
+    }
+  };
+
+  const toggleRow = (rowId) => {
+    if (expandedRows.includes(rowId)) {
+      setExpandedRows(expandedRows.filter((id) => id !== rowId));
+    } else {
+      setExpandedRows([...expandedRows, rowId]);
+    }
+  };
+
+  const handleUpdate = async (itemId) => {
+    try {
+      const itemRef = doc(db, "products", itemId);
+      await updateDoc(itemRef, {
+        name: updatedName,
+        description: updatedDescription,
       });
-    };
-    console.warn(JSON.stringify(products));
-    
-    useEffect(() => {
-      displayItems();
-    }, []);
-    
-    const handleResetItems = (name, description) => {
-      displayItems();
-    };
-    
-    // DELETE
-    const removeItem = async (itemId) => {
-      const confirmed = window.confirm("Are you sure you want to remove this item?");
-      if (!confirmed) {
-        return;
-      }
-  
-      try {
-        await deleteDoc(doc(db, "products", itemId));
-      } catch (error) {
-        console.error("Error removing item: ", error);
-      }
-    };
-  
+      setUpdatedName("");
+      setUpdatedDescription("");
+    } catch (error) {
+      console.error("Error updating item: ", error);
+    }
+  };
 
   return (
     <div>
@@ -111,7 +125,7 @@ function Admin() {
                 </div>
               </Row>
 
-              <AddItem resetItems={handleResetItems} />
+              <AddItem resetItems={displayItems} />
 
               <br />
 
@@ -124,30 +138,69 @@ function Admin() {
                     <th>Images</th>
                     <th>Category</th>
                     <th>Date Updated</th>
-                    <th>Actions</th>
+                    <th>Delete</th>
+                    <th>Update</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id}>
-                      <td>{product.data.name}</td>
-                      <td>{product.data.description}</td>
-                      <td>[{product.data.image}]</td>
-                      <td>{product.data.category}</td>
-                      <td>
-                        {product.data.timestamp
-                          ? formatDate(product.data.timestamp)
-                          : "n/a"}
-                      </td>
-                      <td>
-                        <Button
-                          variant="danger"
-                          onClick={() => removeItem(product.id)}
-                        >
-                          Remove
-                        </Button>
-                      </td>
-                    </tr>
+                    <React.Fragment key={product.id}>
+                      <tr>
+                        <td>{product.data.name}</td>
+                        <td>{product.data.description}</td>
+                        <td>[{product.data.image}]</td>
+                        <td>{product.data.category}</td>
+                        <td>
+                          {product.data.timestamp
+                            ? formatDate(product.data.timestamp)
+                            : "n/a"}
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            onClick={() => removeItem(product.id)}
+                          >
+                            <span role="img" aria-label="delete">
+                              ✖️
+                            </span>
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            onClick={() => toggleRow(product.id)}
+                          >
+                            Update
+                          </button>
+                        </td>
+                      </tr>
+                      {expandedRows.includes(product.id) && (
+                        <tr>
+                          <td colSpan="7">
+                            <input
+                              type="text"
+                              value={updatedName}
+                              onChange={(e) =>
+                                setUpdatedName(e.target.value)
+                              }
+                            />
+                            <input
+                              type="text"
+                              value={updatedDescription}
+                              onChange={(e) =>
+                                setUpdatedDescription(e.target.value)
+                              }
+                            />
+                            <button
+                              type="button"
+                              onClick={() => handleUpdate(product.id)}
+                            >
+                              Save
+                            </button>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
                   ))}
                 </tbody>
               </Table>
