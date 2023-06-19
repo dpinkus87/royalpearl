@@ -1,14 +1,7 @@
-// TODO: revise useState for user login access - should only show admin page when a user is logged in
-// TODO: add mapping for adding items
-
 import React, { useState, useEffect } from "react";
 import { Row, Container, Table, Button, Alert } from "react-bootstrap";
 import "../../App.css";
 import AddItem from "../../components/Admin/AddProduct";
-import "firebase/firestore";
-import "firebase/auth";
-import "firebase/analytics";
-// import SignIn from "../../components/Admin/SignIn";
 import { AuthProvider } from "../../utils/authContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
@@ -18,6 +11,8 @@ import {
   orderBy,
   query,
   onSnapshot,
+  deleteDoc,
+  doc
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
@@ -28,7 +23,7 @@ function Admin() {
   const [products, setProducts] = useState([]);
   const [insertedName, setInsertedName] = useState("");
   const [insertedDescription, setInsertedDescription] = useState("");
-  const [isLoggedin, setIsLoggedIn] = React.useState(false);
+  const [isLoggedin, setIsLoggedIn] = useState(false);
   const [show, setShow] = useState(true);
 
   firebase.auth().onAuthStateChanged(function (user) {
@@ -57,9 +52,10 @@ function Admin() {
       setError("Failed to log out");
     }
   }
-
-  // READ all items
-
+  
+  
+  // READ
+  
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
@@ -69,20 +65,33 @@ function Admin() {
           id: doc.id,
           data: doc.data(),
         }))
-      );
-    });
-  };
-  console.warn(JSON.stringify(products));
-
-  useEffect(() => {
-    displayItems();
-  }, []);
-
-  // Reset to display new values
-
-  const handleResetItems = (name, description) => {
-    displayItems();
-  };
+        );
+      });
+    };
+    console.warn(JSON.stringify(products));
+    
+    useEffect(() => {
+      displayItems();
+    }, []);
+    
+    const handleResetItems = (name, description) => {
+      displayItems();
+    };
+    
+    // DELETE
+    const removeItem = async (itemId) => {
+      const confirmed = window.confirm("Are you sure you want to remove this item?");
+      if (!confirmed) {
+        return;
+      }
+  
+      try {
+        await deleteDoc(doc(db, "products", itemId));
+      } catch (error) {
+        console.error("Error removing item: ", error);
+      }
+    };
+  
 
   return (
     <div>
@@ -93,7 +102,7 @@ function Admin() {
             <br />
             <Container
               className="justify-content-center align-items-center bg-light"
-              style={{ }}
+              style={{}}
             >
               <Row fluid="true">
                 <h2>Admin Panel</h2>
@@ -115,6 +124,7 @@ function Admin() {
                     <th>Images</th>
                     <th>Category</th>
                     <th>Date Updated</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,13 +139,14 @@ function Admin() {
                           ? formatDate(product.data.timestamp)
                           : "n/a"}
                       </td>
-                      {/* <button type='button'
-                  // onClick={() => removeItem(product.id)}
-                >
-                  <span role='img' aria-label="delete">
-                    ✖️
-                  </span>
-                </button> */}
+                      <td>
+                        <Button
+                          variant="danger"
+                          onClick={() => removeItem(product.id)}
+                        >
+                          Remove
+                        </Button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
