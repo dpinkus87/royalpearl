@@ -60,7 +60,7 @@ function HomepageModal() {
                                 className="bg-black border-right-1 border-color-white"
                             >
                                 <div className="d-flex justify-content-center w-100">
-                                    <h3>Royal Pearl</h3>
+                                    <h3>ROYAL PEARL</h3>
                                 </div>
                                 <br></br>
                                 <br></br>
@@ -87,7 +87,7 @@ function HomepageModal() {
                                             onClick={handleClose}
                                             centered="true"
                                         >
-                                            Royal Pearl
+                                            Enter Royal Pearl
                                         </Button>
                                     </Link>
                                 </div>
@@ -105,7 +105,7 @@ function HomepageModal() {
                                 className="bg-black"
                             >
                                 <div className="d-flex justify-content-center w-100">
-                                    <h3>Regal</h3>
+                                    <h3>REGAL</h3>
                                 </div>
 
                                 <br></br>
@@ -138,7 +138,7 @@ function HomepageModal() {
                                             variant="secondary"
                                             onClick={handleClose}
                                         >
-                                            Regal
+                                            Enter Regal
                                         </Button>
                                     </Link>
                                 </div>

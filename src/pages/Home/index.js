@@ -237,23 +237,7 @@ function Home({ searchText }) {
             </Container>
           </div>
 
-          <br></br>
-          <br></br>
-
-          {/* TODO Previous collections image / link */}
-          <div
-            className="align-items-center justify-content-center text-white"
-            style={{ alignItems: "center", display: "flex" }}
-          >
-            <h1 className="align-items-center justify-content-center text-white p-2">
-              Prior Pieces
-            </h1>
-          </div>
-
-          <br></br>
-          <Container fluid="true" className="m-0">
-            <PriorCollectionCarousel />
-          </Container>
+   
           <br></br>
           <br></br>
           <br></br>

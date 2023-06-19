@@ -58,7 +58,7 @@ const CatalogItem = ({ image, name, description, category }) => {
       maxHeight: '11rem',
       background: 'black',
       color: 'white',
-      border: '2px solid white' // Adjust the border thickness as desired
+      border: '2px solid white' 
     }} >
       <Row >
         <Col>

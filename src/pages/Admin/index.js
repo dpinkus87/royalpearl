@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Container, Table, Button, Alert } from "react-bootstrap";
+import { Row, Container, Table, Button, Alert, Form } from "react-bootstrap";
 import "../../App.css";
 import AddItem from "../../components/Admin/AddProduct";
 import "firebase/firestore";
@@ -17,6 +17,7 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
@@ -32,6 +33,7 @@ function Admin() {
   const [expandedRows, setExpandedRows] = useState([]);
   const [updatedName, setUpdatedName] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   firebase.auth().onAuthStateChanged(function (user) {
     setIsLoggedIn(!!user);
@@ -63,6 +65,11 @@ function Admin() {
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
+  
+    if (searchText) {
+      q = query(q, where("name", ">=", searchText), where("name", "<=", searchText + "\uf8ff"));
+    }
+  
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -72,12 +79,18 @@ function Admin() {
       );
     });
   };
+  
 
   useEffect(() => {
     displayItems();
-  }, []);
+  }, [searchText]);
 
   const removeItem = async (itemId) => {
+    const confirmed = window.confirm("Are you sure you want to remove this item?");
+    if (!confirmed) {
+      return;
+    }
+
     try {
       await deleteDoc(doc(db, "products", itemId));
     } catch (error) {
@@ -107,6 +120,11 @@ function Admin() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    displayItems();
+  };
+
   return (
     <div>
       {isLoggedin ? (
@@ -124,7 +142,19 @@ function Admin() {
                   <Link to="/">RoyalPearlUSA.com</Link>
                 </div>
               </Row>
-
+              <Form className="d-flex m-3" onSubmit={handleSubmit}>
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2 rounded-0"
+                  aria-label="Search"
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value.toUpperCase())}
+                />
+                <Button variant="outline-success" className="rounded-0" type="submit">
+                  Search
+                </Button>
+              </Form>
               <AddItem resetItems={displayItems} />
 
               <br />
@@ -180,9 +210,7 @@ function Admin() {
                             <input
                               type="text"
                               value={updatedName}
-                              onChange={(e) =>
-                                setUpdatedName(e.target.value)
-                              }
+                              onChange={(e) => setUpdatedName(e.target.value)}
                             />
                             <input
                               type="text"

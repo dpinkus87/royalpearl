@@ -13,6 +13,8 @@ const Header = ({ handleNameChange }) => {
     handleNameChange(searchText);
   };
 
+  
+
   console.warn(handleNameChange)
 
   return (
