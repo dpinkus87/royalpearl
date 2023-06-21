@@ -21,7 +21,7 @@ export default function EditProduct(props) {
   };
 
   const handleSubmit = async (event, itemId) => {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); 
 
     try {
       const itemRef = doc(db, "products", itemId);
@@ -35,9 +35,11 @@ export default function EditProduct(props) {
       handleClose();
       handleParentReset();
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
+
+  console.log(props.product.data.description)
 
   return (
     <>
@@ -73,6 +75,8 @@ export default function EditProduct(props) {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+
+              
             />
           </Form.Group>
 
@@ -84,10 +88,10 @@ export default function EditProduct(props) {
               onChange={(e) => setCategory(e.target.value)}
             >
               <option>{props.product.data.category}</option>
-              <option value="bracelet">Bracelet</option>
-              <option value="earring">Earring</option>
-              <option value="necklace">Necklace</option>
-              <option value="ring">Ring</option>
+              <option value="Bracelet">Bracelet</option>
+              <option value="Earring">Earring</option>
+              <option value="Necklace">Necklace</option>
+              <option value="Ring">Ring</option>
             </Form.Select>
           </Form.Group>
 

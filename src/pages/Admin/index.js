@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Row, Container, Table, Button, Alert, Form } from "react-bootstrap";
 import "../../App.css";
-import AddItem from "../../components/Admin/AddProduct";
 import "firebase/firestore";
 import "firebase/auth";
 import "firebase/analytics";
 import { AuthProvider } from "../../utils/authContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
 import { Link } from "react-router-dom";
 import {
@@ -17,12 +16,20 @@ import {
   deleteDoc,
   doc,
   where,
+  startAt,
+  endAt,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
 import EditProduct from "../../components/Admin/EditProduct";
+import AddItem from "../../components/Admin/AddProduct"
+import TopButton from "../../components/Admin/TopButton";
+import { SearchProduct } from "../../components/Admin/SearchProduct";
 
-function Admin() {
+function Admin({searchText}) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState("");
   const [products, setProducts] = useState([]);
@@ -30,7 +37,13 @@ function Admin() {
   const [insertedDescription, setInsertedDescription] = useState("");
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [show, setShow] = useState(true);
-  const [searchText, setSearchText] = useState("");
+
+  const queryParams = new URLSearchParams(location.search);
+  const selectedName = queryParams.get("name") || searchText;
+
+  let handleNameChange = (selectedName) => {
+    navigate(`/adminpanel?name=${selectedName}`);
+  };
 
   firebase.auth().onAuthStateChanged(function (user) {
     setIsLoggedIn(!!user);
@@ -45,8 +58,6 @@ function Admin() {
     });
     return formattedDate;
   }
-
-  const navigate = useNavigate();
 
   async function handleLogout() {
     setError("");
@@ -63,14 +74,12 @@ function Admin() {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
 
-    if (searchText) {
-      q = query(
-        q,
-        where("name", ">=", searchText),
-        where("name", "<=", searchText + "\uf8ff")
-      );
+    if (selectedName && selectedName !== "All") {
+      const startAtName = selectedName;
+      const endAtName = selectedName + "\uf8ff";
+      q = query(q, orderBy("name"), startAt(startAtName), endAt(endAtName));
     }
-
+  
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -83,25 +92,19 @@ function Admin() {
 
   useEffect(() => {
     displayItems();
-  }, [searchText]);
+  }, [selectedName]);
 
-const removeItem = async (itemId, name) => {
-  const confirmed = window.confirm(`Are you sure you want to remove ${name}?`);
-  if (!confirmed) {
-    return;
-  }
+  const removeItem = async (itemId, name) => {
+    const confirmed = window.confirm(`Are you sure you want to remove ${name}?`);
+    if (!confirmed) {
+      return;
+    }
 
-  try {
-    await deleteDoc(doc(db, "products", itemId));
-  } catch (error) {
-    console.error("Error removing item: ", error);
-  }
-};
-
-
-  const handleSearchClick = (e) => {
-    e.preventDefault();
-    displayItems(searchText);
+    try {
+      await deleteDoc(doc(db, "products", itemId));
+    } catch (error) {
+      console.error("Error removing item: ", error);
+    }
   };
 
   return (
@@ -121,33 +124,17 @@ const removeItem = async (itemId, name) => {
                   <Link to="/">RoyalPearlUSA.com</Link>
                 </div>
               </Row>
-              <Form className="d-flex m-3" onSubmit={handleSearchClick}>
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2 rounded-0"
-                  aria-label="Search"
-                  value={searchText}
-                  onChange={(e) =>
-                    setSearchText(e.target.value.toUpperCase())
-                  }
-                />
-                <Button
-                  variant="outline-success"
-                  className="rounded-0"
-                  type="submit"
-                >
-                  Search
-                </Button>
-              </Form>
-              <AddItem resetItems={displayItems} />
-              
+
+              <TopButton />
+
+         <SearchProduct handleNameChange={handleNameChange}/>
+              <AddItem resetItems={displayItems} />  
 
               <br />
 
               <Row>Current Products</Row>
               <Table striped bordered hover>
-                <thead>
+              <thead>
                   <tr>
                     <th>Item</th>
                     <th>ID</th>
@@ -164,15 +151,9 @@ const removeItem = async (itemId, name) => {
                     <tr key={product.id}>
                       <td>{product.data.name}</td>
                       <td>{product.id}</td>
-                      <td >
-                        {product.data.description}
-                      </td>
+                      <td>{product.data.description}</td>
                       <td>[{product.data.image}]</td>
-                      <td
-                       
-                      >
-                        {product.data.category}
-                      </td>
+                      <td>{product.data.category}</td>
                       <td>
                         {product.data.timestamp
                           ? formatDate(product.data.timestamp)
@@ -181,7 +162,7 @@ const removeItem = async (itemId, name) => {
                       <td>
                         <button
                           type="button"
-                          onClick={() => removeItem(product.id)}
+                          onClick={() => removeItem(product.id, product.data.name)}
                         >
                           <span role="img" aria-label="delete">
                             ✖️
@@ -189,7 +170,7 @@ const removeItem = async (itemId, name) => {
                         </button>
                       </td>
                       <td>
-                      <EditProduct product={product} />
+                        <EditProduct product={product} />
                       </td>
                     </tr>
                   ))}
