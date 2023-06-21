@@ -16,11 +16,11 @@ import {
   onSnapshot,
   deleteDoc,
   doc,
-  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
+import EditProduct from "../../components/Admin/EditProduct";
 
 function Admin() {
   const { currentUser, logout } = useAuth();
@@ -30,9 +30,6 @@ function Admin() {
   const [insertedDescription, setInsertedDescription] = useState("");
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [show, setShow] = useState(true);
-  const [expandedRows, setExpandedRows] = useState([]);
-  const [updatedName, setUpdatedName] = useState("");
-  const [updatedDescription, setUpdatedDescription] = useState("");
   const [searchText, setSearchText] = useState("");
 
   firebase.auth().onAuthStateChanged(function (user) {
@@ -65,11 +62,15 @@ function Admin() {
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
-  
+
     if (searchText) {
-      q = query(q, where("name", ">=", searchText), where("name", "<=", searchText + "\uf8ff"));
+      q = query(
+        q,
+        where("name", ">=", searchText),
+        where("name", "<=", searchText + "\uf8ff")
+      );
     }
-  
+
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -79,50 +80,28 @@ function Admin() {
       );
     });
   };
-  
 
   useEffect(() => {
     displayItems();
   }, [searchText]);
 
-  const removeItem = async (itemId) => {
-    const confirmed = window.confirm("Are you sure you want to remove this item?");
-    if (!confirmed) {
-      return;
-    }
+const removeItem = async (itemId, name) => {
+  const confirmed = window.confirm(`Are you sure you want to remove ${name}?`);
+  if (!confirmed) {
+    return;
+  }
 
-    try {
-      await deleteDoc(doc(db, "products", itemId));
-    } catch (error) {
-      console.error("Error removing item: ", error);
-    }
-  };
+  try {
+    await deleteDoc(doc(db, "products", itemId));
+  } catch (error) {
+    console.error("Error removing item: ", error);
+  }
+};
 
-  const toggleRow = (rowId) => {
-    if (expandedRows.includes(rowId)) {
-      setExpandedRows(expandedRows.filter((id) => id !== rowId));
-    } else {
-      setExpandedRows([...expandedRows, rowId]);
-    }
-  };
 
-  const handleUpdate = async (itemId) => {
-    try {
-      const itemRef = doc(db, "products", itemId);
-      await updateDoc(itemRef, {
-        name: updatedName,
-        description: updatedDescription,
-      });
-      setUpdatedName("");
-      setUpdatedDescription("");
-    } catch (error) {
-      console.error("Error updating item: ", error);
-    }
-  };
-
-  const handleSubmit = (e) => {
+  const handleSearchClick = (e) => {
     e.preventDefault();
-    displayItems();
+    displayItems(searchText);
   };
 
   return (
@@ -142,20 +121,27 @@ function Admin() {
                   <Link to="/">RoyalPearlUSA.com</Link>
                 </div>
               </Row>
-              <Form className="d-flex m-3" onSubmit={handleSubmit}>
+              <Form className="d-flex m-3" onSubmit={handleSearchClick}>
                 <Form.Control
                   type="search"
                   placeholder="Search"
                   className="me-2 rounded-0"
                   aria-label="Search"
                   value={searchText}
-                  onChange={(e) => setSearchText(e.target.value.toUpperCase())}
+                  onChange={(e) =>
+                    setSearchText(e.target.value.toUpperCase())
+                  }
                 />
-                <Button variant="outline-success" className="rounded-0" type="submit">
+                <Button
+                  variant="outline-success"
+                  className="rounded-0"
+                  type="submit"
+                >
                   Search
                 </Button>
               </Form>
               <AddItem resetItems={displayItems} />
+              
 
               <br />
 
@@ -164,6 +150,7 @@ function Admin() {
                 <thead>
                   <tr>
                     <th>Item</th>
+                    <th>ID</th>
                     <th>Description</th>
                     <th>Images</th>
                     <th>Category</th>
@@ -174,61 +161,37 @@ function Admin() {
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <React.Fragment key={product.id}>
-                      <tr>
-                        <td>{product.data.name}</td>
-                        <td>{product.data.description}</td>
-                        <td>[{product.data.image}]</td>
-                        <td>{product.data.category}</td>
-                        <td>
-                          {product.data.timestamp
-                            ? formatDate(product.data.timestamp)
-                            : "n/a"}
-                        </td>
-                        <td>
-                          <button
-                            type="button"
-                            onClick={() => removeItem(product.id)}
-                          >
-                            <span role="img" aria-label="delete">
-                              ✖️
-                            </span>
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            type="button"
-                            onClick={() => toggleRow(product.id)}
-                          >
-                            Update
-                          </button>
-                        </td>
-                      </tr>
-                      {expandedRows.includes(product.id) && (
-                        <tr>
-                          <td colSpan="7">
-                            <input
-                              type="text"
-                              value={updatedName}
-                              onChange={(e) => setUpdatedName(e.target.value)}
-                            />
-                            <input
-                              type="text"
-                              value={updatedDescription}
-                              onChange={(e) =>
-                                setUpdatedDescription(e.target.value)
-                              }
-                            />
-                            <button
-                              type="button"
-                              onClick={() => handleUpdate(product.id)}
-                            >
-                              Save
-                            </button>
-                          </td>
-                        </tr>
-                      )}
-                    </React.Fragment>
+                    <tr key={product.id}>
+                      <td>{product.data.name}</td>
+                      <td>{product.id}</td>
+                      <td >
+                        {product.data.description}
+                      </td>
+                      <td>[{product.data.image}]</td>
+                      <td
+                       
+                      >
+                        {product.data.category}
+                      </td>
+                      <td>
+                        {product.data.timestamp
+                          ? formatDate(product.data.timestamp)
+                          : "n/a"}
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => removeItem(product.id)}
+                        >
+                          <span role="img" aria-label="delete">
+                            ✖️
+                          </span>
+                        </button>
+                      </td>
+                      <td>
+                      <EditProduct product={product} />
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </Table>
