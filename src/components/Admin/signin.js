@@ -18,7 +18,7 @@ export default function SignIn() {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      navigate("/adminpanel")
+      navigate("/admin")
     } catch {
       setError("Failed to log in")
     }

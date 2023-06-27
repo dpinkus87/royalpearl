@@ -13,6 +13,17 @@ import ColorMenu from "../../components/Filters/colorMenu";
 import GemMenu from "../../components/Filters/gemMenu";
 import MaterialMenu from "../../components/Filters/materialMenu";
 
+const styles = {
+  parallax: {
+    backgroundImage: `url(${hero})`,
+    minHeight: "500px",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  },
+};
+
 function Catalog({ searchText }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -89,17 +100,16 @@ function Catalog({ searchText }) {
 
   const CatalogItem = lazy(() => import("../../components/CatalogItem"));
 
+
+  
   return (
     <>
       <Header handleNameChange={handleNameChange} />
       
       <MessageOffcanvas />
 
-      <Container fluid className="m-0 p-0">
-        <Row>
-          <Image src={hero} style={{ objectFit: "cover", height: "500px" }} fluid />
-        </Row>
-      </Container>
+      <Container fluid className="m-0 p-0" style={styles.parallax} />
+
 
       <h2 className="align-items-center text-white p-2">Catalog</h2>
 

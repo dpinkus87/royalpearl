@@ -1,4 +1,3 @@
-// TODO: Add mapping to product and db instance
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -14,12 +13,10 @@ const AddItem = (props) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState(null);
   const [imgUrl, setImgUrl] = useState("");
-
-  const [selectedImage, setSelectedImage] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,7 +25,6 @@ const AddItem = (props) => {
     props.resetItems();
   };
 
-  // POST route - new item
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -41,42 +37,46 @@ const AddItem = (props) => {
       });
       handleClose();
       handleParentReset(name, description);
-      setImage([...imgUrl, setImage]);
     } catch (err) {
       alert(err);
     }
   };
 
-  const [file, setFile] = useState("");
-
-  const [percent, setPercent] = useState(0);
-
-  function handleChange(event) {
-    setFile(event.target.files[0]);
-  }
-  const handleUpload = () => {
-    if (!file) {
+  const handleUpload = async () => {
+    if (!image) {
       alert("Please upload an image first!");
+      return;
     }
-    const storageRef = ref(storage, `/files/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const percent = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setPercent(percent);
-      },
-      (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setImgUrl(url);
-          console.log(url);
-        });
-      }
-    );
+    try {
+      const storageRef = ref(storage, `/${image.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, image);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setUploadProgress(progress);
+        },
+        (error) => {
+          alert("Error uploading file: ", error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((downloadURL) => {
+              setImgUrl(downloadURL);
+              console.warn("Download URL:", downloadURL);
+            })
+            .catch((error) => {
+              alert("Error retrieving download URL: ", error);
+            });
+        }
+      );
+    } catch (error) {
+      alert("Error uploading file: ", error);
+    }
   };
 
   return (
@@ -101,15 +101,10 @@ const AddItem = (props) => {
             />
           </Form.Group>
 
-          {/* TODO: Add image to storage */}
-          <Form.Group
-            onSubmit={handleUpload}
-            controlId="formFile"
-            className="mb-3 p-2"
-          >
+          <Form.Group controlId="formFile" className="mb-3 p-2">
             <Form.Label>Images</Form.Label>
-            <Form.Control type="file" onChange={handleChange} />
-            {uploadProgress > 0 && <p>Upload Progress: {uploadProgress}%</p>}
+            <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} />
+            <Button onClick={handleUpload}>Upload</Button>
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
@@ -117,6 +112,7 @@ const AddItem = (props) => {
             <Form.Control
               required
               type="text"
+              as="textarea"
               placeholder="Enter Item Description"
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -124,13 +120,16 @@ const AddItem = (props) => {
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
             <Form.Label>Category</Form.Label>
-            <Form.Select aria-label="Default select example">
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setCategory(e.target.value)}
+            >
               <option>Select a Category</option>
-              <option value="bracelet">Bracelet</option>
-              <option value="earring">Earring</option>
-              <option value="necklace">Necklace</option>
-              <option value="ring">Ring</option>
-              onChange={setCategory}
+              <option value="Bracelet">Bracelet</option>
+              <option value="Earring">Earring</option>
+              <option value="Necklace">Necklace</option>
+              <option value="Ring">Ring</option>
+              <option value="Strands">Strands</option>
             </Form.Select>
           </Form.Group>
 

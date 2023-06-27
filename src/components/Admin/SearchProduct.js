@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
-export const SearchProduct = ({ handleNameChange }) => {
+ const SearchProduct = ({ handleNameChange }) => {
 
-    const [searchText, setSearchText] = useState("");
+    const [adminSearchText, setAdminSearchText] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleNameChange(searchText);
+        handleNameChange(adminSearchText);
     };
+
 
     return (
         <>
@@ -19,8 +20,8 @@ export const SearchProduct = ({ handleNameChange }) => {
                     placeholder="Search"
                     className="me-2 rounded-0"
                     aria-label="Search"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value.toUpperCase())}
+                    value={adminSearchText}
+                    onChange={(e) => setAdminSearchText(e.target.value.toUpperCase())}
                 />
                 <Button
                     variant="outline-success"
@@ -33,6 +34,8 @@ export const SearchProduct = ({ handleNameChange }) => {
 
         </>
     )
-}
+};
+
+export default SearchProduct;
 
 

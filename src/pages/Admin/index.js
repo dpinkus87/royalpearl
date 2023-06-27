@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Row, Container, Table, Button, Alert, Form } from "react-bootstrap";
+import React, { useState, useEffect, Suspense } from "react";
+import { Row, Container, Table, Button, Alert } from "react-bootstrap";
 import "../../App.css";
 import "firebase/firestore";
 import "firebase/auth";
@@ -15,39 +15,35 @@ import {
   onSnapshot,
   deleteDoc,
   doc,
-  where,
   startAt,
   endAt,
+  where,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
 import EditProduct from "../../components/Admin/EditProduct";
-import AddItem from "../../components/Admin/AddProduct"
+import AddItem from "../../components/Admin/AddProduct";
 import TopButton from "../../components/Admin/TopButton";
-import { SearchProduct } from "../../components/Admin/SearchProduct";
+import SearchProduct from "../../components/Admin/SearchProduct";
 
-function Admin({searchText}) {
+function Admin({adminSearchText}) {
   const location = useLocation();
   const navigate = useNavigate();
-
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState("");
   const [products, setProducts] = useState([]);
-  const [insertedName, setInsertedName] = useState("");
-  const [insertedDescription, setInsertedDescription] = useState("");
+
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [show, setShow] = useState(true);
-
+  
   const queryParams = new URLSearchParams(location.search);
-  const selectedName = queryParams.get("name") || searchText;
+  
+  const selectedName = queryParams.get("name") || adminSearchText;
 
-  let handleNameChange = (selectedName) => {
-    navigate(`/adminpanel?name=${selectedName}`);
-  };
 
   firebase.auth().onAuthStateChanged(function (user) {
     setIsLoggedIn(!!user);
-  });
+  });  
 
   function formatDate(timestamp) {
     const date = new Date(timestamp);
@@ -55,25 +51,29 @@ function Admin({searchText}) {
       day: "numeric",
       month: "long",
       year: "numeric",
-    });
+    });  
     return formattedDate;
-  }
+  }  
 
   async function handleLogout() {
     setError("");
 
     try {
       await logout();
-      navigate("/admin");
+      navigate("/signin");
     } catch {
       setError("Failed to log out");
-    }
-  }
+    }  
+  }  
+
+  let handleNameChange = (selectedName) => {
+    navigate(`/admin?name=${selectedName}`);
+  };
 
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
-
+  
     if (selectedName && selectedName !== "All") {
       const startAtName = selectedName;
       const endAtName = selectedName + "\uf8ff";
@@ -92,20 +92,8 @@ function Admin({searchText}) {
 
   useEffect(() => {
     displayItems();
-  }, [selectedName]);
+  }, [selectedName ]);
 
-  const removeItem = async (itemId, name) => {
-    const confirmed = window.confirm(`Are you sure you want to remove ${name}?`);
-    if (!confirmed) {
-      return;
-    }
-
-    try {
-      await deleteDoc(doc(db, "products", itemId));
-    } catch (error) {
-      console.error("Error removing item: ", error);
-    }
-  };
 
   return (
     <div>
@@ -118,7 +106,7 @@ function Admin({searchText}) {
               className="justify-content-center align-items-center bg-light"
               style={{}}
             >
-              <Row fluid="true">
+              <Row fluid="true" style={{textAlign: 'center'}}>
                 <h2>Admin Panel</h2>
                 <div>
                   <Link to="/">RoyalPearlUSA.com</Link>
@@ -127,30 +115,34 @@ function Admin({searchText}) {
 
               <TopButton />
 
-         <SearchProduct handleNameChange={handleNameChange}/>
-              <AddItem resetItems={displayItems} />  
+              <SearchProduct handleNameChange={handleNameChange} />
+
+              <AddItem resetItems={displayItems} />
 
               <br />
 
-              <Row>Current Products</Row>
-              <Table striped bordered hover>
-              <thead>
+              <Row style={{textAlign: 'center'}}>
+              <h2>
+                Current Products
+              </h2>
+             </Row>
+
+              <Table responsive striped bordered hover>
+                <thead>
                   <tr>
                     <th>Item</th>
-                    <th>ID</th>
                     <th>Description</th>
                     <th>Images</th>
                     <th>Category</th>
                     <th>Date Updated</th>
-                    <th>Delete</th>
                     <th>Update</th>
                   </tr>
                 </thead>
                 <tbody>
+                <Suspense fallback={<div>Loading...</div>}>
                   {products.map((product) => (
                     <tr key={product.id}>
                       <td>{product.data.name}</td>
-                      <td>{product.id}</td>
                       <td>{product.data.description}</td>
                       <td>[{product.data.image}]</td>
                       <td>{product.data.category}</td>
@@ -159,21 +151,13 @@ function Admin({searchText}) {
                           ? formatDate(product.data.timestamp)
                           : "n/a"}
                       </td>
-                      <td>
-                        <button
-                          type="button"
-                          onClick={() => removeItem(product.id, product.data.name)}
-                        >
-                          <span role="img" aria-label="delete">
-                            ✖️
-                          </span>
-                        </button>
-                      </td>
+                     
                       <td>
                         <EditProduct product={product} />
                       </td>
                     </tr>
                   ))}
+                  </Suspense>
                 </tbody>
               </Table>
               <div className="w-100 text-center mt-2">

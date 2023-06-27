@@ -12,8 +12,6 @@ import NameContext from "./utils/NameState";
 
 function App() {
 
-
-
   return (
     <BrowserRouter>
       <div className="App">
@@ -31,11 +29,12 @@ function App() {
           element={<Catalog />}
           />
          <Route
-         path="/Admin"
+         path="/signin"
          Component={SignIn}
+         element={<Admin />}
          />
         <Route
-        path="/Adminpanel"
+        path="/Admin"
         element={<Admin />}
         />
          <Route

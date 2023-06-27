@@ -13,9 +13,6 @@ const Header = ({ handleNameChange }) => {
     handleNameChange(searchText);
   };
 
-  
-
-  console.warn(handleNameChange)
 
   return (
     <header>
@@ -29,11 +26,12 @@ const Header = ({ handleNameChange }) => {
             <Nav className="m-auto justify-content-end">
               <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown title="Product Categories" menuVariant="dark" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/catalog?category=bracelet">Bracelets</NavDropdown.Item>
-                <NavDropdown.Item href="/catalog?category=Cuff Link">Cufflinks</NavDropdown.Item>
+                <NavDropdown.Item href="/catalog?category=Bracelet">Bracelets</NavDropdown.Item>
                 <NavDropdown.Item href="/catalog?category=Earring">Earrings</NavDropdown.Item>
                 <NavDropdown.Item href="/catalog?category=Necklace">Necklaces</NavDropdown.Item>
                 <NavDropdown.Item href="/catalog?category=Ring">Rings</NavDropdown.Item>
+                <NavDropdown.Item href="/catalog?category=Strands">Strands</NavDropdown.Item>
+
               </NavDropdown>
               <Nav.Link href="/catalog">New Arrivals</Nav.Link>
               <Nav.Link href="/catalog">Best Sellers</Nav.Link>

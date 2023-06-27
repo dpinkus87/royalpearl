@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { db } from "../../config/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 export default function EditProduct(props) {
   const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ export default function EditProduct(props) {
   };
 
   const handleSubmit = async (event, itemId) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
     try {
       const itemRef = doc(db, "products", itemId);
@@ -39,7 +39,20 @@ export default function EditProduct(props) {
     }
   };
 
-  console.log(props.product.data.description)
+  const removeItem = async (itemId, name) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to remove ${name}?`
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await deleteDoc(doc(db, "products", itemId));
+    } catch (error) {
+      console.error("Error removing item: ", error);
+    }
+  };
 
   return (
     <>
@@ -73,10 +86,9 @@ export default function EditProduct(props) {
             <Form.Control
               required
               type="text"
+              as="textarea"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-
-              
             />
           </Form.Group>
 
@@ -92,6 +104,9 @@ export default function EditProduct(props) {
               <option value="Earring">Earring</option>
               <option value="Necklace">Necklace</option>
               <option value="Ring">Ring</option>
+              <option value="Strands">Strands</option>
+              
+
             </Form.Select>
           </Form.Group>
 
@@ -104,6 +119,14 @@ export default function EditProduct(props) {
             }}
             className="pb-2"
           >
+            <Button
+              type="button"
+              variant="danger"
+              onClick={() => removeItem(props.product.id, props.product.data.name)}
+            >
+           REMOVE ITEM
+            </Button>
+
             <Button
               variant="primary"
               type="submit"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Dropdown } from "react-bootstrap";
 
 const styles = {
@@ -24,11 +24,8 @@ const CategoryMenu = ({ selectedCategory, handleCategoryChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("All")}>
             All
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("bracelet")}>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Bracelet")}>
             Bracelet
-          </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Cuff Link")}>
-            Cufflink
           </Dropdown.Item>
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Earring")}>
             Earring
@@ -36,11 +33,11 @@ const CategoryMenu = ({ selectedCategory, handleCategoryChange }) => {
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Necklace")}>
             Necklace
           </Dropdown.Item>
-          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("pendant")}>
-            Pendant
-          </Dropdown.Item>
           <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Ring")}>
             Ring
+          </Dropdown.Item>
+          <Dropdown.Item style={styles.dropdown} onClick={() => handleCategoryChange("Strands")}>
+            Strands
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
