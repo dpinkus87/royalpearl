@@ -13,11 +13,8 @@ import {
   orderBy,
   query,
   onSnapshot,
-  deleteDoc,
-  doc,
   startAt,
   endAt,
-  where,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import firebase from "firebase/compat/app";
@@ -48,6 +45,8 @@ function Admin({adminSearchText}) {
   function formatDate(timestamp) {
     const date = new Date(timestamp);
     const formattedDate = date.toLocaleDateString("en-US", {
+      minute: 'numeric',
+      hour: 'numeric',
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -144,7 +143,7 @@ function Admin({adminSearchText}) {
                     <tr key={product.id}>
                       <td>{product.data.name}</td>
                       <td>{product.data.description}</td>
-                      <td>[{product.data.image}]</td>
+                      <td>{product.data.image}</td>
                       <td>{product.data.category}</td>
                       <td>
                         {product.data.timestamp

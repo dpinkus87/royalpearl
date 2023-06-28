@@ -64,7 +64,7 @@ export default function EditProduct(props) {
         <Modal.Header closeButton>
           <Modal.Title>Update Item</Modal.Title>
         </Modal.Header>
-        <Modal.Body>TEST</Modal.Body>
+        <Modal.Body></Modal.Body>
         <Form onSubmit={(e) => handleSubmit(e, props.product.id)}>
           <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
             <Form.Label>Item Name</Form.Label>

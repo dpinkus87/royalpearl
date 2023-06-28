@@ -14,9 +14,11 @@ const AddItem = (props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [imageAsFile, setImageAsFile] = useState("")
   const [imgUrl, setImgUrl] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [category, setCategory] = useState("");
+  const [imageAsURL, setImageAsURL] = useState("")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -31,7 +33,7 @@ const AddItem = (props) => {
       await addDoc(collection(db, "products"), {
         name: name,
         description: description,
-        image: imgUrl,
+        image: imageAsURL,
         timestamp: getTimestamp(),
         category: category,
       });
@@ -47,17 +49,15 @@ const AddItem = (props) => {
       alert("Please upload an image first!");
       return;
     }
-
+  
     try {
       const storageRef = ref(storage, `/${image.name}`);
       const uploadTask = uploadBytesResumable(storageRef, image);
-
+  
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
+          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
           setUploadProgress(progress);
         },
         (error) => {
@@ -66,8 +66,22 @@ const AddItem = (props) => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref)
             .then((downloadURL) => {
-              setImgUrl(downloadURL);
-              console.warn("Download URL:", downloadURL);
+              const tokenIndex = downloadURL.indexOf("&token");
+              const cleanedURL =
+                tokenIndex !== -1 ? downloadURL.substring(0, tokenIndex) : downloadURL;
+  
+              const fileName = image.name;
+              const fileTypeIndex = fileName.lastIndexOf(".");
+              const fileType = fileName.substring(fileTypeIndex);
+              const fileNameWithoutType = fileName.substring(0, fileTypeIndex);
+  
+              const modifiedFileName = `${fileNameWithoutType}_200x200${fileType}`;
+              const storageURL = "https://storage.googleapis.com/royal-pearl-e3254.appspot.com/";
+              const finalURL = storageURL + modifiedFileName + "?alt=media";
+  
+              setImageAsURL(finalURL);
+  
+              console.warn("Download URL:", finalURL);
             })
             .catch((error) => {
               alert("Error retrieving download URL: ", error);
@@ -78,6 +92,9 @@ const AddItem = (props) => {
       alert("Error uploading file: ", error);
     }
   };
+  
+  
+
 
   return (
     <>
@@ -105,6 +122,9 @@ const AddItem = (props) => {
             <Form.Label>Images</Form.Label>
             <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} />
             <Button onClick={handleUpload}>Upload</Button>
+            {uploadProgress > 0 && (
+              <div>Upload Progress: {uploadProgress}%</div>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">

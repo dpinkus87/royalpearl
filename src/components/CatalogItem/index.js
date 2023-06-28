@@ -8,7 +8,7 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 
-const CatalogItem = ({ image, name, description, category }) => {
+const CatalogItem = ({ image, name, description, category, imagesAsURL }) => {
   const [product, setProducts] = useState([]);
   const [imageFromDB, setImageFromDB] = useState([]);
 
