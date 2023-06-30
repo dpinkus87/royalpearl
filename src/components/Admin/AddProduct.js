@@ -14,13 +14,13 @@ const AddItem = (props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
-  const [imageAsFile, setImageAsFile] = useState("")
+  const [imageAsFile, setImageAsFile] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [category, setCategory] = useState("");
-  const [category2, setCategory2] = useState("");
+  const [category2, setCategory2] = useState([]);
 
-  const [imageAsURL, setImageAsURL] = useState("")
+  const [imageAsURL, setImageAsURL] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -38,7 +38,7 @@ const AddItem = (props) => {
         image: imageAsURL,
         timestamp: getTimestamp(),
         category: category,
-        category2: category2
+        category2: category2,
       });
       handleClose();
       handleParentReset(name, description);
@@ -60,7 +60,9 @@ const AddItem = (props) => {
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
           setUploadProgress(progress);
         },
         (error) => {
@@ -71,7 +73,9 @@ const AddItem = (props) => {
             .then((downloadURL) => {
               const tokenIndex = downloadURL.indexOf("&token");
               const cleanedURL =
-                tokenIndex !== -1 ? downloadURL.substring(0, tokenIndex) : downloadURL;
+                tokenIndex !== -1
+                  ? downloadURL.substring(0, tokenIndex)
+                  : downloadURL;
 
               const fileName = image.name;
               const fileTypeIndex = fileName.lastIndexOf(".");
@@ -79,7 +83,8 @@ const AddItem = (props) => {
               const fileNameWithoutType = fileName.substring(0, fileTypeIndex);
 
               const modifiedFileName = `${fileNameWithoutType}_200x200${fileType}`;
-              const storageURL = "https://storage.googleapis.com/royal-pearl-e3254.appspot.com/";
+              const storageURL =
+                "https://storage.googleapis.com/royal-pearl-e3254.appspot.com/";
               const finalURL = storageURL + modifiedFileName + "?alt=media";
 
               setImageAsURL(finalURL);
@@ -95,9 +100,6 @@ const AddItem = (props) => {
       alert("Error uploading file: ", error);
     }
   };
-
-
-
 
   return (
     <>
@@ -123,7 +125,10 @@ const AddItem = (props) => {
 
           <Form.Group controlId="formFile" className="mb-3 p-2">
             <Form.Label>Images</Form.Label>
-            <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} />
+            <Form.Control
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
             <Button onClick={handleUpload}>Upload</Button>
             {uploadProgress > 0 && (
               <div>Upload Progress: {uploadProgress}%</div>
@@ -157,17 +162,54 @@ const AddItem = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
-            <Form.Label>Other</Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => setCategory2(e.target.value)}
-            >
-              <option>Select Other</option>
-              <option value="NewItem">New Item</option>
-              <option value="BestSeller">Best Seller</option>
-              <option value="OldFriend">Old Friend</option>
-              <option value="none"></option>
-            </Form.Select>
+
+            <Form.Check
+              type="switch"
+              id="custom-switch"
+              label="New Item"
+              value="NewItem"
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setCategory2([...category2, e.target.value]);
+                } else {
+                  setCategory2(
+                    category2.filter((item) => item !== e.target.value)
+                  );
+                }
+              }}
+            />
+
+            <Form.Check
+              type="switch"
+              id="custom-switch"
+              label="Best Seller"
+              value="Best Seller"
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setCategory2([...category2, e.target.value]);
+                } else {
+                  setCategory2(
+                    category2.filter((item) => item !== e.target.value)
+                  );
+                }
+              }}
+            />
+
+            <Form.Check
+              type="switch"
+              id="custom-switch"
+              label="Old Friend"
+              value="OldFriend"
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setCategory2([...category2, e.target.value]);
+                } else {
+                  setCategory2(
+                    category2.filter((item) => item !== e.target.value)
+                  );
+                }
+              }}
+            />
           </Form.Group>
 
           <div

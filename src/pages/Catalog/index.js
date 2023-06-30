@@ -41,10 +41,6 @@ function Catalog({ searchText }) {
     navigate(`/catalog?category=${category}`);
   };
 
-  // const handleCategoryChange2 = (category2) => {
-  //   navigate(`/catalog?category2=${category2}`);
-  // };
-
   const handleGemChange = (gem) => {
     navigate(`/catalog?gem=${gem}`);
   };
@@ -75,7 +71,6 @@ function Catalog({ searchText }) {
       q = query(q, where("category2", "==", selectedCategory2));
     }
     
- 
     if (selectedGem && selectedGem !== "All") {
       q = query(q, where("gem", "==", selectedGem));
     }

@@ -111,19 +111,61 @@ export default function EditProduct(props) {
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
-            <Form.Label>Other</Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              value={category2}
-              onChange={(e) => setCategory2(e.target.value)}
-            >
-              <option>{props.product.data.category2}</option>
-              <option value="NewItem">New Item</option>
-              <option value="BestSeller">Best Seller</option>
-              <option value="OldFriend">Old Friend</option>
-              <option value=""></option>
-            </Form.Select>
-          </Form.Group>
+
+<Form.Check
+  type="switch"
+  id="custom-switch"
+  label="New Item"
+  value="NewItem"
+  checked={category2.includes("NewItem")}
+
+  onChange={(e) => {
+    if (e.target.checked) {
+      setCategory2([...category2, e.target.value]);
+    } else {
+      setCategory2(
+        category2.filter((item) => item !== e.target.value)
+      );
+    }
+  }}
+/>
+
+<Form.Check
+  type="switch"
+  id="custom-switch"
+  label="Best Seller"
+  value="BestSeller"
+  checked={category2.includes("Best Seller")}
+
+  onChange={(e) => {
+    if (e.target.checked) {
+      setCategory2([...category2, e.target.value]);
+    } else {
+      setCategory2(
+        category2.filter((item) => item !== e.target.value)
+      );
+    }
+  }}
+/>
+
+<Form.Check
+  type="switch"
+  id="custom-switch"
+  label="Old Friend"
+  value="OldFriend"
+  checked={category2.includes("OldFriend")}
+
+  onChange={(e) => {
+    if (e.target.checked) {
+      setCategory2([...category2, e.target.value]);
+    } else {
+      setCategory2(
+        category2.filter((item) => item !== e.target.value)
+      );
+    }
+  }}
+/>
+</Form.Group>
 
           <div
             style={{
