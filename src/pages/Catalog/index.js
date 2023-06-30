@@ -30,14 +30,20 @@ function Catalog({ searchText }) {
 
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category") || "";
+  const selectedCategory2 = queryParams.get("category2") || "";
   const selectedGem = queryParams.get("gem") || "";
   const selectedColor = queryParams.get("color") || "";
   const selectedMaterial = queryParams.get("material") || "";
   const selectedName = queryParams.get("name") || searchText;
 
+
   const handleCategoryChange = (category) => {
     navigate(`/catalog?category=${category}`);
   };
+
+  // const handleCategoryChange2 = (category2) => {
+  //   navigate(`/catalog?category2=${category2}`);
+  // };
 
   const handleGemChange = (gem) => {
     navigate(`/catalog?gem=${gem}`);
@@ -64,7 +70,12 @@ function Catalog({ searchText }) {
     if (selectedCategory && selectedCategory !== "All") {
       q = query(q, where("category", "==", selectedCategory));
     }
-  
+
+    if (selectedCategory2 && selectedCategory2 !== "All" && selectedCategory2 !== "OldFriend") {
+      q = query(q, where("category2", "==", selectedCategory2));
+    }
+    
+ 
     if (selectedGem && selectedGem !== "All") {
       q = query(q, where("gem", "==", selectedGem));
     }
@@ -84,19 +95,20 @@ function Catalog({ searchText }) {
     }
   
     onSnapshot(q, (snapshot) => {
-      setProducts(
-        snapshot.docs.map((doc) => ({
+      const filteredProducts = snapshot.docs
+        .map((doc) => ({
           id: doc.id,
           data: doc.data(),
         }))
-      );
+        .filter((product) => product.data.category2 !== "OldFriend");
+      setProducts(filteredProducts);
     });
   };
 
   
   useEffect(() => {
     displayItems();
-  }, [selectedCategory, selectedColor, selectedGem, selectedMaterial, selectedName ]);
+  }, [selectedCategory, selectedCategory2, selectedColor, selectedGem, selectedMaterial, selectedName ]);
 
   const CatalogItem = lazy(() => import("../../components/CatalogItem"));
 
@@ -132,18 +144,19 @@ function Catalog({ searchText }) {
         <Row xxl={4} xl={3} lg={2} md={1} sm={1} xs={1} className="gx-0 p-1 m-4">
           <Suspense fallback={<div>Loading...</div>}>
             {products.map((product) => (
+              
               <CatalogItem
                 key={product.id}
                 name={product.data.name}
                 description={product.data.description}
                 category={product.data.category}
+                category2={product.data.category2}
                 image={product.data.image}
               />
             ))}
           </Suspense>
         </Row>
       </Container>
-
       <br />
 
       <Footer />

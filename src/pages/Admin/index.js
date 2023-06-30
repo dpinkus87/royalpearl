@@ -133,6 +133,7 @@ function Admin({adminSearchText}) {
                     <th>Description</th>
                     <th>Images</th>
                     <th>Category</th>
+                    <th>Other</th>
                     <th>Date Updated</th>
                     <th>Update</th>
                   </tr>
@@ -145,6 +146,7 @@ function Admin({adminSearchText}) {
                       <td>{product.data.description}</td>
                       <td>{product.data.image}</td>
                       <td>{product.data.category}</td>
+                      <td>{product.data.category2}</td>
                       <td>
                         {product.data.timestamp
                           ? formatDate(product.data.timestamp)

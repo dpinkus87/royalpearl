@@ -315,7 +315,7 @@ function Home({ searchText }) {
               <Col lg={8}>
                 <Image
                   className="w-100"
-                  style={{ maxHeight: "35rem", objectFit: "cover" }}
+                  style={{ maxHeight: "25rem", objectFit: "cover" }}
                   src={aboutImage}
                 />
               </Col>
@@ -353,20 +353,7 @@ function Home({ searchText }) {
 
         <br></br>
         <br></br>
-        <div>
-          <Container fluid="true">
-            <h1 className="text-white bg-black text-center">Upcoming Shows</h1>
-            <br></br>
-            <ul
-              className="text-white text-center"
-              style={{ listStyle: "none", fontSize: "18pt" }}
-            >
-              <li>Las Vegas - June 2nd, 2023</li>
-            </ul>
-          </Container>
-          <br></br>
-          <br></br>
-        </div>
+
       </div>
       <Footer />
     </>

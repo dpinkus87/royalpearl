@@ -18,6 +18,8 @@ const AddItem = (props) => {
   const [imgUrl, setImgUrl] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [category, setCategory] = useState("");
+  const [category2, setCategory2] = useState("");
+
   const [imageAsURL, setImageAsURL] = useState("")
 
   const handleClose = () => setShow(false);
@@ -36,6 +38,7 @@ const AddItem = (props) => {
         image: imageAsURL,
         timestamp: getTimestamp(),
         category: category,
+        category2: category2
       });
       handleClose();
       handleParentReset(name, description);
@@ -49,11 +52,11 @@ const AddItem = (props) => {
       alert("Please upload an image first!");
       return;
     }
-  
+
     try {
       const storageRef = ref(storage, `/${image.name}`);
       const uploadTask = uploadBytesResumable(storageRef, image);
-  
+
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -69,18 +72,18 @@ const AddItem = (props) => {
               const tokenIndex = downloadURL.indexOf("&token");
               const cleanedURL =
                 tokenIndex !== -1 ? downloadURL.substring(0, tokenIndex) : downloadURL;
-  
+
               const fileName = image.name;
               const fileTypeIndex = fileName.lastIndexOf(".");
               const fileType = fileName.substring(fileTypeIndex);
               const fileNameWithoutType = fileName.substring(0, fileTypeIndex);
-  
+
               const modifiedFileName = `${fileNameWithoutType}_200x200${fileType}`;
               const storageURL = "https://storage.googleapis.com/royal-pearl-e3254.appspot.com/";
               const finalURL = storageURL + modifiedFileName + "?alt=media";
-  
+
               setImageAsURL(finalURL);
-  
+
               console.warn("Download URL:", finalURL);
             })
             .catch((error) => {
@@ -92,8 +95,8 @@ const AddItem = (props) => {
       alert("Error uploading file: ", error);
     }
   };
-  
-  
+
+
 
 
   return (
@@ -150,6 +153,20 @@ const AddItem = (props) => {
               <option value="Necklace">Necklace</option>
               <option value="Ring">Ring</option>
               <option value="Strands">Strands</option>
+            </Form.Select>
+          </Form.Group>
+
+          <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
+            <Form.Label>Other</Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setCategory2(e.target.value)}
+            >
+              <option>Select Other</option>
+              <option value="NewItem">New Item</option>
+              <option value="BestSeller">Best Seller</option>
+              <option value="OldFriend">Old Friend</option>
+              <option value="none"></option>
             </Form.Select>
           </Form.Group>
 

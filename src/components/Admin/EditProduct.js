@@ -12,6 +12,7 @@ export default function EditProduct(props) {
     props.product.data.description || ""
   );
   const [category, setCategory] = useState(props.product.data.category || "");
+  const [category2, setCategory2] = useState(props.product.data.category2 || "");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,6 +31,7 @@ export default function EditProduct(props) {
         name,
         description,
         category,
+        category2,
       });
 
       handleClose();
@@ -104,9 +106,22 @@ export default function EditProduct(props) {
               <option value="Earring">Earring</option>
               <option value="Necklace">Necklace</option>
               <option value="Ring">Ring</option>
-              <option value="Strands">Strands</option>
-              
+              <option value="Pendant">Pendant</option>
+            </Form.Select>
+          </Form.Group>
 
+          <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
+            <Form.Label>Other</Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              value={category2}
+              onChange={(e) => setCategory2(e.target.value)}
+            >
+              <option>{props.product.data.category2}</option>
+              <option value="NewItem">New Item</option>
+              <option value="BestSeller">Best Seller</option>
+              <option value="OldFriend">Old Friend</option>
+              <option value=""></option>
             </Form.Select>
           </Form.Group>
 

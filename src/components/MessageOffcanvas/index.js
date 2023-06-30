@@ -136,6 +136,7 @@ const MessageOffcanvas = () => {
         <Offcanvas.Header closeButton className="btn-close-white" style={{ color: "white!" }}>
           <Offcanvas.Title style={{ color: "#FFFFFF !important" }} variant='white' className="whitTxt">Contact Us</Offcanvas.Title>
         </Offcanvas.Header>
+          <Offcanvas.Body>Click + on any items which you may be interested in </Offcanvas.Body>
         <Offcanvas.Body>
           <Form style={styles.formControl} onSubmit={handleSubmit} ref={form}>
             <label>Name:</label>

@@ -99,3 +99,9 @@ filter: none !important;
 .video {
   height: 20rem;
 }
+
+@media (max-width: 500px) {
+  .hover-dropdown .container {
+    transform: none;
+  }
+}
