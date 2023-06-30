@@ -40,7 +40,7 @@ const Header = ({ handleNameChange }) => {
 
               <Nav.Link href="/catalog?category2=NewItem">New Arrivals</Nav.Link>
               <Nav.Link href="/catalog?category2=BestSeller">Best Sellers</Nav.Link>
-              <Nav.Link href="/OldFriends?category2=OldFriend">Old Friends</Nav.Link>
+              {/* <Nav.Link href="/OldFriends?category2=OldFriend">Old Friends</Nav.Link> */}
 
               <NavDropdown
                 title="Upcoming Shows"

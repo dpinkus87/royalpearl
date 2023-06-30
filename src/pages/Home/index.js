@@ -263,7 +263,7 @@ function Home({ searchText }) {
           <Container display="flex" fluid="true">
             <Row sm={1} md={1} xs={1} lg={2}>
               <Col>
-                <a href="../Catalog" style={{ textDecoration: "none" }}>
+                <a href="/catalog?category2=NewItem" style={{ textDecoration: "none" }}>
                   <div
                     style={{ cursor: "pointer" }}
                     className="border-0 border-bottom-0"
@@ -284,7 +284,7 @@ function Home({ searchText }) {
               </Col>
 
               <Col>
-                <a href="../Catalog" style={{ textDecoration: "none" }}>
+                <a href="/catalog?category2=BestSeller" style={{ textDecoration: "none" }}>
                   <div style={{ cursor: "pointer" }} className="border-0">
                     <Row>
                       <Image
