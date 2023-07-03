@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { db } from "../../config/firebase";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { Col, Row } from "react-bootstrap";
 
 export default function EditProduct(props) {
   const [show, setShow] = useState(false);
@@ -111,8 +112,9 @@ export default function EditProduct(props) {
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
-
-<Form.Check
+<Row>
+<Col>
+  <Form.Check
   type="switch"
   id="custom-switch-NewItem"
   label="New Item"
@@ -129,8 +131,10 @@ export default function EditProduct(props) {
     }
   }}
 />
+</Col>
 
-<Form.Check
+<Col>
+  <Form.Check
   type="switch"
   id="custom-switch-BestSeller"
   label="Best Seller"
@@ -147,8 +151,9 @@ export default function EditProduct(props) {
     }
   }}
 />
-
-<Form.Check
+</Col>
+<Col>
+  <Form.Check
   type="switch"
   id="custom-switch-OldFriend"
   label="Old Friend"
@@ -165,6 +170,10 @@ export default function EditProduct(props) {
     }
   }}
 />
+</Col>
+</Row>
+
+
 </Form.Group>
 
           <div

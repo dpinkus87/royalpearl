@@ -7,7 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { getTimestamp } from "../../utils/getTimestamp";
 import { storage } from "../../config/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { Dropdown } from "react-bootstrap";
+import { Col, Dropdown, Row } from "react-bootstrap";
 
 const AddItem = (props) => {
   const [show, setShow] = useState(false);
@@ -162,8 +162,9 @@ const AddItem = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">
-
-            <Form.Check
+<Row>
+<Col>
+   <Form.Check
               type="switch"
               id="custom-switch-NewItem"
               label="New Item"
@@ -178,8 +179,9 @@ const AddItem = (props) => {
                 }
               }}
             />
-
-            <Form.Check
+</Col>
+<Col>
+    <Form.Check
               type="switch"
               id="custom-switch-BestSeller"
               label="Best Seller"
@@ -194,8 +196,9 @@ const AddItem = (props) => {
                 }
               }}
             />
-
-            <Form.Check
+</Col>
+<Col>
+     <Form.Check
               type="switch"
               id="custom-switch-OldFriend"
               label="Old Friend"
@@ -210,6 +213,13 @@ const AddItem = (props) => {
                 }
               }}
             />
+</Col>
+</Row>
+           
+
+          
+
+         
           </Form.Group>
 
           <div
