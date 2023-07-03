@@ -165,7 +165,7 @@ const AddItem = (props) => {
 
             <Form.Check
               type="switch"
-              id="custom-switch"
+              id="custom-switch-NewItem"
               label="New Item"
               value="NewItem"
               onChange={(e) => {
@@ -181,9 +181,9 @@ const AddItem = (props) => {
 
             <Form.Check
               type="switch"
-              id="custom-switch"
+              id="custom-switch-BestSeller"
               label="Best Seller"
-              value="Best Seller"
+              value="BestSeller"
               onChange={(e) => {
                 if (e.target.checked) {
                   setCategory2([...category2, e.target.value]);
@@ -197,7 +197,7 @@ const AddItem = (props) => {
 
             <Form.Check
               type="switch"
-              id="custom-switch"
+              id="custom-switch-OldFriend"
               label="Old Friend"
               value="OldFriend"
               onChange={(e) => {

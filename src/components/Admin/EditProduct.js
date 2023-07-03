@@ -114,7 +114,7 @@ export default function EditProduct(props) {
 
 <Form.Check
   type="switch"
-  id="custom-switch"
+  id="custom-switch-NewItem"
   label="New Item"
   value="NewItem"
   checked={category2.includes("NewItem")}
@@ -132,10 +132,10 @@ export default function EditProduct(props) {
 
 <Form.Check
   type="switch"
-  id="custom-switch"
+  id="custom-switch-BestSeller"
   label="Best Seller"
   value="BestSeller"
-  checked={category2.includes("Best Seller")}
+  checked={category2.includes("BestSeller")}
 
   onChange={(e) => {
     if (e.target.checked) {
@@ -150,7 +150,7 @@ export default function EditProduct(props) {
 
 <Form.Check
   type="switch"
-  id="custom-switch"
+  id="custom-switch-OldFriend"
   label="Old Friend"
   value="OldFriend"
   checked={category2.includes("OldFriend")}

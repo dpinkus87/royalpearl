@@ -185,6 +185,27 @@ function Home({ searchText }) {
 
               <Col>
                 <Link
+                  to="/catalog?category=Necklace"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Card
+                    style={{ cursor: "pointer" }}
+                    className="border-0 bg-black"
+                  >
+                    <Card.Img
+                      src={necklace}
+                      className="rounded-0"
+                      style={{ objectFit: "cover" }}
+                    ></Card.Img>
+                    <Card.Body className="newArrivalCard text-white bg-black text-center 25">
+                      <u> Necklace</u>
+                    </Card.Body>
+                  </Card>
+                </Link>
+              </Col>
+              
+              <Col>
+                <Link
                   to="/catalog?category=pendant"
                   style={{ textDecoration: "none" }}
                 >
@@ -206,7 +227,7 @@ function Home({ searchText }) {
 
               <Col>
                 <Link
-                  to="/catalog?category=Ring"
+                  to="/catalog?category=ring"
                   style={{ textDecoration: "none" }}
                 >
                   <Card
@@ -216,11 +237,7 @@ function Home({ searchText }) {
                     <Card.Img
                       src={ring}
                       className="rounded-0"
-                      style={{
-                        objectFit: "cover",
-                        maxHeight: "240px",
-                        maxWidth: "240px",
-                      }}
+                      style={{ objectFit: "cover" }}
                     ></Card.Img>
                     <Card.Body className="newArrivalCard text-white bg-black text-center 25">
                       <u> Rings</u>
@@ -228,27 +245,11 @@ function Home({ searchText }) {
                   </Card>
                 </Link>
               </Col>
+          
 
-              <Col>
-                <Link
-                  to="/catalog?category=Strands"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Card
-                    style={{ cursor: "pointer" }}
-                    className="border-0 bg-black"
-                  >
-                    <Card.Img
-                      src={necklace}
-                      className="rounded-0"
-                      style={{ objectFit: "cover" }}
-                    ></Card.Img>
-                    <Card.Body className="newArrivalCard text-white bg-black text-center 25">
-                      <u> Strands</u>
-                    </Card.Body>
-                  </Card>
-                </Link>
-              </Col>
+      
+
+          
             </Row>
           </Container>
         </div>
