@@ -23,7 +23,7 @@ import AddItem from "../../components/Admin/AddProduct";
 import TopButton from "../../components/Admin/TopButton";
 import SearchProduct from "../../components/Admin/SearchProduct";
 
-function Admin({adminSearchText}) {
+function Admin({ adminSearchText }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
@@ -31,31 +31,29 @@ function Admin({adminSearchText}) {
   const [products, setProducts] = useState([]);
 
   const [isLoggedin, setIsLoggedIn] = useState(false);
-
-  firebase.auth().onAuthStateChanged(function (user) {
-    setIsLoggedIn(!!user);
-  });  
-  
   const [show, setShow] = useState(true);
-  
 
   const queryParams = new URLSearchParams(location.search);
-  
+
   const selectedName = queryParams.get("name") || adminSearchText;
 
-
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      setIsLoggedIn(!!user);
+    });
+  }, []);
 
   function formatDate(timestamp) {
     const date = new Date(timestamp);
     const formattedDate = date.toLocaleDateString("en-US", {
-      minute: 'numeric',
-      hour: 'numeric',
+      minute: "numeric",
+      hour: "numeric",
       day: "numeric",
       month: "long",
       year: "numeric",
-    });  
+    });
     return formattedDate;
-  }  
+  }
 
   async function handleLogout() {
     setError("");
@@ -65,8 +63,8 @@ function Admin({adminSearchText}) {
       navigate("/signin");
     } catch {
       setError("Failed to log out");
-    }  
-  }  
+    }
+  }
 
   let handleNameChange = (selectedName) => {
     navigate(`/admin?name=${selectedName}`);
@@ -75,13 +73,13 @@ function Admin({adminSearchText}) {
   const displayItems = () => {
     const colRef = collection(db, "products");
     let q = query(colRef, orderBy("name", "asc"));
-  
+
     if (selectedName && selectedName !== "All") {
       const startAtName = selectedName;
       const endAtName = selectedName + "\uf8ff";
       q = query(q, orderBy("name"), startAt(startAtName), endAt(endAtName));
     }
-  
+
     onSnapshot(q, (snapshot) => {
       setProducts(
         snapshot.docs.map((doc) => ({
@@ -94,9 +92,9 @@ function Admin({adminSearchText}) {
 
   useEffect(() => {
     displayItems();
-  }, [selectedName ]);
+  }, [selectedName]);
 
-
+  console.log("I AM HERE !!!!!!!!!!");
   return (
     <div>
       {isLoggedin ? (
@@ -108,7 +106,7 @@ function Admin({adminSearchText}) {
               className="justify-content-center align-items-center bg-light"
               style={{}}
             >
-              <Row fluid="true" style={{textAlign: 'center'}}>
+              <Row fluid="true" style={{ textAlign: "center" }}>
                 <h2>Admin Panel</h2>
                 <div>
                   <Link to="/">RoyalPearlUSA.com</Link>
@@ -123,11 +121,9 @@ function Admin({adminSearchText}) {
 
               <br />
 
-              <Row style={{textAlign: 'center'}}>
-              <h2>
-                Current Products
-              </h2>
-             </Row>
+              <Row style={{ textAlign: "center" }}>
+                <h2>Current Products</h2>
+              </Row>
 
               <Table responsive striped bordered hover>
                 <thead>
@@ -142,25 +138,33 @@ function Admin({adminSearchText}) {
                   </tr>
                 </thead>
                 <tbody>
-                <Suspense fallback={<div>Loading...</div>}>
-                  {products.map((product) => (
-                    <tr key={product.id}>
-                      <td>{product.data.name}</td>
-                      <td>{product.data.description}</td>
-                      <td>{product.data.image}</td>
-                      <td>{product.data.category}</td>
-                      <td>{product.data.category2}</td>
-                      <td>
-                        {product.data.timestamp
-                          ? formatDate(product.data.timestamp)
-                          : "n/a"}
-                      </td>
-                     
-                      <td>
-                        <EditProduct product={product} />
-                      </td>
-                    </tr>
-                  ))}
+                  <Suspense fallback={<div>Loading...</div>}>
+                    {products.map((product) => {
+                      if (!product.data.category2) {
+                        product.data.category2 = [];
+                      } else if (typeof product.data.category2 === "string") {
+                        product.data.category2 = [product.data.category2];
+                      }
+
+                      return (
+                        <tr key={product.id}>
+                          <td>{product.data.name}</td>
+                          <td>{product.data.description}</td>
+                          <td>{product.data.image}</td>
+                          <td>{product.data.category}</td>
+                          <td>{product.data.category2.join(", ")}</td>
+                          <td>
+                            {product.data.timestamp
+                              ? formatDate(product.data.timestamp)
+                              : "n/a"}
+                          </td>
+
+                          <td>
+                            <EditProduct product={product} />
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </Suspense>
                 </tbody>
               </Table>
