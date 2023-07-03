@@ -68,7 +68,7 @@ function Catalog({ searchText }) {
     }
 
     if (selectedCategory2 && selectedCategory2 !== "All" && selectedCategory2 !== "OldFriend") {
-      q = query(q, where("category2", "==", selectedCategory2));
+      q = query(q, where("category2", "array-contains", selectedCategory2));
     }
     
     if (selectedGem && selectedGem !== "All") {
@@ -95,7 +95,7 @@ function Catalog({ searchText }) {
           id: doc.id,
           data: doc.data(),
         }))
-        .filter((product) => product.data.category2 !== "OldFriend");
+        .filter((product) => product.data.category2 != "OldFriend");
       setProducts(filteredProducts);
     });
   };

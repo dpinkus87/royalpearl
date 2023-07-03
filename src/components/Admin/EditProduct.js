@@ -12,7 +12,7 @@ export default function EditProduct(props) {
     props.product.data.description || ""
   );
   const [category, setCategory] = useState(props.product.data.category || "");
-  const [category2, setCategory2] = useState(props.product.data.category2 || "");
+  const [category2, setCategory2] = useState(props.product.data.category2 || []);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
