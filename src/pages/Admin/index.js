@@ -129,7 +129,6 @@ function Admin({ adminSearchText }) {
                 <thead>
                   <tr>
                     <th>Item</th>
-                    <th>ID</th>
                     <th>Description</th>
                     <th>Images</th>
                     <th>Category</th>
@@ -150,7 +149,6 @@ function Admin({ adminSearchText }) {
                       return (
                         <tr key={product.id}>
                           <td>{product.data.name}</td>
-                          <td>{product.id}</td>
                           <td>{product.data.description}</td>
                           <td>{product.data.image}</td>
                           <td>{product.data.category}</td>
