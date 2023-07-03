@@ -31,16 +31,19 @@ function Admin({adminSearchText}) {
   const [products, setProducts] = useState([]);
 
   const [isLoggedin, setIsLoggedIn] = useState(false);
+
+  firebase.auth().onAuthStateChanged(function (user) {
+    setIsLoggedIn(!!user);
+  });  
+  
   const [show, setShow] = useState(true);
   
+
   const queryParams = new URLSearchParams(location.search);
   
   const selectedName = queryParams.get("name") || adminSearchText;
 
 
-  firebase.auth().onAuthStateChanged(function (user) {
-    setIsLoggedIn(!!user);
-  });  
 
   function formatDate(timestamp) {
     const date = new Date(timestamp);
