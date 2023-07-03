@@ -227,7 +227,7 @@ function Home({ searchText }) {
 
               <Col>
                 <Link
-                  to="/catalog?category=ring"
+                  to="/catalog?category=Ring"
                   style={{ textDecoration: "none" }}
                 >
                   <Card
