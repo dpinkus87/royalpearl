@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Row, Image } from "react-bootstrap";
+import { Container, Col, Row, Image, Carousel } from "react-bootstrap";
 import "../../App.css";
 import hero from "../../Images/scott-webb-_7G_R_IWt1U-unsplash.jpeg";
 import bracelet from "../../Images/bracelet.jpeg";
@@ -52,70 +52,99 @@ const Regal = () => {
             height: "auto",
           }}
         >
-          Welcome to Regal Jewelry, where we specialize in crafting exquisite
-          custom jewelry pieces that reflect your unique style and personality.
-          With a passion for exceptional craftsmanship and attention to detail,
-          we strive to create stunning jewelry that surpasses your expectations.
-          Whether you're looking for a one-of-a-kind engagement ring, a
-          sentimental necklace, or personalized earrings, our skilled artisans
-          are here to bring your vision to life.{" "}
+          <p>
+            Welcome to Regal Jewelry, where we specialize in crafting exquisite
+            custom jewelry pieces that reflect your unique style and
+            personality.{" "}
+          </p>
         </Row>
       </Container>
 
+      <div style={{ background: "white" }}>
       <br></br>
-      <br></br>
-
-      <Container fluid="true">
-        <Row>
-          <Col className="m-0 p-0 ">
-            <Image
-              className="heroImage"
-              src={bracelet}
-              fluid="true"
-              style={{ objectFit: "cover", height: "500px", width: "auto", alignItems: "center" }}
-            />
-          </Col>
-          <Col xs={8}>
-            <h4 className="text-white text-center py-8" >
+        <Container style={{ background: "white" }}>
+          <Row>
+            <p>
               Discover Regal Jewelry's curated collections, showcasing timeless
               elegance, modern chic, and vintage-inspired designs that cater to
               diverse style preferences, allowing you to find the perfect piece
               that tells your unique story.
-            </h4>
-          </Col>
-        </Row>
-      </Container>
+            </p>
+            <p>
+              From sophisticated pieces for everyday wear and special occasions,
+              to minimalist designs with contemporary flair, or a more vintage
+              inspired design, we can create a jewelry piece that resonates with
+              your style and story.
+            </p>
+          </Row>
+        </Container>
+        <br></br>
+      </div>
 
-      <br></br>
-      <br></br>
-
-      <Container fluid="true">
-        <Row>
-          <Col xs={8}>
-            <h4 className="text-white text-center py-8">
-              Regal Jewelry offers curated collections that embody timeless
-              elegance, modern chic, and vintage-inspired designs. Our Classic
-              Elegance collection features sophisticated pieces for everyday
-              wear and special occasions. The Modern Chic collection showcases
-              minimalist designs with contemporary flair. For those captivated
-              by vintage charm, our Vintage Inspired collection presents ornate
-              and intricately detailed pieces that evoke nostalgia. Explore our
-              collections to find a jewelry piece that resonates with your style
-              and story.
-            </h4>
-          </Col>
-          <Col className="m-0 p-0 ">
-            <Image
-              className="heroImage"
+      <Carousel variant="dark" style={{ background: "white" }}>
+        <Carousel.Item>
+          <div className="d-flex justify-content-center align-items-center">
+            <img
+              className="d-block"
+              style={{ height: "25rem", objectFit: "cover" }}
               src={earrings}
-              fluid="true"
-              style={{ objectFit: "cover", height: "500px", width: "auto" }}
+              alt="First slide"
             />
-          </Col>
-        </Row>
+          </div>
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <div className="d-flex justify-content-center align-items-center">
+            <img
+              className="d-block"
+              style={{ height: "25rem", objectFit: "cover" }}
+              src={bracelet}
+              alt="First slide"
+            />
+          </div>
+        </Carousel.Item>
+      </Carousel>
+
+      <div style={{ background: "white" }} >
+<br></br>
+        <Container style={{ background: "white" }} >
+          <Row>
+            <p>
+              With our meticulous craftsmanship and state-of-the-art technology,
+              including Computer-Aided Design (CAD), we bring your dream jewelry
+              to life with unparalleled precision and creativity.
+            </p>
+
+            <p>
+              Our CAD process is at the heart of our
+              innovation and expertise. Our skilled team of designers utilizes
+              cutting-edge software to translate your ideas into detailed 3D
+              models. This allows you to visualize your design before it even
+              reaches the production stage, ensuring every intricate detail
+              meets your exact specifications. With CAD, we have the flexibility
+              to experiment with various materials, gemstones, and design
+              elements, guaranteeing a truly customized piece that captures your
+              vision.
+            </p>
+            <p>
+              Whether you desire an elegant engagement ring, a sentimental
+              pendant, or a timeless bracelet, our commitment to quality and
+              craftsmanship is unmatched. From the initial concept to the final
+              creation, we work closely with you to ensure your custom jewelry
+              embodies your personality and aspirations. Experience the
+              extraordinary and let Regal bring your dreams to
+              reality with our unparalleled process.
+            </p>
+            <p>
+              From sophisticated pieces for everyday wear and special occasions,
+              to minimalist designs with contemporary flair, or a more vintage
+              inspired design, we can create a jewelry piece that resonates with
+              your style and story.
+            </p>
+          </Row>
+        </Container>
         <br></br>
-        <br></br>
-      </Container>
+      </div>
 
       <Footer />
     </div>
