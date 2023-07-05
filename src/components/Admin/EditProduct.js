@@ -9,6 +9,7 @@ import { Col, Row } from "react-bootstrap";
 export default function EditProduct(props) {
   const [show, setShow] = useState(false);
   const [name, setName] = useState(props.product.data.name || "");
+  const [image, setImage] = useState(props.product.data.image || "");
   const [description, setDescription] = useState(
     props.product.data.description || ""
   );
@@ -31,6 +32,7 @@ export default function EditProduct(props) {
       await updateDoc(itemRef, {
         name,
         description,
+        image,
         category,
         category2,
       });
@@ -57,6 +59,7 @@ export default function EditProduct(props) {
     }
   };
 
+  
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -81,7 +84,10 @@ export default function EditProduct(props) {
 
           <Form.Group controlId="formFile" className="mb-3 p-2">
             <Form.Label>Images</Form.Label>
-            <Form.Control type="file" />
+            <Form.Control 
+            type="file" 
+            onChange={(e) => setImage(e.target.files[0])}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicDescription">

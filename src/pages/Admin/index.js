@@ -150,7 +150,15 @@ function Admin({ adminSearchText }) {
                         <tr key={product.id}>
                           <td>{product.data.name}</td>
                           <td>{product.data.description}</td>
-                          <td>{product.data.image}</td>
+                          <td>
+    <ul>
+      {product.data.image.split(",").map((image, index) => (
+        <li key={index}>
+          <a href={image.trim()}>{image.trim()}</a>
+        </li>
+      ))}
+    </ul>
+  </td>
                           <td>{product.data.category}</td>
                           <td>{product.data.category2.join(", ")}</td>
                           <td>
