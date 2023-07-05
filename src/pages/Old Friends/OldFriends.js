@@ -7,6 +7,7 @@ import { db } from "../../config/firebase";
 import hero from "../../Images/sabrianna-CCpQ12CZ2Pc-unsplash.jpg";
 import { Carousel, Container, Row } from "react-bootstrap";
 import PE90TW from "../../Images/PE90TW-S_200x200.JPG"
+import OldFriendsItem from "../../components/OldFriendsItem";
 
 const styles = {
     parallax: {
@@ -88,7 +89,7 @@ const OldFriends = () => {
 
                 <Row xxl={4} xl={3} lg={2} md={1} sm={1} xs={1} className="gx-0 p-1 m-4">
                     {products.map((product) => (
-                        <CatalogItem
+                        <OldFriendsItem
                             key={product.id}
                             name={product.data.name}
                             description={product.data.description}
