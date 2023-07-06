@@ -25,6 +25,13 @@ const Footer = () => {
           <br></br>
           <h6> Copyright ©2023 Royal Pearl</h6>
         </Row>
+<br></br>
+<div style={{display: 'contents'}}>
+     
+           <a style={{fontSize:'10pt', justifyContent: 'end'}} >Created by</a> <a style={{fontSize:'10pt'}} href="mailto:pixelheads23@gmail.com
+">Pixel Heads</a>
+   
+         </div>
       </Container>
     </div>
   );
