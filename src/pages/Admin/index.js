@@ -90,6 +90,8 @@ function Admin({ adminSearchText }) {
     });
   };
 
+
+
   useEffect(() => {
     displayItems();
   }, [selectedName]);
@@ -129,8 +131,13 @@ function Admin({ adminSearchText }) {
                 <thead>
                   <tr>
                     <th>Item</th>
-                    <th>Description</th>
-                    <th>Images</th>
+
+                    <th>
+                      <th style={{ width: "10vw" }}>Description</th>
+
+
+                    </th>
+                    <th style={{ width: "40vw" }}>Images</th>
                     <th>Category</th>
                     <th>Other</th>
                     <th>Date Updated</th>
@@ -149,16 +156,40 @@ function Admin({ adminSearchText }) {
                       return (
                         <tr key={product.id}>
                           <td>{product.data.name}</td>
-                          <td>{product.data.description}</td>
-                          <td>
-    <ul>
-      {product.data.image.split(",").map((image, index) => (
-        <li key={index}>
-          <a href={image.trim()}>{image.trim()}</a>
-        </li>
-      ))}
-    </ul>
-  </td>
+                          <td style={{ width: "10vw" }}>
+                            {product.data.description}
+                          </td>
+                          <td>                    
+                          <div className="d-flex flex-wrap">
+
+                            {product.data.image.split(",").map((image, index) => {
+                              const isImage = `/\.(jpe?g|png|gif)$\/i.test(image)`;
+                              const isVideo = `/\.mp4$/i.test(image, index)`;                        return (
+                          <div
+        key={index}
+        className="list-style-none mr-2"
+        style={{ maxWidth: "8rem" }}
+      >
+        {isImage ? (
+          <img
+            style={{ width: "100%", height: "auto" }}
+            src={image.trim()}
+            alt={`Image ${index}`}
+          />
+        ) : isVideo ? (
+          <video
+            style={{ width: "100%", height: "auto" }}
+            src={image.trim()}
+            alt={`Video ${index}`}
+            controls
+            poster={image.trim()}
+          />
+        ) : null}
+      </div>
+                        );
+                      })}
+                            </div>
+                          </td>
                           <td>{product.data.category}</td>
                           <td>{product.data.category2.join(", ")}</td>
                           <td>
@@ -171,35 +202,36 @@ function Admin({ adminSearchText }) {
                             <EditProduct product={product} />
                           </td>
                         </tr>
-                      );
+                  );
                     })}
-                  </Suspense>
-                </tbody>
-              </Table>
-              <div className="w-100 text-center mt-2">
-                <Button variant="link" onClick={handleLogout}>
-                  Log Out
-                </Button>
-              </div>
-            </Container>
-          </AuthProvider>
+                </Suspense>
+              </tbody>
+            </Table>
+            <div className="w-100 text-center mt-2">
+              <Button variant="link" onClick={handleLogout}>
+                Log Out
+              </Button>
+            </div>
+          </Container>
+        </AuthProvider>
 
-          <br />
-          <br />
-        </>
-      ) : (
-        <Alert show={show} variant="danger">
-          <Alert.Heading>How's it going?!</Alert.Heading>
-          <p>You need to log in first!</p>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button onClick={() => setShow(false)} variant="outline-success">
-              Log in again!
-            </Button>
-          </div>
-        </Alert>
-      )}
-    </div>
+      <br />
+      <br />
+    </>
+  ) : (
+    <Alert show={show} variant="danger">
+      <Alert.Heading>How's it going?!</Alert.Heading>
+      <p>You need to log in first!</p>
+      <hr />
+      <div className="d-flex justify-content-end">
+        <Button onClick={() => setShow(false)} variant="outline-success">
+          Log in again!
+        </Button>
+      </div>
+    </Alert>
+  )
+}
+    </div >
   );
 }
 
