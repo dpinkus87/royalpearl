@@ -141,9 +141,9 @@ export default function EditProduct(props) {
   };
 
   const handleRemoveThumbnail = (index) => {
-    const updatedImageUrls = [...updateImage.split('\n')];
+    const updatedImageUrls = [...updateImage.split(',')];
     updatedImageUrls.splice(index, 1);
-    setUpdateImage(updatedImageUrls.join('\n'));
+    setUpdateImage(updatedImageUrls.join(','));
   };
 
   const renderThumbnails = () => {
@@ -169,13 +169,13 @@ export default function EditProduct(props) {
         </Modal.Header>
         <Modal.Body></Modal.Body>
         <Form onSubmit={(e) => handleSubmit(e, props.product.id)}>
-          <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+          <Form.Group className="mb-3 p-2" controlId="formBasicName">
             <Form.Label>Item Name</Form.Label>
             <Form.Control
               required
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value.toUpperCase())}
             />
           </Form.Group>
 
@@ -196,12 +196,12 @@ export default function EditProduct(props) {
         <Form.Label className="mb-3 p-2" controlId="formCurrentImages">
           Current Images
         </Form.Label>
-        <Form.Control
+        {/* <Form.Control
           type="text"
           as="textarea"
           value={updateImage}
           onChange={(e) => setUpdateImage(e.target.value)}
-        />
+        /> */}
       </Form.Group>
 
       {updateImage && renderThumbnails()}

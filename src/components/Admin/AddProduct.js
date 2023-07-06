@@ -113,13 +113,14 @@ const AddItem = (props) => {
         </Modal.Header>
         <Modal.Body>Fill each field to add a new item</Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+
+          <Form.Group className="mb-3 p-2" controlId="formBasicName">
             <Form.Label>Item Name</Form.Label>
             <Form.Control
               required
               type="text"
               placeholder="Enter Item Name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value.toUpperCase())}
             />
           </Form.Group>
 
