@@ -86,7 +86,7 @@ function Home({ searchText }) {
     <>
       <Header handleNameChange={handleNameChange} />
 
-      <div className="home">
+      <div className="home" style={{ width: '99%'}}>
         {/* Show Modal */}
 
         <HomepageModal />

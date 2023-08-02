@@ -36,7 +36,6 @@ const MessageOffcanvas = () => {
     return () => window.removeEventListener("storage", storedItems);
   }, []);
 
-
   const handleEmailChange = (event) => {
     event.preventDefault();
     const { value } = event.target;
@@ -97,9 +96,7 @@ const MessageOffcanvas = () => {
       height: "100%",
       width: "100%",
     },
-    test: {
-
-    },
+    test: {},
   };
 
   return (
@@ -133,10 +130,22 @@ const MessageOffcanvas = () => {
         scroll={true}
         placement="end"
       >
-        <Offcanvas.Header closeButton className="btn-close-white" style={{ color: "white!" }}>
-          <Offcanvas.Title style={{ color: "#FFFFFF !important" }} variant='white' className="whitTxt">Contact Us</Offcanvas.Title>
+        <Offcanvas.Header
+          closeButton
+          className="btn-close-white"
+          style={{ color: "white!" }}
+        >
+          <Offcanvas.Title
+            style={{ color: "#FFFFFF !important" }}
+            variant="white"
+            className="whitTxt"
+          >
+            Contact Us
+          </Offcanvas.Title>
         </Offcanvas.Header>
-          <Offcanvas.Body>Click + on any items which you may be interested in </Offcanvas.Body>
+        <Offcanvas.Body>
+          Click + on any items which you may be interested in{" "}
+        </Offcanvas.Body>
         <Offcanvas.Body>
           <Form style={styles.formControl} onSubmit={handleSubmit} ref={form}>
             <label>Name:</label>
@@ -148,7 +157,12 @@ const MessageOffcanvas = () => {
             />
             <br />
             <label>Email:</label>
-            <input type="email" name="Email" style={{ width: "100%" }} onChange={handleEmailChange} />
+            <input
+              type="email"
+              name="Email"
+              style={{ width: "100%" }}
+              onChange={handleEmailChange}
+            />
             <br />
             <label>Phone Number:</label>
             <input
